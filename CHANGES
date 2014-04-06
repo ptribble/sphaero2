@@ -1,0 +1,105 @@
+1.2
+
+Applet version. See README.APPLET. There are known bugs - occasionally
+all the pieces end up in a corner (S to shuffle them) and sometimes the
+keys don't work initially.
+
+Refactoring in places aligned with the applet; some common code moved
+into JigUtil.
+
+1.1
+
+Resize the image a little smaller. This makes it easier to handle as
+there's more space around the edges to hold pieces.
+
+Harmonize code and variable names in RectCutter and SquareCutter
+
+Cleaned up some pmd warnings and missing javadoc
+
+1.0
+
+Created a build script
+
+unix linefeeds
+
+add manifest so you can java -jar it
+
+pmd clean
+
+lint clean
+
+replace iterators by enhanced for loops
+
+Rely on booleans being initialized to false
+
+Random image selection ignores files that contain the string "thumb"
+
+JigsawFrame shows the window before it starts reading the image, so you
+know something has happened.
+
+Resize large images so they fit on screen.
+
+jstyle clean
+
+OKCancelPane removed; inlined into JigsawFrontEnd
+
+Minor optimization: a 180 rotation means we can just reverse the image
+array, we don't have to walk it in 2 dimensions
+
+JigsawFrontEnd implements ActionListener
+
+Slight refactoring of JigsawFrame
+
+Removed Tests
+
+JigsawCutter made an abstract class rather than an interface
+
+Common code moved into JigsawCutter
+
+Remove unused width/height ratio from Classic Cutters
+
+SquareCutter has variable piece counts
+
+RectCutter has variable piece counts
+
+Remove VariableCountCutter, JigsawCutter now has variable piece counts
+
+Toolbar on main frame
+
+Remove 'H' key accelerator, as it's a menu item
+
+The random image finder filters on images, so works on directories
+containing a mixture of images and non-images.
+
+JigsawFrame accepts all valid cutter names as arguments now.
+
+Option to show a small version of the picture so you can see what
+you're trying to solve. This is modal so you have to dismiss it while
+solving the puzzle.
+
+Modernized usage of setMnemonic.
+
+JigsawFrontEnd file chooser has an image preview.
+
+All variables and methods explicitly scoped
+
+All if and for statements have braces
+
+Startup progress indicator
+
+'P' pushes the top piece to the back
+
+Remove overridden setImageData from MultiPiece
+
+Merge JigsawFrame and JigsawFrontend
+
+Implemented New Image menu item
+
+Keyboard left and right rotate pieces as well as e and r.
+
+Add indication of elapsed time and solution time
+
+Renamed to sphaero2
+
+Moved packages from net.sf to uk.co.petertribble to reflect the fact
+that it isn't the sf project any more

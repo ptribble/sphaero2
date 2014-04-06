@@ -1,0 +1,36 @@
+Applet version polish and error checking.
+
+Should applet version allow cutter to be specified?
+
+Why do all the pieces sometimes appear in the top left corner?
+
+Why do keys sometimes not work in the applet?
+
+JNLP version.
+
+Better calculation of preferred size, keeping aspect ratio. Why not
+just 1.25 in each direction?
+
+Allow space in applet size for menubar and toolbar.
+
+Application should accept a URL as the image location.
+
+Cutters should handle not having a JProgressBar (need to check it's not
+null).
+
+Save and restore
+
+Pause and resume (hide pieces while paused)
+
+Should we replace pixelgrabber? BufferedImage will do subimage()
+directly, which seems much cleaner.
+
+Prompt window needs better spacing, and to follow the java look and
+feel guidelines
+
+Why do pieces occasionally become invisible?
+
+Can we benefit from cacheing the images as we rotate them, so
+subsequent rotations are free?
+
+Should resize of large image be optional?

@@ -1,0 +1,18 @@
+To use sphaero2 as an applet, put the jar file (lib/java/sphaero2.jar)
+in the same directory as your images, and then in each page you want to
+have a jigsaw on include the following:
+
+
+<applet code = 'uk.co.petertribble.sphaero2.JigsawApplet' 
+    archive = 'sphaero2.jar', 
+    width = 900, 
+    height = 600>
+<param name="image" value="image.jpg">
+</applet>
+
+
+The adjustable parameters are the name of the image, and the size of
+the applet. A 900x600 applet is just about big enough for a 640x480
+image - ideally you would leave a bit more roiund the edge so that the
+user has room to manipulate the pieces. For web use, I think a 640x480
+image is pretty reasonable.

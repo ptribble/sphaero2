@@ -1,0 +1,42 @@
+#!/bin/sh
+
+##PMDCHECKS="sunsecure"
+PMDCHECKS="braces,imports,unusedcode,clone,finalizers,typeresolution,coupling,migrating,strictexception"
+JFLAGS="-Xlint -Xlint:-serial"
+
+case $1 in
+'clean')
+	rm -f `find uk -name '*.class'`
+	rm -f `find . -name '*~'`
+	exit 0
+	;;
+'package')
+	./pkg/mkproto > pp
+	pkgmk -d /tmp -f pp -r `pwd` TRIBsphaero2
+	pkgtrans -s /tmp /tmp/TRIBsphaero2.pkg TRIBsphaero2
+	rm pp
+	cd /tmp
+	zip -q -r TRIBsphaero2 TRIBsphaero2
+	mv TRIBsphaero2.zip TRIBsphaero2.zap
+	rm -fr /tmp/TRIBsphaero2
+	ls -l /tmp/TRIBsphaero2.pkg /tmp/TRIBsphaero2.zap
+	exit 0
+	;;
+'pmd')
+	pmd uk $PMDCHECKS
+	exit 0
+	;;
+'jstyle')
+	/opt/onbld/bin/jstyle `find uk -name '*.java'`
+	exit 0
+	;;
+esac
+
+if [ -x /opt/onbld/bin/jstyle ]; then
+    /opt/onbld/bin/jstyle `find uk -name '*.java'`
+fi
+
+PATH=/usr/jdk/instances/jdk1.5.0/bin:$PATH
+export PATH
+javac $JFLAGS `find uk -name '*.java'`
+jar cmf sphaero2.manifest sphaero2.jar `find uk -name '*.class'` pixmaps/sphaero2.png

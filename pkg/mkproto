@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# generate a prototype file for input to pkgmk
+#
+# feed to pkgmk like so:
+#  pkgmk -d /tmp -f tt -r `pwd` TRIBsphaero2
+#
+JARDIR=usr/share/sphaero2
+OWNER="root bin"
+SYSOWNER="root sys"
+
+echo "i pkginfo=./pkg/pkginfo"
+echo "i postinstall=./pkg/postinstall"
+echo "i postremove=./pkg/postinstall"
+echo "f none /usr/bin/sphaero2=pkg/sphaero2.installed 0755 ${OWNER}"
+echo "d none /usr/share 0755 ${SYSOWNER}"
+echo "d none /usr/share/applications 0755 root other"
+echo "d none /usr/share/pixmaps 0755 root other"
+echo "d none /usr/share/sphaero2 0755 ${OWNER}"
+echo "f none /usr/share/sphaero2/README=README 0755 ${OWNER}"
+echo "f none /usr/share/sphaero2/sphaero2.jar=sphaero2.jar 0755 ${OWNER}"
+echo "f none /usr/share/pixmaps/sphaero2.png=pixmaps/sphaero2.png 0755 ${OWNER}"
+echo "f none /usr/share/applications/sphaero2.desktop=sphaero2.desktop 0755 ${OWNER}"
