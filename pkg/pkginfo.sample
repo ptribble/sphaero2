@@ -1,5 +1,5 @@
-PKG="TRIBsphaero2"
-NAME="Jigsaws in Java"
+PKG="TRIBsphaero2-sample"
+NAME="Sample images for sphaero2"
 ARCH="i386,sparc"
 VERSION="1.4.0"
 CATEGORY="application"

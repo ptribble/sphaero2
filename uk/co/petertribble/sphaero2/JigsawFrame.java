@@ -72,6 +72,9 @@ public class JigsawFrame extends JFrame implements ActionListener {
     private JLabel cutterDescLabel;
     private JButton okButton;
 
+    private int pHeight = 480;
+    private int pWidth = 640;
+
     private static final JigsawCutter[] cutters = {
 	new Classic4Cutter(),
 	new ClassicCutter(),
@@ -216,7 +219,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	imageTopPane.add(browseButton, BorderLayout.EAST);
 
 	JPanel imagePane = new JPanel(new BorderLayout());
-	imagePane.setBorder(createTitledBorder("Image"));
+	imagePane.setBorder(createTitledBorder("Find an image"));
 	imagePane.add(imageTopPane, BorderLayout.NORTH);
 	imagePane.add(imageLabel, BorderLayout.CENTER);
 
@@ -246,13 +249,22 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	okPanel.add(okButton);
 	okButton.addActionListener(this);
 
+	SamplePanel sPanel = new SamplePanel(imageField);
+	if (sPanel.samplesValid()) {
+	    JPanel samplePane = new JPanel(new BorderLayout());
+	    samplePane.setBorder(createTitledBorder("Select an image"));
+	    samplePane.add(new JScrollPane(sPanel));
+	    mainPane.add(samplePane);
+	    pHeight = 640;
+	}
+
 	mainPane.add(imagePane);
 	mainPane.add(piecePane);
 	mainPane.add(cutterPane);
 	mainPane.add(okPanel);
 
 	setContentPane(mainPane);
-	setSize(512, 400);
+	setSize(pWidth, pHeight);
 	setVisible(true);
     }
 

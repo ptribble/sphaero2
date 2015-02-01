@@ -132,7 +132,7 @@ public final class JigUtil {
     public static String aboutMsg() {
 	return "<html>Sphaero2 Jigsaw Puzzle.<br>"
 	    + "Original by Paul Brinkley, 2003.<br>"
-	    + "Updated by Peter Tribble, 2010-2012.</html>";
+	    + "Updated by Peter Tribble, 2010-2015.</html>";
     }
 
     /**

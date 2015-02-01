@@ -1,17 +1,11 @@
-Applet version polish and error checking.
+Default sample location in browser
 
-Should applet version allow cutter to be specified?
+Check for overly small images
 
 Why do all the pieces sometimes appear in the top left corner?
 
-Why do keys sometimes not work in the applet?
-
-JNLP version.
-
 Better calculation of preferred size, keeping aspect ratio. Why not
 just 1.25 in each direction?
-
-Allow space in applet size for menubar and toolbar.
 
 Application should accept a URL as the image location.
 
