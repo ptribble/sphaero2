@@ -1,7 +1,11 @@
 #!/bin/sh
 
-##PMDCHECKS="sunsecure"
-PMDCHECKS="braces,imports,unusedcode,clone,finalizers,typeresolution,coupling,migrating,strictexception"
+#
+# new PMD version has rulesets
+#
+PMDRULES="imports typeresolution clone finalizers sunsecure unusedcode braces migrating strictexception"
+PMDCATRULES="security"
+
 JFLAGS="-Xlint -Xlint:-serial"
 
 case $1 in
@@ -23,7 +27,17 @@ case $1 in
 	exit 0
 	;;
 'pmd')
-	pmd uk $PMDCHECKS
+	RULESETS=""
+	for RULE in $PMDRULES
+	do
+	    RULESETS="${RULESETS},rulesets/java/${RULE}.xml"
+	done
+	for RULE in $PMDCATRULES
+	do
+	    RULESETS="${RULESETS},category/java/${RULE}.xml"
+	done
+	RULESETS=`echo $RULESETS|sed s:,::`
+	pmd -d uk -R $RULESETS -version 1.5 -auxclasspath `echo lib/java/* | sed 's= =:=g'` 2>/dev/null
 	exit 0
 	;;
 'jstyle')
