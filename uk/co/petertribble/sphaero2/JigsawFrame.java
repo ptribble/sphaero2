@@ -364,7 +364,8 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	    miniImage = new ImageIcon(image.getScaledInstance(200, -1,
 							Image.SCALE_FAST));
 	}
-	JOptionPane.showMessageDialog(this, miniImage);
+	JOptionPane.showMessageDialog(this, miniImage,
+			"Quick view", JOptionPane.PLAIN_MESSAGE);
     }
 
     private void fireBrowseAction() {
@@ -452,9 +453,11 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	} else if (e.getSource() == newItem) {
 	    showPrompt();
 	} else if (e.getSource() == helpItem) {
-	    JOptionPane.showMessageDialog(this, JigUtil.helpMsg());
+	    JOptionPane.showMessageDialog(this, JigUtil.helpMsg(),
+			"Sphaero2 help", JOptionPane.PLAIN_MESSAGE);
 	} else if (e.getSource() == aboutItem) {
-	    JOptionPane.showMessageDialog(this, JigUtil.aboutMsg());
+	    JOptionPane.showMessageDialog(this, JigUtil.aboutMsg(),
+			"About Sphaero2", JOptionPane.PLAIN_MESSAGE);
 	} else if (e.getSource() == pictureItem) {
 	    showPicture();
 	} else if (e.getSource() == browseButton) {
