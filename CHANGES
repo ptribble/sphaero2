@@ -1,5 +1,7 @@
 Smarten up message dialogs.
 
+Tidy up build warnings.
+
 1.4
 
 Remove applet; applets essentially don't work on the modern web.
