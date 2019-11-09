@@ -404,7 +404,8 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	File file = new File(imageField.getText());
 
 	if (!file.exists()) {
-	    JOptionPane.showMessageDialog(this, "Nonexistent file.");
+	    JOptionPane.showMessageDialog(this, "File does not exist.",
+			"Nonexistent file", JOptionPane.ERROR_MESSAGE);
 	    return;
 	}
 	if (file.isDirectory()) {
@@ -412,11 +413,13 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		file = JigUtil.getRandomImageFile(file);
 	    } catch (FileNotFoundException ex) {
 		JOptionPane.showMessageDialog(this,
-					"This folder contains no images.");
+				"This folder contains no images.",
+				"Empty folder", JOptionPane.ERROR_MESSAGE);
 		return;
 	    }
 	} else if (!JigUtil.isImage(file)) {
-	    JOptionPane.showMessageDialog(this, "This is not an image file.");
+	    JOptionPane.showMessageDialog(this, "This is not an image file.",
+				"Invalid Image", JOptionPane.ERROR_MESSAGE);
 	    return;
 	}
 
@@ -432,7 +435,8 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	    // So the progress bar doesn't work either
 	    init(JigUtil.resizedImage(image), cutter);
 	} catch (IOException e) {
-	    JOptionPane.showMessageDialog(this, "Image file cannot be read.");
+	    JOptionPane.showMessageDialog(this, "Image file cannot be read.",
+				"Invalid Image", JOptionPane.ERROR_MESSAGE);
 	}
     }
 
