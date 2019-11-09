@@ -4,6 +4,8 @@ Tidy up build warnings.
 
 Better checking of command-line arguments.
 
+Fix the check for image searching so it terminates.
+
 1.4
 
 Remove applet; applets essentially don't work on the modern web.

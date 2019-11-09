@@ -88,19 +88,25 @@ public final class JigUtil {
 	do {
 	    file = folder;
 	    while (file.isDirectory()) {
+		/*
+		 * We have to check here to catch both going round the outer
+		 * loop and the continue out of the inner loop.
+		 */
+		if (attempts >= 10) {
+		    throw new FileNotFoundException(
+					"No image found after 10 attempts");
+		}
 		File[] files = file.listFiles(ff);
 		if (files.length == 0) {
 		    file = folder;
+		    attempts++;
 		    continue;
 		}
 		int idx = (int)Math.floor(Math.random() * files.length);
 		file = files[idx];
 	    }
 	    attempts++;
-	} while (!isImage(file) && (attempts < 10));
-	if (attempts >= 10) {
-	    throw new FileNotFoundException("No image found after 10 attempts");
-	}
+	} while (!isImage(file));
 	return file;
     }
 
