@@ -283,7 +283,10 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		    if (arg < args.length) {
 			try {
 			    prefPieces = Integer.parseInt(args[arg]);
-			} catch (NumberFormatException ex) {}
+			} catch (NumberFormatException ex) {
+			    System.err.println("Invalid number of pieces!");
+			    System.exit(1);
+			}
 		    }
 		} else if (args[arg].equals("-c")) {
 		    arg++;
@@ -294,6 +297,9 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		    File argFile = new File(args[arg]);
 		    if (argFile.exists()) {
 			base = argFile;
+		    } else {
+			System.err.println("Invalid file!");
+			System.exit(1);
 		    }
 		}
 		arg++;
@@ -306,9 +312,9 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	    try {
 		file = JigUtil.getRandomImageFile(base);
 	    } catch (FileNotFoundException ex) {
-		System.out.println("Couldn't find an image file!");
-		System.out.println("Name one on the command line, or run");
-		System.out.println("this program in a folder containing them.");
+		System.err.println("Couldn't find an image file!");
+		System.err.println("Name one on the command line, or run");
+		System.err.println("this program in a folder containing them.");
 		System.exit(1);
 	    }
 
@@ -316,13 +322,14 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	    try {
 		image = JigUtil.resizedImage(ImageIO.read(file));
 	    } catch (IOException e) {
-		System.out.println("Error reading image file!");
+		System.err.println("Error reading image file!");
 		System.exit(1);
 	    }
 
 	    /*
-	     * Try and use the cutter specified on the command line. If that
-	     * fails use a Classic Cutter.
+	     * Try and use the cutter specified on the command line, or if
+	     * not specified use a Classic Cutter. Error out if we're given
+	     * an invalid cutter, but give the user the full list.
 	     */
 	    boolean cmatch = false;
 	    for (JigsawCutter cutter : cutters) {
@@ -333,7 +340,12 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		}
 	    }
 	    if (!cmatch) {
-		new JigsawFrame(image, new ClassicCutter(prefPieces));
+		System.err.println("Invalid cutter!");
+		System.err.println("Valid cutters are:");
+		for (JigsawCutter cutter : cutters) {
+		    System.err.println(cutter.getName());
+		}
+		System.exit(1);
 	    }
 	}
     }
