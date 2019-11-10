@@ -102,7 +102,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
      * halts.
      * </pre>
      *
-     * <p>150 pieces are created by default. If no filename is given, the
+     * <p>100 pieces are created by default. If no filename is given, the
      * current folder is used.
      *
      * <h4>Puzzle commands</h4>
@@ -233,9 +233,9 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	cutterPane.setBorder(createTitledBorder("Cutting Style"));
 	fireCutterChanged();
 
-	// 2-2000 pieces allowed
 	pieceSpinner = new JSpinner(new SpinnerNumberModel(
-				JigsawCutter.DEFAULT_PIECES, 2, 2000, 1));
+			 JigsawCutter.DEFAULT_PIECES, JigsawCutter.MIN_PIECES,
+			 JigsawCutter.MAX_PIECES, 1));
 	JLabel pieceLabel = createHelpLabel("<html>"
 		+" The puzzle will have roughly this many pieces.");
 	JPanel piecePane = new JPanel(new BorderLayout());
@@ -287,11 +287,25 @@ public class JigsawFrame extends JFrame implements ActionListener {
 			    System.err.println("Invalid number of pieces!");
 			    System.exit(1);
 			}
+			if (prefPieces < JigsawCutter.MIN_PIECES) {
+			    System.err.println("Too few pieces!");
+			    System.exit(1);
+			}
+			if (prefPieces > JigsawCutter.MAX_PIECES) {
+			    System.err.println("Too many pieces!");
+			    System.exit(1);
+			}
+		    } else {
+			System.err.println("Expecting an argument to -p!");
+			System.exit(1);
 		    }
 		} else if (args[arg].equals("-c")) {
 		    arg++;
 		    if (arg < args.length) {
 			argcutter = args[arg];
+		    } else {
+			System.err.println("Expecting an argument to -c!");
+			System.exit(1);
 		    }
 		} else {
 		    File argFile = new File(args[arg]);

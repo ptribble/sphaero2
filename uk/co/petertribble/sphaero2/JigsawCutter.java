@@ -12,7 +12,9 @@ import javax.swing.JProgressBar;
  */
 public abstract class JigsawCutter {
 
-    public static final int DEFAULT_PIECES = 150;
+    public static final int DEFAULT_PIECES = 100;
+    public static final int MIN_PIECES = 4;
+    public static final int MAX_PIECES = 1000;
     public int prefPieces;
     public JProgressBar jp;
     public int iprogress;
@@ -45,18 +47,18 @@ public abstract class JigsawCutter {
     /**
      * Sets the preferred number of pieces to create.  The actual number of
      * pieces may differ slightly, depending on the specific cutting
-     * algorithm.
+     * algorithm. If out of range, clamp to the allowed range.
      *
      * @param prefPieces the preferred number of pieces; the cutter will try
      * to produce close to this many
-     *
-     * @throws IllegalArgumentException if an invalid count is given
      */
     public void setPreferredPieceCount(int prefPieces) {
 	this.prefPieces = prefPieces;
-	if (prefPieces < 2) {
-	    throw new IllegalArgumentException
-			   ("Invalid preferred pieces: " + prefPieces);
+	if (prefPieces < MIN_PIECES) {
+	    prefPieces = MIN_PIECES;
+	}
+	if (prefPieces > MAX_PIECES) {
+	    prefPieces = MAX_PIECES;
 	}
     }
 

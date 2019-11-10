@@ -24,8 +24,8 @@ public class QuadCutter extends JigsawCutter {
     }
 
     /**
-     * Creates a QuadCutter.  It will produce roughly 150 pieces, each about
-     * 1.2 times as wide as they are tall.
+     * Creates a QuadCutter.  It will produce the default number of pieces,
+     * each about 1.2 times as wide as they are tall.
      */
     public QuadCutter() {
 	this(DEFAULT_PIECES, defWHRatio);
@@ -37,8 +37,6 @@ public class QuadCutter extends JigsawCutter {
      *
      * @param prefPieces the preferred number of pieces; the cutter will try
      * to produce close to this many
-     *
-     * @throws IllegalArgumentException if prefPieces is less than 2
      */
     public QuadCutter(int prefPieces) {
 	this(prefPieces, defWHRatio);
@@ -49,10 +47,10 @@ public class QuadCutter extends JigsawCutter {
      *
      * @param prefPieces the preferred number of pieces; the cutter will try
      * to produce close to this many
+     *
      * @param whRatio the preferred width/height ratio
      *
-     * @throws IllegalArgumentException if prefPieces is less than 2 or
-     * whRatio is less than or equal to 0.0
+     * @throws IllegalArgumentException if whRatio is less than or equal to 0.0
      */
     public QuadCutter(int prefPieces, double whRatio) {
 	setPreferredPieceCount(prefPieces);

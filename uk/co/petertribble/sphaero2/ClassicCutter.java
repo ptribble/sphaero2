@@ -38,9 +38,9 @@ public class ClassicCutter extends JigsawCutter {
 
     /**
      * Creates a ClassicCutter.
+     *
      * @param prefPieces the preferred number of pieces; the cutter will try
      * to produce close to this many
-     * @throws IllegalArgumentException if prefPieces is less than 2
      */
     public ClassicCutter(int prefPieces) {
 	setPreferredPieceCount(prefPieces);
