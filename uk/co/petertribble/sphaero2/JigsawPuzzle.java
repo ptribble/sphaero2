@@ -653,8 +653,8 @@ public class JigsawPuzzle extends JPanel {
     }
 
     private boolean isBright(Color c) {
-	float[] hsb = new float[3];
-	c.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), hsb);
+	float[] hsb =
+	    Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
 	return hsb[2] > 0.5;
     }
 }

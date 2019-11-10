@@ -10,6 +10,8 @@ Smarten up error dialogs.
 
 Use variables for min/max number of pieces.
 
+Fix static method call warning.
+
 1.4
 
 Remove applet; applets essentially don't work on the modern web.
