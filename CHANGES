@@ -14,6 +14,8 @@ Fix static method call warning.
 
 Fix generic use of ListIterator.
 
+Remove unnecessary casts.
+
 1.4
 
 Remove applet; applets essentially don't work on the modern web.

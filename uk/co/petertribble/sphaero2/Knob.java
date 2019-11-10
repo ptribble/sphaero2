@@ -93,7 +93,7 @@ public class Knob {
     private void initPath() {
 	float[][] data = new float[ctl.length][];
 	for (int i = 0; i < data.length; i++) {
-	    data[i] = (float[]) ctl[i].clone();
+	    data[i] = ctl[i].clone();
 	}
 
 	jitter(data, XVARY, YVARY, XDBVARY, XDFVARY);

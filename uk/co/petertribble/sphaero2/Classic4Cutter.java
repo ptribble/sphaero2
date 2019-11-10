@@ -65,7 +65,7 @@ public class Classic4Cutter extends JigsawCutter {
 	 */
 
 	int rows = (int) Math.round(Math.sqrt(prefPieces * height / width));
-	int columns = (int) Math.round(prefPieces / rows);
+	int columns = Math.round(prefPieces / rows);
 
 	jp.setMaximum(rows*columns);
 	jp.setValue(iprogress);

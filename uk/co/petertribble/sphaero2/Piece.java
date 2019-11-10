@@ -543,7 +543,7 @@ public class Piece {
     protected void recomputeImageData() {
 	setRotatedPosition();
 	if (rotation == 0) {
-	    curData = (int[]) origData.clone();
+	    curData = origData.clone();
 	} else if (rotation == 90) {
 	    curData = new int[origData.length];
 	    for (int i = 0; i < curWidth; i++) {
