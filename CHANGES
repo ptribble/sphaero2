@@ -12,6 +12,8 @@ Use variables for min/max number of pieces.
 
 Fix static method call warning.
 
+Fix generic use of ListIterator.
+
 1.4
 
 Remove applet; applets essentially don't work on the modern web.

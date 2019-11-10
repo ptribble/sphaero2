@@ -343,9 +343,9 @@ public class JigsawPuzzle extends JPanel {
 	int y = e.getY();
 
 	focusPiece = null;
-	ListIterator iter = zOrder.listIterator(zOrder.size());
+	ListIterator <Piece> iter = zOrder.listIterator(zOrder.size());
 	while ((focusPiece == null) && (iter.hasPrevious())) {
-	    Piece piece = (Piece) iter.previous();
+	    Piece piece = iter.previous();
 	    if (piece.contains(x, y)) {
 		focusPiece = piece;
 		iter.remove();
