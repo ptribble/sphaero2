@@ -50,7 +50,5 @@ if [ -x /opt/onbld/bin/jstyle ]; then
     /opt/onbld/bin/jstyle `find uk -name '*.java'`
 fi
 
-PATH=/usr/jdk/instances/jdk1.5.0/bin:$PATH
-export PATH
 javac $JFLAGS `find uk -name '*.java'`
 jar cmf sphaero2.manifest sphaero2.jar `find uk -name '*.class'` pixmaps/sphaero2.png
