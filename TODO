@@ -14,8 +14,6 @@ null).
 
 Save and restore
 
-Pause and resume (hide pieces while paused)
-
 Should we replace pixelgrabber? BufferedImage will do subimage()
 directly, which seems much cleaner.
 

@@ -138,7 +138,7 @@ public final class JigUtil {
     public static String aboutMsg() {
 	return "<html>Sphaero2 Jigsaw Puzzle.<br>"
 	    + "Original by Paul Brinkley, 2003.<br>"
-	    + "Updated by Peter Tribble, 2010-2015.</html>";
+	    + "Updated by Peter Tribble, 2010-2020.</html>";
     }
 
     /**
@@ -167,6 +167,8 @@ public final class JigUtil {
 	    + " <td> toggle clear mode; mouse now drags over spaces to be"
 	    + " cleared of pieces; cleared pieces are placed randomly"
 	    + " elsewhere"
+	    + "<tr><td>" + JigsawPuzzle.HIDE
+	    + " <td> toggle hidden mode to pause or unpause the puzzle"
 	    + "</table>";
     }
 }

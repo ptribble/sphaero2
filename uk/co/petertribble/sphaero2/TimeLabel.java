@@ -15,9 +15,15 @@ public class TimeLabel extends JLabel implements ActionListener {
 
     private Timer timer;
     private long startmillis;
+    private long pausemillis;
 
+    private static final String ELAPSED_LABEL = "Elapsed time: ";
+    private static final String PAUSED_LABEL = "(Paused) time: ";
+    private String currentLabel;
+    
     public TimeLabel() {
 	super("|", SwingConstants.RIGHT);
+	currentLabel = ELAPSED_LABEL;
     }
 
     // FIXME pause and resume
@@ -30,6 +36,20 @@ public class TimeLabel extends JLabel implements ActionListener {
 	timer.start();
     }
 
+    public void pause() {
+	timer.stop();
+	currentLabel = PAUSED_LABEL;
+	pausemillis = System.currentTimeMillis();
+	updateTime();
+    }
+
+    public void unpause() {
+	timer.start();
+	currentLabel = ELAPSED_LABEL;
+	startmillis += (System.currentTimeMillis() - pausemillis);
+	updateTime();
+    }
+
     public void finished() {
 	if (timer != null) {
 	    timer.stop();
@@ -40,7 +60,7 @@ public class TimeLabel extends JLabel implements ActionListener {
 
     public void updateTime() {
 	long elapsed = System.currentTimeMillis() - startmillis;
-	setText("Elapsed time: " + elapsed/1000 + "s");
+	setText(currentLabel + elapsed/1000 + "s");
     }
 
     public void actionPerformed(ActionEvent e) {

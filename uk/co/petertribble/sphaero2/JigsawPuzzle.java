@@ -42,6 +42,8 @@ public class JigsawPuzzle extends JPanel {
     public static final char NEXT_BG = 'B';
     public static final char PUSH = 'P';
     public static final char CLEAR = 'C';
+    // hide for pause
+    public static final char HIDE = 'H';
 
     // Available background colors
     private static final Color[] bgColors = {
@@ -76,6 +78,7 @@ public class JigsawPuzzle extends JPanel {
     private boolean mouseDown;
     private boolean finished;
     private boolean clearMode;
+    private boolean paused;
     // Translation from a piece's upper-left corner to the point you clicked
     // on.
     private int transX, transY;
@@ -178,6 +181,10 @@ public class JigsawPuzzle extends JPanel {
 	    return;
 	}
 
+	if (paused) {
+	    return;
+	}
+
 	int x = 0, y = 0;
 	for (Piece piece : zOrder) {
 	    piece.draw(g);
@@ -203,6 +210,18 @@ public class JigsawPuzzle extends JPanel {
     private void setClearMode(boolean flag) {
 	clearMode = flag;
 	setCursor(clearMode ? CLEAR_CURSOR : NORMAL_CURSOR);
+    }
+
+    private void toggleHidden() {
+	paused = !paused;
+	repaint();
+	if (tlabel != null) {
+	    if (paused) {
+		tlabel.pause();
+	    } else {
+		tlabel.unpause();
+	    }
+	}
     }
 
     public void setTimeLabel(TimeLabel tlabel) {
@@ -548,6 +567,8 @@ public class JigsawPuzzle extends JPanel {
 	    push();
 	} else if (ch == CLEAR) {
 	    toggleClearMode();
+	} else if (ch == HIDE) {
+	    toggleHidden();
 	}
     }
 
