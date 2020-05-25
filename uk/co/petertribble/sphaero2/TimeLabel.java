@@ -20,7 +20,7 @@ public class TimeLabel extends JLabel implements ActionListener {
     private static final String ELAPSED_LABEL = "Elapsed time: ";
     private static final String PAUSED_LABEL = "(Paused) time: ";
     private String currentLabel;
-    
+
     public TimeLabel() {
 	super("|", SwingConstants.RIGHT);
 	currentLabel = ELAPSED_LABEL;
