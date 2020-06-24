@@ -28,24 +28,6 @@ public class ClassicCutter extends JigsawCutter {
 	    +" not counting knobs and holes.";
     }
 
-    /**
-     * Creates a ClassicCutter that will try to produce a default number of
-     * pieces.
-     */
-    public ClassicCutter() {
-	this(DEFAULT_PIECES);
-    }
-
-    /**
-     * Creates a ClassicCutter.
-     *
-     * @param prefPieces the preferred number of pieces; the cutter will try
-     * to produce close to this many
-     */
-    public ClassicCutter(int prefPieces) {
-	setPreferredPieceCount(prefPieces);
-    }
-
     @Override
     public Piece[] cut(Image image) {
 	JigUtil.ensureLoaded(image);

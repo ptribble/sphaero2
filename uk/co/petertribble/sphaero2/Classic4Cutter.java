@@ -29,24 +29,6 @@ public class Classic4Cutter extends JigsawCutter {
 	    +" a knob; each piece may have 0-4 holes, and will tend to have 2. "
 	    +" Each piece is roughly square, not counting holes and knobs."; }
 
-    /**
-     * Creates a Classic4Cutter that will try to produce a default number of
-     * pieces.
-     */
-    public Classic4Cutter() {
-	this(DEFAULT_PIECES);
-    }
-
-    /**
-     * Creates a Classic4Cutter.
-     *
-     * @param prefPieces the preferred number of pieces; the cutter will try
-     * to produce close to this many
-     */
-    public Classic4Cutter(int prefPieces) {
-	setPreferredPieceCount(prefPieces);
-    }
-
     @Override
     public Piece[] cut(Image image) {
 	JigUtil.ensureLoaded(image);

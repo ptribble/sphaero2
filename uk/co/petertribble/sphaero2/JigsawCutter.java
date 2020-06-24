@@ -15,7 +15,7 @@ public abstract class JigsawCutter {
     public static final int DEFAULT_PIECES = 100;
     public static final int MIN_PIECES = 4;
     public static final int MAX_PIECES = 1000;
-    public int prefPieces;
+    public int prefPieces = DEFAULT_PIECES;
     public JProgressBar jp;
     public int iprogress;
 

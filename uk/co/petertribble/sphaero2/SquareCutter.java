@@ -19,25 +19,6 @@ public class SquareCutter extends JigsawCutter {
 	return "Cuts the image into uniform squares.";
     }
 
-    /**
-     * Creates a SquareCutter that will cut the image into the default number
-     * of pieces.
-     */
-    public SquareCutter() {
-	this(DEFAULT_PIECES);
-    }
-
-    /**
-     * Creates a SquareCutter that will cut the image into the given number of
-     * pieces.
-     *
-     * @param prefPieces the preferred number of pieces; the cutter will try
-     * to produce close to this many
-     */
-    public SquareCutter(int prefPieces) {
-	setPreferredPieceCount(prefPieces);
-    }
-
     @Override
     public Piece[] cut(Image image) {
 	JigUtil.ensureLoaded(image);

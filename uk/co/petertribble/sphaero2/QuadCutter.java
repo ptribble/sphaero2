@@ -6,12 +6,12 @@ import java.awt.image.PixelGrabber;
 
 /**
  * Cuts pieces into random quadrilaterals.  Pieces are arranged into rough
- * rows and columns, with their edges tilting at various angles.
+ * rows and columns, with their edges tilting at various angles. Each piece
+ * will be about 1.2 times as wide as it is tall.
  */
 public class QuadCutter extends JigsawCutter {
 
-    private static final double defWHRatio = 1.2;
-    private double widthToHeightRatio;
+    private static final double widthToHeightRatio = 1.2;
 
     @Override
     public String getName() {
@@ -21,44 +21,6 @@ public class QuadCutter extends JigsawCutter {
     @Override
     public String getDescription() {
 	return "Cuts the image into random quadrilaterals.";
-    }
-
-    /**
-     * Creates a QuadCutter.  It will produce the default number of pieces,
-     * each about 1.2 times as wide as they are tall.
-     */
-    public QuadCutter() {
-	this(DEFAULT_PIECES, defWHRatio);
-    }
-
-    /**
-     * Creates a QuadCutter.  Each piece will be about 1.2 times as wide as
-     * it is tall.
-     *
-     * @param prefPieces the preferred number of pieces; the cutter will try
-     * to produce close to this many
-     */
-    public QuadCutter(int prefPieces) {
-	this(prefPieces, defWHRatio);
-    }
-
-    /**
-     * Creates a QuadCutter.
-     *
-     * @param prefPieces the preferred number of pieces; the cutter will try
-     * to produce close to this many
-     *
-     * @param whRatio the preferred width/height ratio
-     *
-     * @throws IllegalArgumentException if whRatio is less than or equal to 0.0
-     */
-    public QuadCutter(int prefPieces, double whRatio) {
-	setPreferredPieceCount(prefPieces);
-	if (whRatio <= 0.0) {
-	    throw new IllegalArgumentException
-				("Invalid width/height ratio: "+whRatio);
-	}
-	this.widthToHeightRatio = whRatio;
     }
 
     @Override
