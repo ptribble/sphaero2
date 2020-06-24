@@ -26,8 +26,7 @@ public class RectCutter extends JigsawCutter {
 	int rows = (int) Math.round(Math.sqrt(prefPieces));
 	int columns = (int) Math.round(Math.sqrt(prefPieces));
 
-	jp.setMaximum(rows*columns);
-	jp.setValue(iprogress);
+	startProgress(rows*columns);
 
 	// Create piece images
 	Piece[][] matrix = new Piece[rows][columns];
@@ -50,8 +49,7 @@ public class RectCutter extends JigsawCutter {
 				getImageData(image, x1, y1, pieceW, pieceH),
 				x1, y1, pieceW, pieceH,
 				width, height, rotation);
-		iprogress++;
-		jp.setValue(iprogress);
+		updateProgress();
 	    }
 	}
 

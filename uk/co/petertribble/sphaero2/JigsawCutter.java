@@ -18,6 +18,7 @@ public abstract class JigsawCutter {
     public int prefPieces = DEFAULT_PIECES;
     public JProgressBar jp;
     public int iprogress;
+    public int progressmax;
 
     public String toString() {
 	return getName();
@@ -68,6 +69,33 @@ public abstract class JigsawCutter {
      */
     public void setJProgressBar(JProgressBar jp) {
 	this.jp = jp;
+	if (progressmax > 0) {
+	    jp.setMaximum(progressmax);
+	    jp.setValue(iprogress);
+	}
+    }
+
+    /**
+     * Start generating. If there's a progress bar, it will be set to
+     * zero.
+     */
+    public void startProgress(int progressmax) {
+	this.progressmax = progressmax;
+	iprogress = 0;
+	if (jp != null ) {
+	    jp.setMaximum(progressmax);
+	    jp.setValue(iprogress);
+	}
+    }
+
+    /**
+     * Update progress.
+     */
+    public void updateProgress() {
+	iprogress++;
+	if (jp != null ) {
+	    jp.setValue(iprogress);
+	}
     }
 
     /**

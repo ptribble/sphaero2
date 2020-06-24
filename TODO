@@ -9,9 +9,6 @@ just 1.25 in each direction?
 
 Application should accept a URL as the image location.
 
-Cutters should handle not having a JProgressBar (need to check it's not
-null).
-
 Save and restore
 
 Should we replace pixelgrabber? BufferedImage will do subimage()

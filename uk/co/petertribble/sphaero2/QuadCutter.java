@@ -44,8 +44,7 @@ public class QuadCutter extends JigsawCutter {
 		Math.sqrt(widthToHeightRatio * prefPieces * height / width));
 	int columns = Math.round(prefPieces / rows);
 
-	jp.setMaximum(rows*columns);
-	jp.setValue(iprogress);
+	startProgress(rows*columns);
 
 	// Make a matrix of points representing the corners of each piece.
 	// Each point is based on a grid of equal rectangles, but may drift by
@@ -81,8 +80,7 @@ public class QuadCutter extends JigsawCutter {
 					  points[i+1][j],
 					  points[i+1][j+1],
 					  width, height);
-		iprogress++;
-		jp.setValue(iprogress);
+		updateProgress();
 	    }
 	}
 

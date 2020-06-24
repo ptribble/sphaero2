@@ -49,8 +49,7 @@ public class Classic4Cutter extends JigsawCutter {
 	int rows = (int) Math.round(Math.sqrt(prefPieces * height / width));
 	int columns = Math.round(prefPieces / rows);
 
-	jp.setMaximum(rows*columns);
-	jp.setValue(iprogress);
+	startProgress(rows*columns);
 
 	// Make a matrix of points representing the corners of the pieces.
 	// Each point is based on a grid of equal rectangles, and can then
@@ -124,8 +123,7 @@ public class Classic4Cutter extends JigsawCutter {
 					points[i+1][j+1],
 					knobN, knobE, knobS, knobW,
 					width, height);
-		iprogress++;
-		jp.setValue(iprogress);
+		updateProgress();
 	    }
 	}
 
