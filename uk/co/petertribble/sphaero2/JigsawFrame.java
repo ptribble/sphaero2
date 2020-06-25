@@ -148,25 +148,26 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	setJMenuBar(jmb);
 
 	setIconImage(new ImageIcon(this.getClass().getClassLoader().getResource("pixmaps/sphaero2.png")).getImage());
+
+	/*
+	 * Create the help menu for the puzzle here, even though it's only
+	 * visible in puzzle mode.
+	 */
+	jmh = new JMenu("Help");
+	jmh.setMnemonic(KeyEvent.VK_H);
+	helpItem = new JMenuItem("Instructions", KeyEvent.VK_I);
+	helpItem.addActionListener(this);
+	jmh.add(helpItem);
+	aboutItem = new JMenuItem("About", KeyEvent.VK_A);
+	aboutItem.addActionListener(this);
+	jmh.add(aboutItem);
+	pictureItem = new JMenuItem("Show Picture", KeyEvent.VK_P);
+	pictureItem.addActionListener(this);
+	jmh.add(pictureItem);
     }
 
     private void init(Image image, JigsawCutter cutter) {
 	this.image = image;
-
-	if (jmh == null) {
-	    jmh = new JMenu("Help");
-	    jmh.setMnemonic(KeyEvent.VK_H);
-	    helpItem = new JMenuItem("Instructions", KeyEvent.VK_I);
-	    helpItem.addActionListener(this);
-	    jmh.add(helpItem);
-	    aboutItem = new JMenuItem("About", KeyEvent.VK_A);
-	    aboutItem.addActionListener(this);
-	    jmh.add(aboutItem);
-	    pictureItem = new JMenuItem("Show Picture", KeyEvent.VK_P);
-	    pictureItem.addActionListener(this);
-	    jmh.add(pictureItem);
-	    jmb.add(jmh);
-	}
 
 	JigsawPuzzle puzzle = new JigsawPuzzle(image, cutter);
 	JPanel ppanel = new JPanel(new BorderLayout());
@@ -192,6 +193,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	dialog.setVisible(true);
 	puzzle.reset();
 	dialog.setVisible(false);
+	jmb.add(jmh);
 	repaint();
 	tlabel.start();
 	puzzle.setTimeLabel(tlabel);
@@ -380,6 +382,8 @@ public class JigsawFrame extends JFrame implements ActionListener {
 
     private void showPrompt() {
 	getContentPane().removeAll();
+	jmb.remove(jmh);
+	jmb.revalidate();
 	miniImage = null;
 	System.gc();
 	initPrompt();
