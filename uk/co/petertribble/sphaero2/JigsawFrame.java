@@ -147,7 +147,8 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	jmb.add(jmf);
 	setJMenuBar(jmb);
 
-	setIconImage(new ImageIcon(this.getClass().getClassLoader().getResource("pixmaps/sphaero2.png")).getImage());
+	setIconImage(new ImageIcon(this.getClass().getClassLoader()
+			.getResource("pixmaps/sphaero2.png")).getImage());
 
 	/*
 	 * Create the help menu for the puzzle here, even though it's only

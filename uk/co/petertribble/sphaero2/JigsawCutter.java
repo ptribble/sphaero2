@@ -82,7 +82,7 @@ public abstract class JigsawCutter {
     public void startProgress(int progressmax) {
 	this.progressmax = progressmax;
 	iprogress = 0;
-	if (jp != null ) {
+	if (jp != null) {
 	    jp.setMaximum(progressmax);
 	    jp.setValue(iprogress);
 	}
@@ -93,7 +93,7 @@ public abstract class JigsawCutter {
      */
     public void updateProgress() {
 	iprogress++;
-	if (jp != null ) {
+	if (jp != null) {
 	    jp.setValue(iprogress);
 	}
     }
