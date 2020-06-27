@@ -7,6 +7,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.image.PixelGrabber;
@@ -71,7 +72,7 @@ public class JigsawPuzzle extends JPanel {
 
     private static final Rectangle emptyRect = new Rectangle(0, 0, 0, 0);
 
-    private final Image image;
+    private final BufferedImage image;
     private Image finishedImage;
     private final JigsawCutter cutter;
     private Dimension prefSize;
@@ -100,7 +101,7 @@ public class JigsawPuzzle extends JPanel {
      * @param image the final picture
      * @param cut the cut to use on the image
      */
-    public JigsawPuzzle(Image image, JigsawCutter cutter) {
+    public JigsawPuzzle(BufferedImage image, JigsawCutter cutter) {
 	super(false);
 	this.image = image;
 	this.cutter = cutter;

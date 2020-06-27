@@ -1,7 +1,6 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.Image;
-import java.awt.image.PixelGrabber;
+import java.awt.image.BufferedImage;
 
 /**
  * Cuts the puzzle into uniform squares. If the image dimensions aren't an
@@ -20,7 +19,7 @@ public class SquareCutter extends JigsawCutter {
     }
 
     @Override
-    public Piece[] cut(Image image) {
+    public Piece[] cut(BufferedImage image) {
 	JigUtil.ensureLoaded(image);
 	int height = image.getHeight(null);
 	int width = image.getWidth(null);
@@ -71,16 +70,10 @@ public class SquareCutter extends JigsawCutter {
 	return finalBuild(matrix, columns, rows);
     }
 
-    private int[] getImageData(Image image, int x, int y,
+    private int[] getImageData(BufferedImage image, int x, int y,
 				int width, int height) {
 	int[] data = new int[height * width];
-	PixelGrabber grabber =
-	    new PixelGrabber(image, x, y, width, height, data, 0, width);
-	try {
-	    grabber.grabPixels();
-	} catch (InterruptedException ex) {
-	    System.out.println("interrupted while grabbing");
-	}
+	data = image.getRGB(x, y, width, height, data, 0, width);
 	return data;
     }
 }

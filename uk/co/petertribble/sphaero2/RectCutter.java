@@ -1,7 +1,6 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.Image;
-import java.awt.image.PixelGrabber;
+import java.awt.image.BufferedImage;
 
 /**
  * Cuts the puzzle into uniform rectangles.
@@ -19,7 +18,7 @@ public class RectCutter extends JigsawCutter {
     }
 
     @Override
-    public Piece[] cut(Image image) {
+    public Piece[] cut(BufferedImage image) {
 	JigUtil.ensureLoaded(image);
 	int height = image.getHeight(null);
 	int width = image.getWidth(null);
@@ -33,12 +32,18 @@ public class RectCutter extends JigsawCutter {
 	for (int i = 0; i < rows; i++) {
 	    int y1 = i * height / rows;
 	    int y2 = (i+1) * height / rows;
+	    if (y2 >= height) {
+		y2 = height-1;
+	    }
 	    if (i > 0) {
 		y1++;
 	    }
 	    for (int j = 0; j < columns; j++) {
 		int x1 = j * width / columns;
 		int x2 = (j+1) * width / columns;
+		if (x2 >= width) {
+		    x2 = width-1;
+		}
 		if (j > 0) {
 		    x1++;
 		}
@@ -56,16 +61,10 @@ public class RectCutter extends JigsawCutter {
 	return finalBuild(matrix, columns, rows);
     }
 
-    private int[] getImageData(Image image, int x, int y,
+    private int[] getImageData(BufferedImage image, int x, int y,
 				int width, int height) {
 	int[] data = new int[height * width];
-	PixelGrabber grabber =
-	    new PixelGrabber(image, x, y, width, height, data, 0, width);
-	try {
-	    grabber.grabPixels();
-	} catch (InterruptedException ex) {
-	    System.out.println("interrupted while grabbing");
-	}
+	data = image.getRGB(x, y, width, height, data, 0, width);
 	return data;
     }
 }

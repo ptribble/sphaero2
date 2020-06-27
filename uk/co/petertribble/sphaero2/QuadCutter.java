@@ -1,8 +1,7 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.Point;
-import java.awt.image.PixelGrabber;
 
 /**
  * Cuts pieces into random quadrilaterals.  Pieces are arranged into rough
@@ -24,7 +23,7 @@ public class QuadCutter extends JigsawCutter {
     }
 
     @Override
-    public Piece[] cut(Image image) {
+    public Piece[] cut(BufferedImage image) {
 	JigUtil.ensureLoaded(image);
 	int width = image.getWidth(null);
 	int height = image.getHeight(null);
@@ -88,7 +87,7 @@ public class QuadCutter extends JigsawCutter {
 	return finalBuild(pieces, rows, columns);
     }
 
-    private Piece makePiece(Image image,
+    private Piece makePiece(BufferedImage image,
 		Point nw, Point sw, Point ne, Point se,
 			    int tWidth, int tHeight) {
 	int minX = Math.min(nw.x, sw.x);
@@ -97,14 +96,15 @@ public class QuadCutter extends JigsawCutter {
 	int maxY = Math.max(sw.y, se.y);
 	int width  = maxX - minX + 1;
 	int height = maxY - minY + 1;
+	if (minX + width > tWidth) {
+	    width = tWidth - minX;
+	}
+	if (minY + height > tHeight) {
+	    height = tHeight-minY;
+	}
 
 	int[] data = new int[width*height];
-	PixelGrabber grabber =
-	    new PixelGrabber(image, minX, minY, width, height, data, 0, width);
-	try { grabber.grabPixels(); }
-	catch (InterruptedException ex) {
-	    System.out.println("interrupted while grabbing");
-	}
+	data = image.getRGB(minX, minY, width, height, data, 0, width);
 
 	// Mask out anything outside the lines.
 	maskOutside(data, nw, ne, minX, minY, width, height);

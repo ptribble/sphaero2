@@ -115,7 +115,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
      * keeping fitted pieces together. Pieces are fitted automatically if
      * they are placed close enough, and are rotated the same way.
      */
-    public JigsawFrame(Image image, JigsawCutter cutter) {
+    public JigsawFrame(BufferedImage image, JigsawCutter cutter) {
 	super("Jigsaw Puzzle");
 	initFrameWork();
 	init(image, cutter);
@@ -167,7 +167,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	jmh.add(pictureItem);
     }
 
-    private void init(Image image, JigsawCutter cutter) {
+    private void init(BufferedImage image, JigsawCutter cutter) {
 	this.image = image;
 
 	JigsawPuzzle puzzle = new JigsawPuzzle(image, cutter);

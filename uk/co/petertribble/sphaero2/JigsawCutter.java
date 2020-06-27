@@ -1,6 +1,6 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import javax.swing.JProgressBar;
 
 /**
@@ -43,7 +43,7 @@ public abstract class JigsawCutter {
      * potentially time-consuming operation, and should not be run in the AWT
      * thread.
      */
-    public abstract Piece[] cut(Image image);
+    public abstract Piece[] cut(BufferedImage image);
 
     /**
      * Sets the preferred number of pieces to create.  The actual number of

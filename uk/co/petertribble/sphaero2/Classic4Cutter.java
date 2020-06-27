@@ -1,10 +1,9 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.GeneralPath;
-import java.awt.image.PixelGrabber;
 
 // ### Pieces are a bit "prickly" in appearance, particularly if they're
 //   small.
@@ -30,7 +29,7 @@ public class Classic4Cutter extends JigsawCutter {
 	    +" Each piece is roughly square, not counting holes and knobs."; }
 
     @Override
-    public Piece[] cut(Image image) {
+    public Piece[] cut(BufferedImage image) {
 	JigUtil.ensureLoaded(image);
 	int width = image.getWidth(null);
 	int height = image.getHeight(null);
@@ -131,7 +130,7 @@ public class Classic4Cutter extends JigsawCutter {
 	return finalBuild(pieces, rows, columns);
     }
 
-    private Piece makePiece(Image image,
+    private Piece makePiece(BufferedImage image,
 			    Point nw, Point sw, Point ne, Point se,
 			    Knob knobN, Knob knobE, Knob knobS, Knob knobW,
 			    int tWidth, int tHeight) {
@@ -164,24 +163,30 @@ public class Classic4Cutter extends JigsawCutter {
 	// line.  This would cause the edge pieces to appear not to line up
 	// while they're being put together.  When the puzzle is finished, the
 	// dissolve trick would cause the image to appear blurry due to its
-	// finished version being one pixel off from the other.  I'm fixing the
-	// roundoff problem for the top and left edge pieces, and hoping the
-	// other pieces don't need any help.
+	// finished version being one pixel off from the other.  Clamp all
+	// sides to the image bounds.  The old PixelGrabber code didn't care,
+	// but bufferedImages.getRGB() will exception if you try and read
+	// outside the image.
 	Rectangle box = path.getBounds();
-	// if (box.x < 0) box.x = 0;
-	// if (box.y < 0) box.y = 0;
+	if (box.x < 0) {
+	    box.x = 0;
+	}
+	if (box.y < 0) {
+	    box.y = 0;
+	}
 
 	int width  = box.width;
 	int height = box.height;
 
-	int[] data = new int[width*height];
-	PixelGrabber grabber =
-	    new PixelGrabber(image, box.x, box.y,
-			width, height, data, 0, width);
-	try { grabber.grabPixels(); }
-	catch (InterruptedException ex) {
-	    System.out.println("interrupted while grabbing");
+	if (box.x + width > tWidth) {
+	    width = tWidth - box.x;
 	}
+	if (box.y + height > tHeight) {
+	    height = tHeight - box.y;
+	}
+
+	int[] data = new int[width*height];
+	data = image.getRGB(box.x, box.y, width, height, data, 0, width);
 
 	int minX = box.x;
 	int minY = box.y;
