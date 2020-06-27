@@ -1,3 +1,15 @@
+Down arrown pushes current piece to the back.
+
+Numeric keypad arrows also work.
+
+Speed up puzzle creation
+
+Hide the puzzle help menu if we go back to image selection.
+
+Handle progress bar better.
+
+Remove unnecessary cutter constructors.
+
 H now toggles hide, for pause and resume
 
 Smarten up message dialogs.

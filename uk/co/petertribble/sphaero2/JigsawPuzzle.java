@@ -575,10 +575,15 @@ public class JigsawPuzzle extends JPanel {
 
     private void keyPressed0(KeyEvent e) {
 	if (!finished) {
-	    if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+	    if (e.getKeyCode() == KeyEvent.VK_LEFT ||
+		    e.getKeyCode() == KeyEvent.VK_KP_LEFT) {
 		rotatePiece(270);
-	    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+	    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT ||
+		    e.getKeyCode() == KeyEvent.VK_KP_RIGHT) {
 		rotatePiece(90);
+	    } else if (e.getKeyCode() == KeyEvent.VK_DOWN ||
+		    e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
+		push();
 	    }
 	}
     }
