@@ -20,10 +20,14 @@ case $1 in
 	pkgtrans -s /tmp /tmp/TRIBsphaero2.pkg TRIBsphaero2
 	rm pp
 	cd /tmp
-	zip -q -r TRIBsphaero2 TRIBsphaero2
-	mv TRIBsphaero2.zip TRIBsphaero2.zap
+	if [ -x ${THOME}/build/create_zap_from_pkg ]; then
+	    ${THOME}/build/create_zap_from_pkg TRIBsphaero2 /tmp/TRIBsphaero2.pkg
+	else
+	    zip -q -r TRIBsphaero2 TRIBsphaero2
+	    mv TRIBsphaero2.zip TRIBsphaero2.zap
+	    ls -l /tmp/TRIBsphaero2.pkg /tmp/TRIBsphaero2.zap
+	fi
 	rm -fr /tmp/TRIBsphaero2
-	ls -l /tmp/TRIBsphaero2.pkg /tmp/TRIBsphaero2.zap
 	exit 0
 	;;
 'pmd')
