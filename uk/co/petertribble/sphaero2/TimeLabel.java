@@ -46,7 +46,7 @@ public class TimeLabel extends JLabel implements ActionListener {
     public void unpause() {
 	timer.start();
 	currentLabel = ELAPSED_LABEL;
-	startmillis += (System.currentTimeMillis() - pausemillis);
+	startmillis += System.currentTimeMillis() - pausemillis;
 	updateTime();
     }
 

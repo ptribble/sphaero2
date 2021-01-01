@@ -3,7 +3,7 @@
 #
 # new PMD version has rulesets
 #
-PMDRULES="imports typeresolution clone finalizers sunsecure unusedcode braces migrating strictexception empty"
+PMDRULES="basic braces clone empty finalizers imports migrating strictexception sunsecure typeresolution unusedcode"
 PMDCATRULES="security"
 
 JFLAGS="-Xlint -Xlint:-serial"

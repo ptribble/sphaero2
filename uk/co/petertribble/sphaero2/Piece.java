@@ -477,25 +477,25 @@ public class Piece {
     private static final int fn = 10;
     private static final int fd = 7;
     private static final int maxB = 255 * fd / fn;
-    private static final int brighter(int val) {
+    private static int brighter(int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
 	int b = (val) & 0xff;
 
 	// Black goes to #030303 gray
-	if ((r == 0) && (g == 0) && (b == 0)) {
+	if (r == 0 && g == 0 && b == 0) {
 	    return 0xff030303;
 	}
-	r = (r < 3) ? 3 : r;
-	g = (g < 3) ? 3 : g;
-	b = (b < 3) ? 3 : b;
+	r = r < 3 ? 3 : r;
+	g = g < 3 ? 3 : g;
+	b = b < 3 ? 3 : b;
 
-	r = (r >= maxB) ? 255 : (r * fn / fd);
-	g = (g >= maxB) ? 255 : (g * fn / fd);
-	b = (b >= maxB) ? 255 : (b * fn / fd);
+	r = r >= maxB ? 255 : r*fn/fd;
+	g = g >= maxB ? 255 : g*fn/fd;
+	b = b >= maxB ? 255 : b*fn/fd;
 	return ((((0xff00 | r) << 8) | g) << 8) | b;
     }
-    private static final int darker(int val) {
+    private static int darker(int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
 	int b = (val) & 0xff;

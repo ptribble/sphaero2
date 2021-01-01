@@ -59,10 +59,10 @@ public class QuadCutter extends JigsawCutter {
 		int baseX = i*width / columns;
 		int x = baseX;
 		int y = baseY;
-		if ((i > 0) && (i < columns)) {
+		if (i > 0 && i < columns) {
 		    x += Math.random()*(2*wVary+1) - wVary;
 		}
-		if ((j > 0) && (j < rows)) {
+		if (j > 0 && j < rows) {
 		    y += Math.random()*(2*hVary+1) - hVary;
 		}
 		points[i][j] = new Point(x, y);

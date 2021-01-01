@@ -65,10 +65,10 @@ public class Classic4Cutter extends JigsawCutter {
 		// int baseX = i*width / columns;
 		int x = i*width / columns;
 		int y = baseY;
-		if ((i > 0) && (i < columns)) {
+		if (i > 0 && i < columns) {
 		    x += Math.random()*(2*wVary+1) - wVary;
 		}
-		if ((j > 0) && (j < rows)) {
+		if (j > 0 && j < rows) {
 		    y += Math.random()*(2*hVary+1) - hVary;
 		}
 		points[i][j] = new Point(x, y);
@@ -84,7 +84,7 @@ public class Classic4Cutter extends JigsawCutter {
 	    for (int i = 0; i < columns-1; i++) {
 		Point p1 = points[i+1][j];
 		Point p2 = points[i+1][j+1];
-		boolean flip = (Math.random() >= 0.5);
+		boolean flip = Math.random() >= 0.5;
 		if (flip) { Point temp = p1; p1 = p2; p2 = temp; }
 		vKnobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
 		// flip = !flip;
@@ -99,7 +99,7 @@ public class Classic4Cutter extends JigsawCutter {
 	    for (int i = 0; i < columns; i++) {
 		Point p1 = points[i][j+1];
 		Point p2 = points[i+1][j+1];
-		boolean flip = (Math.random() >= 0.5);
+		boolean flip = Math.random() >= 0.5;
 		if (flip) { Point temp = p1; p1 = p2; p2 = temp; }
 		hKnobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
 		// flip = !flip;
@@ -111,10 +111,10 @@ public class Classic4Cutter extends JigsawCutter {
 	Piece[][] pieces = new Piece[columns][rows];
 	for (int j = 0; j < rows; j++) {
 	    for (int i = 0; i < columns; i++) {
-		Knob knobN = (j > 0) ? hKnobs[i][j-1] : null;
-		Knob knobS = (j < rows-1) ? hKnobs[i][j] : null;
-		Knob knobW = (i > 0) ? vKnobs[i-1][j] : null;
-		Knob knobE = (i < columns-1) ? vKnobs[i][j] : null;
+		Knob knobN = j > 0 ? hKnobs[i][j-1] : null;
+		Knob knobS = j < rows-1 ? hKnobs[i][j] : null;
+		Knob knobW = i > 0 ? vKnobs[i-1][j] : null;
+		Knob knobE = i < columns-1 ? vKnobs[i][j] : null;
 		pieces[i][j] = makePiece(image,
 					points[i][j],
 					points[i][j+1],

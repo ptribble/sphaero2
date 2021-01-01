@@ -64,10 +64,10 @@ public class ClassicCutter extends JigsawCutter {
 		// int baseX = i*width / columns;
 		int x = i*width / columns;
 		int y = baseY;
-		if ((i > 0) && (i < columns)) {
+		if (i > 0 && i < columns) {
 		    x += Math.random()*(2*wVary+1) - wVary;
 		}
-		if ((j > 0) && (j < rows)) {
+		if (j > 0 && j < rows) {
 		    y += Math.random()*(2*hVary+1) - hVary;
 		}
 		points[i][j] = new Point(x, y);
@@ -108,10 +108,10 @@ public class ClassicCutter extends JigsawCutter {
 	Piece[][] pieces = new Piece[columns][rows];
 	for (int j = 0; j < rows; j++) {
 	    for (int i = 0; i < columns; i++) {
-		Knob knobN = (j > 0) ? hKnobs[i][j-1] : null;
-		Knob knobS = (j < rows-1) ? hKnobs[i][j] : null;
-		Knob knobW = (i > 0) ? vKnobs[i-1][j] : null;
-		Knob knobE = (i < columns-1) ? vKnobs[i][j] : null;
+		Knob knobN = j > 0 ? hKnobs[i][j-1] : null;
+		Knob knobS = j < rows-1 ? hKnobs[i][j] : null;
+		Knob knobW = i > 0 ? vKnobs[i-1][j] : null;
+		Knob knobE = i < columns-1 ? vKnobs[i][j] : null;
 		pieces[i][j] = makePiece(image,
 					points[i][j],
 					points[i][j+1],
