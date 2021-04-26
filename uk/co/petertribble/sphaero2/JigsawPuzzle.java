@@ -73,7 +73,7 @@ public class JigsawPuzzle extends JPanel {
     private static final Rectangle emptyRect = new Rectangle(0, 0, 0, 0);
 
     private final BufferedImage image;
-    private Image finishedImage;
+    Image finishedImage;
     private final JigsawCutter cutter;
     private Dimension prefSize;
     private boolean mouseDown;
@@ -82,11 +82,15 @@ public class JigsawPuzzle extends JPanel {
     private boolean paused;
     // Translation from a piece's upper-left corner to the point you clicked
     // on.
-    private int transX, transY;
+    private int transX;
+    private int transY;
     // Last in list = topmost piece
     private List <Piece> zOrder;
     private int bgColor = 4;
-    private int clearX0, clearY0, clearX1, clearY1;
+    private int clearX0;
+    private int clearY0;
+    private int clearX1;
+    private int clearY1;
     private Color clearColor;
 
     // If a keyboard command can affect a piece, it'll be this one.
@@ -117,15 +121,20 @@ public class JigsawPuzzle extends JPanel {
 
     private void addWiring() {
 	addMouseListener(new MouseAdapter() {
+	    @Override
 	    public void mousePressed(MouseEvent e) { mousePressed0(e); }
+	    @Override
 	    public void mouseReleased(MouseEvent e) { mouseReleased0(e); }
 	});
 	addMouseMotionListener(new MouseMotionAdapter() {
+	    @Override
 	    public void mouseDragged(MouseEvent e) { mouseDragged0(e); }
 	});
 	addKeyListener(new KeyAdapter() {
+	    @Override
 	    public void keyTyped(KeyEvent e) {
 		keyTyped0(e); }
+	    @Override
 	    public void keyPressed(KeyEvent e) {
 		keyPressed0(e); }
 	});
@@ -186,7 +195,8 @@ public class JigsawPuzzle extends JPanel {
 	    return;
 	}
 
-	int x = 0, y = 0;
+	int x = 0;
+	int y = 0;
 	for (Piece piece : zOrder) {
 	    piece.draw(g);
 	}
@@ -200,7 +210,7 @@ public class JigsawPuzzle extends JPanel {
 	    g.fillRect(cx, cy, cw, ch);
 	}
 
-	if (finished && (finishedImage != null)) {
+	if (finished && finishedImage != null) {
 	    Piece lastPiece = zOrder.get(0);
 	    x = lastPiece.getPuzzleX();
 	    y = lastPiece.getPuzzleY();
@@ -323,7 +333,7 @@ public class JigsawPuzzle extends JPanel {
 
     // Mouse event handling -------------------------------------------------
 
-    private void mousePressed0(MouseEvent e) {
+    void mousePressed0(MouseEvent e) {
 	if (finished) {
 	    return;
 	}
@@ -335,7 +345,7 @@ public class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void mouseDragged0(MouseEvent e) {
+    void mouseDragged0(MouseEvent e) {
 	if (finished) {
 	    return;
 	}
@@ -346,7 +356,7 @@ public class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void mouseReleased0(MouseEvent e) {
+    void mouseReleased0(MouseEvent e) {
 	if (finished) {
 	    return;
 	}
@@ -364,7 +374,7 @@ public class JigsawPuzzle extends JPanel {
 
 	focusPiece = null;
 	ListIterator <Piece> iter = zOrder.listIterator(zOrder.size());
-	while ((focusPiece == null) && (iter.hasPrevious())) {
+	while (focusPiece == null && iter.hasPrevious()) {
 	    Piece piece = iter.previous();
 	    if (piece.contains(x, y)) {
 		focusPiece = piece;
@@ -548,7 +558,7 @@ public class JigsawPuzzle extends JPanel {
 
     // Keyboard event handling ----------------------------------------------
 
-    private void keyTyped0(KeyEvent e) {
+    void keyTyped0(KeyEvent e) {
 	char ch = Character.toUpperCase(e.getKeyChar());
 	if (ch == PREV_BG) {
 	    prevBackground();
@@ -573,7 +583,7 @@ public class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void keyPressed0(KeyEvent e) {
+    void keyPressed0(KeyEvent e) {
 	if (!finished) {
 	    if (e.getKeyCode() == KeyEvent.VK_LEFT ||
 		    e.getKeyCode() == KeyEvent.VK_KP_LEFT) {

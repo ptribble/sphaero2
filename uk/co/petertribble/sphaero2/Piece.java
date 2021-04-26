@@ -89,13 +89,16 @@ public class Piece {
     }
 
     // Location in the image.
-    private int imageX, imageY;
+    private int imageX;
+    private int imageY;
 
     // Size of the entire image.
-    private int totalWidth, totalHeight;
+    private int totalWidth;
+    private int totalHeight;
 
     // Location in the image adjusted by current rotation.
-    private int rotatedX, rotatedY;
+    private int rotatedX;
+    private int rotatedY;
 
     /**
      * Pieces considered to be neighbors to this one.  They are the only
@@ -106,17 +109,20 @@ public class Piece {
     /**
      * Original image size and data.
      */
-    protected int origWidth, origHeight;
+    protected int origWidth;
+    protected int origHeight;
     private int[] origData;
 
     /**
      * Current size and data, taking rotation into account.
      */
-    protected int curWidth, curHeight;
+    protected int curWidth;
+    protected int curHeight;
     protected int[] curData;
 
     // Location in the puzzle panel.
-    private int puzzleX, puzzleY;
+    private int puzzleX;
+    private int puzzleY;
 
     // Image for this Piece. null for a MultiPiece
     private Image image;
@@ -441,7 +447,9 @@ public class Piece {
     private static void bevel(int[] data, int width, int height) {
 	// Scan diagonal NW-SE lines.  The first and last lines can be skipped.
 	// moved these out of the loop
-	boolean nw, c, se; // true iff that pixel is opaque
+	boolean nw; // true iff that pixel is opaque
+	boolean c; // true iff that pixel is opaque
+	boolean se; // true iff that pixel is opaque
 	for (int i = 0; i < width+height-3; i++) {
 	    nw = c = se = false;
 	    int x = Math.max(0, i-height+2);

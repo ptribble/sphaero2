@@ -74,8 +74,12 @@ public class Knob {
     private static final float XDBVARY = 1/4f;
     private static final float XDFVARY = 1/4f;
 
-    private final int x1, y1, x2, y2;
-    private GeneralPath cPath, cPathReverse;
+    private final int x1;
+    private final int y1;
+    private final int x2;
+    private final int y2;
+    private GeneralPath cPath;
+    private GeneralPath cPathReverse;
 
     /**
      * Creates a new Knob, anchored on the given coordinates.

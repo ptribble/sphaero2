@@ -79,7 +79,7 @@ public final class JigUtil {
     throws FileNotFoundException
     {
 	int attempts = 0;
-	File file = null;
+	File file;
 	FileFilter ff = new FileFilter() {
 	    public boolean accept(File f) {
 		return f.isDirectory() || isImage(f);
@@ -138,7 +138,7 @@ public final class JigUtil {
     public static String aboutMsg() {
 	return "<html>Sphaero2 Jigsaw Puzzle.<br>"
 	    + "Original by Paul Brinkley, 2003.<br>"
-	    + "Updated by Peter Tribble, 2010-2020.</html>";
+	    + "Updated by Peter Tribble, 2010-2021.</html>";
     }
 
     /**
