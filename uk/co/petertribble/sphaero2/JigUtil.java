@@ -142,6 +142,13 @@ public final class JigUtil {
     }
 
     /**
+     * Create one line in a table
+     */
+    public static String tableLine(char c1, String s2) {
+	return "<tr><td>" + c1 + "</td><td> " + s2 + "</td></tr>";
+    }
+
+    /**
      * The help messsage.
      */
     public static String helpMsg() {
@@ -149,26 +156,22 @@ public final class JigUtil {
 	    + " they do, they'll join and move as a unit from then on."
 	    + "<p> Keyboard commands: <br>"
 	    + "<table>"
-	    + "<tr><td>" + JigsawPuzzle.ROTATE_LEFT
-	    + " <td> rotate piece left 90 degrees"
-	    + "<tr><td>" + JigsawPuzzle.ROTATE_RIGHT
-	    + " <td> rotate piece right 90 degrees"
-	    + "<tr><td>" + JigsawPuzzle.SHUFFLE
-	    + " <td> shuffle all pieces (good for finding pieces accidentally"
-	    + " moved off the board)"
-	    + "<tr><td>" + JigsawPuzzle.PUSH
-	    + " <td> push the top piece to the back (handy if it's hiding"
-	    + " other pieces)"
-	    + "<tr><td>" + JigsawPuzzle.PREV_BG
-	    + " <td> change background to previous color"
-	    + "<tr><td>" + JigsawPuzzle.NEXT_BG
-	    + " <td> change background to next color"
-	    + "<tr><td>" + JigsawPuzzle.CLEAR
-	    + " <td> toggle clear mode; mouse now drags over spaces to be"
-	    + " cleared of pieces; cleared pieces are placed randomly"
-	    + " elsewhere"
-	    + "<tr><td>" + JigsawPuzzle.HIDE
-	    + " <td> toggle hidden mode to pause or unpause the puzzle"
-	    + "</table>";
+	    + tableLine(JigsawPuzzle.ROTATE_LEFT,
+			"rotate piece left 90 degrees")
+	    + tableLine(JigsawPuzzle.ROTATE_RIGHT,
+			"rotate piece right 90 degrees")
+	    + tableLine(JigsawPuzzle.SHUFFLE,
+			"shuffle all pieces (good for finding pieces accidentally moved off the board)")
+	    + tableLine(JigsawPuzzle.PUSH,
+			"push the top piece to the back (handy if it's hiding other pieces)")
+	    + tableLine(JigsawPuzzle.PREV_BG,
+			"change background to previous color")
+	    + tableLine(JigsawPuzzle.NEXT_BG,
+			"change background to next color")
+	    + tableLine(JigsawPuzzle.CLEAR,
+			"toggle clear mode; mouse now drags over spaces to be cleared of pieces; cleared pieces are placed randomly elsewhere")
+	    + tableLine(JigsawPuzzle.HIDE,
+			"toggle hidden mode to pause or unpause the puzzle")
+	    + "</table></html>";
     }
 }
