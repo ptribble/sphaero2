@@ -9,12 +9,13 @@ PMDCATRULES="security"
 JFLAGS="-Xlint -Xlint:-serial"
 
 case $1 in
-'clean')
+clean|-clean)
 	rm -f `find uk -name '*.class'`
 	rm -f `find . -name '*~'`
+	rm -fr javadoc
 	exit 0
 	;;
-'package')
+package|-package)
 	./pkg/mkproto > pp
 	pkgmk -d /tmp -f pp -r `pwd` TRIBsphaero2
 	pkgtrans -s /tmp /tmp/TRIBsphaero2.pkg TRIBsphaero2
@@ -30,7 +31,13 @@ case $1 in
 	rm -fr /tmp/TRIBsphaero2
 	exit 0
 	;;
-'pmd')
+javadoc|-javadoc)
+	rm -fr javadoc
+	mkdir javadoc
+	javadoc -Xdoclint:all -d javadoc uk.co.petertribble.sphaero2
+	exit 0
+	;;
+pmd|-pmd)
 	RULESETS=""
 	for RULE in $PMDRULES
 	do
@@ -44,7 +51,7 @@ case $1 in
 	pmd -d uk -R $RULESETS -version 1.5 -auxclasspath `echo lib/java/* | sed 's= =:=g'` 2>/dev/null
 	exit 0
 	;;
-'jstyle')
+jstyle|-jstyle)
 	/opt/onbld/bin/jstyle `find uk -name '*.java'`
 	exit 0
 	;;

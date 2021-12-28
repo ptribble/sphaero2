@@ -28,6 +28,8 @@ public final class JigUtil {
     /**
      * Ensures that the given Image has been loaded.  The current thread
      * will pause until all of the image data is in memory.
+     *
+     * @param image the Image to track loading progress of
      */
     public static void ensureLoaded(Image image) {
 	int id = 0;
@@ -41,6 +43,10 @@ public final class JigUtil {
 
     /**
      * Rescale the image to fit on the screen, allowing for a border.
+     *
+     * @param image the input Image
+     *
+     * @return the resized Image
      */
     public static BufferedImage resizedImage(BufferedImage image) {
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -71,6 +77,10 @@ public final class JigUtil {
      * it is an image file, it returns it. If it is a subfolder, it repeats
      * the algorithm on the subfolder, continuing until it finds an image
      * file or a file that is neither image nor folder.
+     *
+     * @param folder the directory to search for images
+     *
+     * @return a random image File
      *
      * @throws FileNotFoundException if no image file could be found after 10
      *   attempts
@@ -113,6 +123,10 @@ public final class JigUtil {
     /**
      * Returns whether the given file is an image file. For now, just
      * check whether the file extension is JPG, GIF, or PNG.
+     *
+     * @param file the File to check
+     *
+     * @return true if the given File is of a recognized image type
      */
     public static boolean isImage(File file) {
 	String name = file.getName();
@@ -134,6 +148,8 @@ public final class JigUtil {
 
     /**
      * The about message.
+     *
+     * @return the about message
      */
     public static String aboutMsg() {
 	return "<html>Sphaero2 Jigsaw Puzzle.<br>"
@@ -143,6 +159,11 @@ public final class JigUtil {
 
     /**
      * Create one line in a table
+     *
+     * @param c1 a character
+     * @param s2 the description for c1
+     *
+     * @return a formatted line ready to put in a table
      */
     public static String tableLine(char c1, String s2) {
 	return "<tr><td>" + c1 + "</td><td> " + s2 + "</td></tr>";
@@ -150,6 +171,8 @@ public final class JigUtil {
 
     /**
      * The help messsage.
+     *
+     * @return the full help text
      */
     public static String helpMsg() {
 	return "<html>Drag pieces with the mouse to fit them together.  If"

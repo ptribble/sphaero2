@@ -103,7 +103,7 @@ public class JigsawPuzzle extends JPanel {
     /**
      * Creates a new JigsawPuzzle.
      * @param image the final picture
-     * @param cut the cut to use on the image
+     * @param cutter the JigsawCutter to use on the image
      */
     public JigsawPuzzle(BufferedImage image, JigsawCutter cutter) {
 	super(false);
@@ -179,7 +179,11 @@ public class JigsawPuzzle extends JPanel {
     public Dimension getMinimumSize() { return getPreferredSize(); }
     public Dimension getPreferredSize() { return prefSize; }
 
-    /** Returns whether the pieces have been prepared for this puzzle. */
+    /**
+     * Returns whether the pieces have been prepared for this puzzle.
+     *
+     * @return true if the Pieces have been cut for this puzzle
+     */
     public boolean isCut() {
 	return zOrder != null;
     }

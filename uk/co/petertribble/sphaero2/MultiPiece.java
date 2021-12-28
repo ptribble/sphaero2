@@ -26,8 +26,8 @@ public class MultiPiece extends Piece {
 
     /**
      * Creates a new MultiPiece.
-     * @param subpieces subpieces; this set is used directly by MultiPiece,
-     * and should not be modified afterward
+     * @param subs A set of Pieces used directly by MultiPiece,
+     *   should not be modified afterward
      * @param imageX X position of image relative to entire puzzle
      * @param imageY Y position of image relative to entire puzzle
      * @param imageWidth width of original image
@@ -73,8 +73,11 @@ public class MultiPiece extends Piece {
      * Joins the given main Piece with the list of Pieces, and returns a new
      * Piece.  The new Piece's location and orientation are based on those of
      * the main Piece.
+     *
      * @param main main Piece
      * @param others other Pieces
+     *
+     * @return the combined MultiPiece
      */
     protected static MultiPiece join(Piece main, Set <Piece> others) {
 	Set <Piece> neighbors = new HashSet <Piece> ();
@@ -157,6 +160,13 @@ public class MultiPiece extends Piece {
      * The data array's image location is given by (dataX,dataY).  Its image
      * size is given by (width,height).  The Piece's image is assumed to fit
      * entirely within the data image rectangle.
+     *
+     * @param data the array to overlay the Piece into
+     * @param dataX the x coordinate of the data array
+     * @param dataY the y cordinate of the data array
+     * @param width the width of the data array
+     * @param height the height of the data array
+     * @param piece the Piece to overlay into the data array
      */
     protected static void overlay(int[] data, int dataX, int dataY,
 				   int width, int height, Piece piece) {

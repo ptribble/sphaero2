@@ -20,7 +20,7 @@ import java.util.HashSet;
  * image it contains, how its edges are to be drawn, and what its
  * neighboring pieces are.
  *
- * <p> When two or more Pieces are put together, the result is another
+ * When two or more Pieces are put together, the result is another
  * Piece object, a MultiPiece.
  *
  * @see MultiPiece
@@ -138,6 +138,8 @@ public class Piece {
      * integer degrees clockwise, and will always be between 0 and 359
      * inclusive.
      *
+     * @return the Piece's current rotation.
+     *
      * @see #setRotation
      */
     public int getRotation() {
@@ -149,6 +151,8 @@ public class Piece {
      * degrees clockwise, and should always be between 0 and 359 inclusive.
      * If the new rotation is different, this Piece's image data will be
      * recomputed.
+     *
+     * @param rot The new rotation
      *
      * @see #getRotation
      *
@@ -163,6 +167,9 @@ public class Piece {
     /**
      * Sets this Piece's current rotation.  Unlike setRotation(), this
      * method forces a recompute of the image.
+     *
+     * @param rot The new rotation
+     *
      * @throws IllegalArgumentException if rotation is not in [0,359]
      */
     protected void forceSetRotation(int rot) {
@@ -189,6 +196,9 @@ public class Piece {
     /**
      * Sets this Piece's upper-left position relative to the upper-left
      * position of the JigsawPuzzle.
+     *
+     * @param x The Piece's new x position
+     * @param y The Piece's new y position
      */
     public void setPuzzlePosition(int x, int y) {
 	this.puzzleX = x;
@@ -199,6 +209,8 @@ public class Piece {
      * Returns this Piece's current height in pixels.  This is the height of
      * the smallest rectangle containing all of this Piece's image data at
      * its current rotation.
+     *
+     * @return the Piece's current height in pixels
      */
     public int getCurrentHeight() {
 	return curHeight;
@@ -208,6 +220,8 @@ public class Piece {
      * Returns this Piece's current width in pixels.  This is the width of
      * the smallest rectangle containing all of this Piece's image data at
      * its current rotation.
+     *
+     * @return the Piece's current width in pixels
      */
     public int getCurrentWidth() {
 	return curWidth;
@@ -215,6 +229,8 @@ public class Piece {
 
     /**
      * Returns the width of the entire picture.
+     *
+     * @return the entire puzzle's current width in pixels
      */
     public int getTotalWidth() {
 	return totalWidth;
@@ -222,6 +238,8 @@ public class Piece {
 
     /**
      * Returns the height of the entire picture.
+     *
+     * @return the entire puzzle's current height in pixels
      */
     public int getTotalHeight() {
 	return totalHeight;
@@ -231,6 +249,8 @@ public class Piece {
      * Returns this Piece's image height in pixels.  This is the height of
      * the smallest rectangle containing all of this Piece's image data in
      * its original orientation.
+     *
+     * @return the Piece's current image height in pixels
      */
     public int getImageHeight() {
 	return origHeight;
@@ -240,6 +260,8 @@ public class Piece {
      * Returns this Piece's image width in pixels.  This is the width of the
      * smallest rectangle containing all of this Piece's image data in its
      * original orientation.
+     *
+     * @return the Piece's current image width in pixels
      */
     public int getImageWidth() {
 	return origWidth;
@@ -247,6 +269,8 @@ public class Piece {
 
     /**
      * Returns this Piece's X position in the original image.
+     *
+     * @return the Piece's X position in the original image
      */
     public int getImageX() {
 	return imageX;
@@ -254,6 +278,8 @@ public class Piece {
 
     /**
      * Returns this Piece's Y position in the original image.
+     *
+     * @return the Piece's Y position in the original image
      */
     public int getImageY() {
 	return imageY;
@@ -262,6 +288,8 @@ public class Piece {
     /**
      * Returns this Piece's X position in the original image, modified by
      * its current rotation.  The origin is the center of rotation.
+     *
+     * @return the Piece's rotated X position in the original image
      */
     public int getRotatedX() {
 	return rotatedX;
@@ -270,27 +298,17 @@ public class Piece {
     /**
      * Returns this Piece's Y position in the original image, modified by
      * its current rotation.  The origin is the center of rotation.
+     *
+     * @return the Piece's rotated Y position in the original image
      */
     public int getRotatedY() {
 	return rotatedY;
     }
 
     /**
-     * Returns this Piece's X position in the original image, modified by
-     * the given rotation.
-     */
-    public int getRotatedX(int rotation) {
-	return rotatedX;
-    }
-
-    /**
-     * Returns this Piece's Y position in the original image, modified by
-     * the given rotation.
-     */
-    public int getRotatedY(int rotation) { return rotatedY; }
-
-    /**
      * Returns this Piece's X position in the puzzle.
+     *
+     * @return this Piece's X position
      */
     public int getPuzzleX() {
 	return puzzleX;
@@ -298,6 +316,8 @@ public class Piece {
 
     /**
      * Returns this Piece's Y position in the puzzle.
+     *
+     * @return this Piece's Y position
      */
     public int getPuzzleY() {
 	return puzzleY;
@@ -306,6 +326,8 @@ public class Piece {
     /**
      * Returns this Piece's current image.  This will be the Piece's portion
      * of the original image, rotated by this Piece's current rotation.
+     *
+     * @return this Piece's portion of the overall image
      */
     public Image getImage() {
 	return image;
@@ -313,6 +335,8 @@ public class Piece {
 
     /**
      * Adds a Piece to this Piece's set of neighbors.
+     *
+     * @param neighbor the Piece to add to this Piece's set of neighbors
      */
     public void addNeighbor(Piece neighbor) {
 	neighbors.add(neighbor);
@@ -320,6 +344,8 @@ public class Piece {
 
     /**
      * Removes the given Piece from this Piece's set of neighbors.
+     *
+     * @param neighbor the Piece to remove from this Piece's set of neighbors
      */
     public void removeNeighbor(Piece neighbor) {
 	neighbors.remove(neighbor);
@@ -328,6 +354,9 @@ public class Piece {
     /**
      * Moves this Piece to the given location, relative to the puzzle
      * panel's upper-left corner.
+     *
+     * @param x The Piece's new x position
+     * @param y The Piece's new y position
      */
     public void moveTo(int x, int y) {
 	setPuzzlePosition(x, y);
@@ -344,6 +373,8 @@ public class Piece {
     /**
      * Draws this Piece in the given Graphics object.  The current image
      * will be drawn, at this Piece's current puzzle position.
+     *
+     * @param g the Graphics object to draw to
      */
     protected void draw(Graphics g) {
 	Image img = getImage();
@@ -355,6 +386,11 @@ public class Piece {
     /**
      * Returns whether this Piece currently contains the given point,
      * relative to the puzzle panel's upper-left corner.
+     *
+     * @param x The x coordinate to be checked
+     * @param y The y coordinate to be checked
+     *
+     * @return true if the given coordinates are inside the current Piece
      */
     public boolean contains(int x, int y) {
 	int puzX = getPuzzleX();
@@ -370,6 +406,11 @@ public class Piece {
     /**
      * Returns the alpha (transparency) value at the given coordinates in
      * the current image data.
+     *
+     * @param x The x coordinate to be checked
+     * @param y The y coordinate to be checked
+     *
+     * @return the alpha transparency at the given coordinates
      */
     protected int getAlpha(int x, int y) {
 	int pixel = curData[y*curWidth + x];
@@ -379,6 +420,11 @@ public class Piece {
     /**
      * Returns whether this piece is located and oriented close enough to
      * the given Piece to be fitted.
+     *
+     * @param piece The other Piece to check for closeness
+     *
+     * @return true if this Peiec and the given Piece are located and oriented
+     * close enough together to be fitted
      */
     protected boolean isCloseTo(Piece piece) {
 	// Don't even bother if they're not aligned.
@@ -389,8 +435,8 @@ public class Piece {
 	}
 	int puzXD = getPuzzleX() - piece.getPuzzleX();
 	int puzYD = getPuzzleY() - piece.getPuzzleY();
-	int rotXD = getRotatedX() - piece.getRotatedX(rotation);
-	int rotYD = getRotatedY() - piece.getRotatedY(rotation);
+	int rotXD = getRotatedX() - piece.getRotatedX();
+	int rotYD = getRotatedY() - piece.getRotatedY();
 	return
 	    (Math.abs(puzXD-rotXD) <= posClose) &&
 	    (Math.abs(puzYD-rotYD) <= posClose);
@@ -401,6 +447,7 @@ public class Piece {
     /**
      * Checks whether any of this Piece's neighbors are located and oriented
      * close enough to be joined to this one.
+     *
      * @return an array of Pieces, or null if no neighbors were close enough;
      *   if the array is non-null, the first Piece will be the new one;
      *   subsequent Pieces will be the ones it was built from

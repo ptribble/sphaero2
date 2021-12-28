@@ -19,35 +19,35 @@ import javax.imageio.ImageIO;
  * JFrame that runs a JigsawPuzzle. This is the front end for
  * JigsawPuzzle, the main class of the jigsaw application.
  *
- * <p> "Sphaero" is short for "Sphaerodactylinea". This is the name of one
+ * "Sphaero" is short for "Sphaerodactylinea". This is the name of one
  * of the subfamilies of geckos, including house geckos, tokay geckos,
  * striped leaf geckos, and several other common varieties. It reminded me
  * of Escher's depiction of a 2D surface tiled by lizards, which vaguely
  * resemble jigsaw puzzle pieces. Hence the name. ("Gecko" was already
  * taken.)
  *
- * <h4> Known Bugs </h4>
+ * Known Bugs
  *
- * <p> You can rotate a piece or pieces while dragging them; that's a
+ * You can rotate a piece or pieces while dragging them; that's a
  * feature.  However, it doesn't rotate around the mouse cursor in that
  * case. It uses the center of mass of the piece (I think); the upshot is
  * that a piece may appear to jump out from under the cursor, yet still
  * respond to dragging.
  *
- * <p> The program may report one or more NullPointerExceptions when
+ * The program may report one or more NullPointerExceptions when
  * loading the image. This seems to be in the native image-loading code,
  * possibly due to some image data being accessed before it has loaded.
  * I've never seen any missing pieces or image data as a result of this,
  * however.
  *
- * <p> The most serious bug is an OutOfMemoryError while the puzzle is
+ * The most serious bug is an OutOfMemoryError while the puzzle is
  * being solved. This occurs particularly on large images and large
  * numbers of pieces (200+), and even then only if picture is solved by
  * forming one large set of fitted pieces, and adding pieces singly to
  * that. If it's solved instead by forming medium-sized sections first,
  * and then fitting those sections together at the end, no problems arise.
  *
- * <p> This program uses a fair bit of memory. I use a max heap size of
+ * This program uses a fair bit of memory. I use a max heap size of
  * 256Mb for large (1024x768 pixels) images, 200 pieces, and occasionally
  * will still get an OutOfMemoryError as above.
  */
@@ -89,7 +89,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
      * on the command line, it will be used; otherwise the user will be
      * prompted.
      *
-     * <h4>Command line arguments</h4>
+     * <h1>Command line arguments</h1>
      *
      * <pre>
      * -p &lt;<i>number</i>&gt; Cut the picture into roughly this number of
@@ -105,7 +105,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
      * <p>100 pieces are created by default. If no filename is given, the
      * current folder is used.
      *
-     * <h4>Puzzle commands</h4>
+     * <h1>Puzzle commands</h1>
      *
      * <p> Pieces can be dragged around with the mouse. The piece (or group
      * of pieces) most recently dragged or clicked on is the active piece.
@@ -114,6 +114,9 @@ public class JigsawFrame extends JFrame implements ActionListener {
      * matter.) Press S to shuffle all the pieces around the panel randomly,
      * keeping fitted pieces together. Pieces are fitted automatically if
      * they are placed close enough, and are rotated the same way.
+     *
+     * @param image the BufferedImage to use as the picture
+     * @param cutter the JigsawCutter to be used to cut the image into pieces
      */
     public JigsawFrame(BufferedImage image, JigsawCutter cutter) {
 	super("Jigsaw Puzzle");

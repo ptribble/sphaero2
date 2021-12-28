@@ -28,6 +28,8 @@ public abstract class JigsawCutter {
      * Returns a name for this cutting algorithm, suitable for display in a
      * user interface.  The name is expected to be one line, and at most
      * roughly 30 characters long.
+     *
+     * @return a short name for this cutter
      */
     public abstract String getName();
 
@@ -35,6 +37,8 @@ public abstract class JigsawCutter {
      * Returns a description of how this cutter will work, suitable for
      * display in a user interface.  The description may contain several
      * sentences, and is expected to be about a paragraph long.
+     *
+     * @return a longer description of this cutter
      */
     public abstract String getDescription();
 
@@ -42,6 +46,10 @@ public abstract class JigsawCutter {
      * Cuts the given Image into Pieces, and returns them.  This is a
      * potentially time-consuming operation, and should not be run in the AWT
      * thread.
+     *
+     * @param image the image to be cut
+     *
+     * @return the array of cut Pieces
      */
     public abstract Piece[] cut(BufferedImage image);
 
@@ -66,6 +74,8 @@ public abstract class JigsawCutter {
     /**
      * Associate a JProgressBar that can be used to display progress of
      * generating the pieces.
+     *
+     * @param jp the progres bar to update while cutting is in progress
      */
     public void setJProgressBar(JProgressBar jp) {
 	this.jp = jp;
@@ -78,6 +88,8 @@ public abstract class JigsawCutter {
     /**
      * Start generating. If there's a progress bar, it will be set to
      * zero.
+     *
+     * @param progressmax the anticipated number of steps
      */
     public void startProgress(int progressmax) {
 	this.progressmax = progressmax;
@@ -89,7 +101,7 @@ public abstract class JigsawCutter {
     }
 
     /**
-     * Update progress.
+     * Update progress of this cutting operation.
      */
     public void updateProgress() {
 	iprogress++;
@@ -100,6 +112,12 @@ public abstract class JigsawCutter {
 
     /**
      * Allocates neighbours and builds the final array.
+     *
+     * @param pieces the Pieces array
+     * @param rows the number of rows
+     * @param columns the number of columns
+     *
+     * @return the final array of Pieces
      */
     public Piece[] finalBuild(Piece[][] pieces, int rows, int columns) {
 	Piece[] ret = new Piece[rows*columns];

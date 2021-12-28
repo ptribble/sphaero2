@@ -83,8 +83,11 @@ public class Knob {
 
     /**
      * Creates a new Knob, anchored on the given coordinates.
-     * @param x1,y1 coordinates of the start endpoint
-     * @param x2,y2 coordinates of the finish endpoint
+     * 
+     * @param x1 x coordinate of the start endpoint
+     * @param y1 y coordinate of the start endpoint
+     * @param x2 x coordinate of the finish endpoint
+     * @param y2 y coordinate of the finish endpoint
      */
     public Knob(int x1, int y1, int x2, int y2) {
 	this.x1 = x1;
@@ -141,6 +144,12 @@ public class Knob {
     /**
      * Returns a copy of the path used to create this Knob, starting with
      * the given endpoint.
+     *
+     * @param x the x coordinate of the endpoint
+     * @param y the y coordinate of the endpoint
+     *
+     * @return a copy of the Path bounding this Knob
+     *
      * @throws IllegalArgumentException if (x,y) is not an endpoint of this
      *   Knob
      */
@@ -156,35 +165,9 @@ public class Knob {
     }
 
     /**
-     * Returns the start point's X coordinate.
-     */
-    public int getX1() {
-	return x1;
-    }
-
-    /**
-     * Returns the end point's X coordinate.
-     */
-    public int getX2() {
-	return x2;
-    }
-
-    /**
-     * Returns the start point's Y coordinate.
-     */
-    public int getY1() {
-	return y1;
-    }
-
-    /**
-     * Returns the end point's Y coordinate.
-     */
-    public int getY2() {
-	return y2;
-    }
-
-    /**
      * Returns a rectangle bounding this Knob.
+     *
+     * @return the Rectangle bounding this Knob
      */
     public Rectangle getBounds() {
 	return cPath.getBounds();
