@@ -39,7 +39,8 @@ javadoc|-javadoc)
 	;;
 pmd|-pmd)
 	RULESETS=""
-	for RULE in $PMDRULES
+	shift
+	for RULE in $PMDRULES $*
 	do
 	    RULESETS="${RULESETS},rulesets/java/${RULE}.xml"
 	done
