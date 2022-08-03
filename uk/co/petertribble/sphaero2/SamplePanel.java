@@ -1,11 +1,11 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import javax.swing.*;
 
 public class SamplePanel extends JPanel implements ActionListener {
 

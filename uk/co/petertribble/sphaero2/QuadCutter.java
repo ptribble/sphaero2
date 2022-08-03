@@ -1,7 +1,7 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.image.BufferedImage;
 import java.awt.Point;
+import java.awt.image.BufferedImage;
 
 /**
  * Cuts pieces into random quadrilaterals.  Pieces are arranged into rough

@@ -1,27 +1,27 @@
 package uk.co.petertribble.sphaero2;
 
-import javax.swing.JPanel;
-import javax.swing.Timer;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
-import java.awt.image.PixelGrabber;
-import java.awt.image.MemoryImageSource;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.image.BufferedImage;
+import java.awt.image.MemoryImageSource;
+import java.awt.image.PixelGrabber;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 
 // ### I think I need a quicker way to detect which piece is clicked on.
 //   Mouse-down lags when there are lots of pieces.

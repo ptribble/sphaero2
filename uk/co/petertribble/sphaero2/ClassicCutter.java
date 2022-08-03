@@ -1,9 +1,9 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.image.BufferedImage;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.GeneralPath;
+import java.awt.image.BufferedImage;
 
 // ### Pieces are a bit "prickly" in appearance, particularly if they're
 //   small.

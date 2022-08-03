@@ -1,11 +1,11 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.Image;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.MemoryImageSource;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 // ### Should Pieces be implemented as BufferedImages backed by Rasters,
 // rather than images backed by MemoryImageSources?

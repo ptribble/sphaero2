@@ -1,7 +1,7 @@
 package uk.co.petertribble.sphaero2;
 
-import java.util.Set;
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A set of joined pieces of a jigsaw puzzle.  It knows the same things a

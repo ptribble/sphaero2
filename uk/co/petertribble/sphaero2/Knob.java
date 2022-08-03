@@ -1,7 +1,7 @@
 package uk.co.petertribble.sphaero2;
 
-import java.awt.geom.*;
 import java.awt.Rectangle;
+import java.awt.geom.*;
 
 // ### Trouble with this scheme: roundoff error, apparently.  Transformed
 //   paths aren't guaranteed to end up exactly at the endpoints.

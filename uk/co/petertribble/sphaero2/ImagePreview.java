@@ -31,10 +31,10 @@
 
 package uk.co.petertribble.sphaero2;
 
-import javax.swing.*;
-import java.beans.*;
 import java.awt.*;
+import java.beans.*;
 import java.io.File;
+import javax.swing.*;
 
 /**
  * ImagePreview.java by FileChooserDemo2.java.

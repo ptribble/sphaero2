@@ -1,6 +1,5 @@
 package uk.co.petertribble.sphaero2;
 
-import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -10,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
+import javax.swing.JPanel;
 
 /**
  * Common utility methods.

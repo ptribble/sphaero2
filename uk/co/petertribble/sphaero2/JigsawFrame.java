@@ -1,19 +1,19 @@
 package uk.co.petertribble.sphaero2;
 
-import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.Border;
 
 /**
  * JFrame that runs a JigsawPuzzle. This is the front end for

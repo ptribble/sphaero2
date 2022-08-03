@@ -1,10 +1,10 @@
 package uk.co.petertribble.sphaero2;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * A label showing how long it has taken to solve the puzzle.
