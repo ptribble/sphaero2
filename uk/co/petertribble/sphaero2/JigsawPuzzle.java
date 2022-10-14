@@ -199,8 +199,6 @@ public class JigsawPuzzle extends JPanel {
 	    return;
 	}
 
-	int x = 0;
-	int y = 0;
 	for (Piece piece : zOrder) {
 	    piece.draw(g);
 	}
@@ -216,8 +214,8 @@ public class JigsawPuzzle extends JPanel {
 
 	if (finished && finishedImage != null) {
 	    Piece lastPiece = zOrder.get(0);
-	    x = lastPiece.getPuzzleX();
-	    y = lastPiece.getPuzzleY();
+	    int x = lastPiece.getPuzzleX();
+	    int y = lastPiece.getPuzzleY();
 	    g.drawImage(finishedImage, x, y, null);
 	}
     }
@@ -299,8 +297,7 @@ public class JigsawPuzzle extends JPanel {
 	try {
 	    new PixelGrabber(image, 0, 0, width, height, data, 0, width)
 		.grabPixels();
-	} catch (InterruptedException ex)
-	    { System.out.println("interrupted on finish grab"); }
+	} catch (InterruptedException ex) {}
 	for (int i = 0; i < data.length; i++) {
 	    data[i] = data[i] & 0x00ffffff;
 	}

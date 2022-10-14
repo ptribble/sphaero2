@@ -274,6 +274,11 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	setVisible(true);
     }
 
+    private static void fatalError(String s) {
+	System.err.println(s); //NOPMD
+	System.exit(1);
+    }
+
     public static void main(String[] args) {
 	if (args.length == 0) {
 	    new JigsawFrame();
@@ -284,66 +289,56 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	    int prefPieces = JigsawCutter.DEFAULT_PIECES;
 	    int arg = 0;
 	    while (arg < args.length) {
-		if (args[arg].equals("-p")) {
+		if ("-p".equals(args[arg])) {
 		    arg++;
 		    if (arg < args.length) {
 			try {
 			    prefPieces = Integer.parseInt(args[arg]);
 			} catch (NumberFormatException ex) {
-			    System.err.println("Invalid number of pieces!");
-			    System.exit(1);
+			    fatalError("Invalid number of pieces!");
 			}
 			if (prefPieces < JigsawCutter.MIN_PIECES) {
-			    System.err.println("Too few pieces!");
-			    System.exit(1);
+			    fatalError("Too few pieces!");
 			}
 			if (prefPieces > JigsawCutter.MAX_PIECES) {
-			    System.err.println("Too many pieces!");
-			    System.exit(1);
+			    fatalError("Too many pieces!");
 			}
 		    } else {
-			System.err.println("Expecting an argument to -p!");
-			System.exit(1);
+			fatalError("Expecting an argument to -p!");
 		    }
-		} else if (args[arg].equals("-c")) {
+		} else if ("-c".equals(args[arg])) {
 		    arg++;
 		    if (arg < args.length) {
 			argcutter = args[arg];
 		    } else {
-			System.err.println("Expecting an argument to -c!");
-			System.exit(1);
+			fatalError("Expecting an argument to -c!");
 		    }
 		} else {
 		    File argFile = new File(args[arg]);
 		    if (argFile.exists()) {
 			base = argFile;
 		    } else {
-			System.err.println("Invalid file!");
-			System.exit(1);
+			fatalError("Invalid file, doesn't exist!");
 		    }
 		}
 		arg++;
 	    }
 	    if (base.isFile() && !JigUtil.isImage(base)) {
-		base = defBase;
+		fatalError("Invalid file, not an image!");
 	    }
 
 	    File file = null;
 	    try {
 		file = JigUtil.getRandomImageFile(base);
 	    } catch (FileNotFoundException ex) {
-		System.err.println("Couldn't find an image file!");
-		System.err.println("Name one on the command line, or run");
-		System.err.println("this program in a folder containing them.");
-		System.exit(1);
+		fatalError("Couldn't find an image in this directory!");
 	    }
 
 	    BufferedImage image = null;
 	    try {
 		image = JigUtil.resizedImage(ImageIO.read(file));
 	    } catch (IOException e) {
-		System.err.println("Error reading image file!");
-		System.exit(1);
+		fatalError("Error reading image file!");
 	    }
 
 	    /*
@@ -360,10 +355,10 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		}
 	    }
 	    if (!cmatch) {
-		System.err.println("Invalid cutter!");
-		System.err.println("Valid cutters are:");
+		System.err.println("Invalid cutter!"); //NOPMD
+		System.err.println("Valid cutters are:"); //NOPMD
 		for (JigsawCutter cutter : cutters) {
-		    System.err.println(cutter.getName());
+		    System.err.println(cutter.getName()); //NOPMD
 		}
 		System.exit(1);
 	    }

@@ -35,9 +35,7 @@ public final class JigUtil {
 	int id = 0;
 	tracker.addImage(image, id);
 	try { tracker.waitForID(id, 0); }
-	catch (InterruptedException e) {
-	    System.out.println("INTERRUPTED while loading image");
-	}
+	catch (InterruptedException e) {}
 	tracker.removeImage(image, id);
     }
 
@@ -141,9 +139,9 @@ public final class JigUtil {
 	}
 	String ext = name.substring(idot+1);
 	return
-	    ext.equalsIgnoreCase("jpg") ||
-	    ext.equalsIgnoreCase("gif") ||
-	    ext.equalsIgnoreCase("png");
+	    "jpg".equalsIgnoreCase(ext) ||
+	    "gif".equalsIgnoreCase(ext) ||
+	    "png".equalsIgnoreCase(ext);
     }
 
     /**
@@ -154,7 +152,7 @@ public final class JigUtil {
     public static String aboutMsg() {
 	return "<html>Sphaero2 Jigsaw Puzzle.<br>"
 	    + "Original by Paul Brinkley, 2003.<br>"
-	    + "Updated by Peter Tribble, 2010-2021.</html>";
+	    + "Updated by Peter Tribble, 2010-2022.</html>";
     }
 
     /**

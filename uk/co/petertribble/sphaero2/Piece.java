@@ -58,7 +58,7 @@ public class Piece {
 		    int imageWidth, int imageHeight,
 		    int totalWidth, int totalHeight) {
 	neighbors = new HashSet <Piece> ();
-	origData = data;
+	origData = data; //NOPMD
 	this.imageX = imageX;
 	this.imageY = imageY;
 	this.curWidth = this.origWidth = imageWidth;
@@ -169,19 +169,15 @@ public class Piece {
      * method forces a recompute of the image.
      *
      * @param rot The new rotation
-     *
-     * @throws IllegalArgumentException if rotation is not in [0,359]
      */
     protected void forceSetRotation(int rot) {
 	if ((rot < 0) || (rot > 359)) {
-	    throw new IllegalArgumentException("invalid rotation: "+rot);
+	    rot = 0;
 	}
 	// For now, allow only 0, 90, 180, 270.
 	if (rot % 90 != 0) {
 	    int newRot = rot / 90;
-	    System.out.println("unsupported rotation "+rot
-        +"; using "+newRot+" instead");
-	    rot = newRot;
+	    rot = 90*newRot;
 	}
 	rotation = rot;
 	recomputeImageData();
@@ -498,7 +494,7 @@ public class Piece {
 	boolean c; // true iff that pixel is opaque
 	boolean se; // true iff that pixel is opaque
 	for (int i = 0; i < width+height-3; i++) {
-	    nw = c = se = false;
+	    nw = false;
 	    int x = Math.max(0, i-height+2);
 	    int y = Math.max(0, height-i-2);
 	    c = (((data[y*width+x] >> 24) & 0xff) > 0);
@@ -570,24 +566,21 @@ public class Piece {
      * in the rotated puzzle.
      */
     protected void setRotatedPosition() {
-	switch (rotation) {
-	case 0:
+	if (rotation == 0) {
 	    rotatedX = imageX; rotatedY =  imageY;
-	    curWidth = origWidth; curHeight = origHeight; break;
-	case 90:
+	    curWidth = origWidth; curHeight = origHeight;
+	} else if (rotation == 90) {
 	    rotatedX = totalHeight-imageY-origHeight;
 	    rotatedY = imageX;
-	    curWidth = origHeight; curHeight = origWidth; break;
-	case 180:
+	    curWidth = origHeight; curHeight = origWidth;
+	} else if (rotation == 180) {
 	    rotatedX = totalWidth -imageX-origWidth;
 	    rotatedY = totalHeight-imageY-origHeight;
-	    curWidth = origWidth; curHeight = origHeight; break;
-	case 270:
+	    curWidth = origWidth; curHeight = origHeight;
+	} else if (rotation == 270) {
 	    rotatedX = imageY;
 	    rotatedY = totalWidth -imageX-origWidth;
-	    curWidth = origHeight; curHeight = origWidth; break;
-	default:
-	    System.out.println("sRotPos() can't handle rotation: "+rotation);
+	    curWidth = origHeight; curHeight = origWidth;
 	}
     }
 

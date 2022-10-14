@@ -83,7 +83,7 @@ public class Knob {
 
     /**
      * Creates a new Knob, anchored on the given coordinates.
-     * 
+     *
      * @param x1 x coordinate of the start endpoint
      * @param y1 y coordinate of the start endpoint
      * @param x2 x coordinate of the finish endpoint

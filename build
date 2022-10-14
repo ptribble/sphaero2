@@ -4,9 +4,16 @@
 # new PMD version has rulesets
 #
 PMDRULES="basic braces clone empty finalizers imports migrating strictexception strings sunsecure typeresolution unusedcode"
-PMDCATRULES="security"
+PMDCATRULES="security bestpractices"
 
+JAVAC="javac"
+JAR="jar"
 JFLAGS="-Xlint -Xlint:-serial"
+
+if [ -f /usr/jdk/instances/jdk1.8.0/bin/javac ]; then
+    JAVAC="/usr/jdk/instances/jdk1.8.0/bin/javac"
+    JAR="/usr/jdk/instances/jdk1.8.0/bin/jar"
+fi
 
 case $1 in
 clean|-clean)
@@ -49,7 +56,7 @@ pmd|-pmd)
 	    RULESETS="${RULESETS},category/java/${RULE}.xml"
 	done
 	RULESETS=`echo $RULESETS|sed s:,::`
-	pmd -d uk -R $RULESETS -version 1.5 -auxclasspath `echo lib/java/* | sed 's= =:=g'` 2>/dev/null
+	pmd -d uk -R $RULESETS -version 1.8 -auxclasspath `echo lib/java/* | sed 's= =:=g'` 2>/dev/null
 	exit 0
 	;;
 jstyle|-jstyle)
@@ -62,5 +69,5 @@ if [ -x /opt/onbld/bin/jstyle ]; then
     /opt/onbld/bin/jstyle `find uk -name '*.java'`
 fi
 
-javac $JFLAGS `find uk -name '*.java'`
-jar cmf sphaero2.manifest sphaero2.jar `find uk -name '*.class'` pixmaps/sphaero2.png
+$JAVAC $JFLAGS `find uk -name '*.java'`
+$JAR cmf sphaero2.manifest sphaero2.jar `find uk -name '*.class'` pixmaps/sphaero2.png

@@ -1,3 +1,7 @@
+Force build with java 8 if we can, for compatibility.
+
+Tidy up more PMD warnings.
+
 Down arrown pushes current piece to the back.
 
 Numeric keypad arrows also work.
