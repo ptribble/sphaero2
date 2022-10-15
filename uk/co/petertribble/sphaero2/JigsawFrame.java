@@ -2,7 +2,7 @@ package uk.co.petertribble.sphaero2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -220,13 +220,15 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		+"If it is a folder, an image file is selected from it "
 		+"(including any subfolders) at random.");
 
-	JPanel imageTopPane = new JPanel(new BorderLayout());
-	imageTopPane.add(imageField, BorderLayout.CENTER);
-	imageTopPane.add(browseButton, BorderLayout.EAST);
+	JPanel imageBPane = new JPanel();
+	imageBPane.setLayout(new BoxLayout(imageBPane, BoxLayout.LINE_AXIS));
+	imageBPane.add(imageField);
+	imageBPane.add(Box.createRigidArea(new Dimension(10, 0)));
+	imageBPane.add(browseButton);
 
 	JPanel imagePane = new JPanel(new BorderLayout());
 	imagePane.setBorder(createTitledBorder("Find an image"));
-	imagePane.add(imageTopPane, BorderLayout.NORTH);
+	imagePane.add(imageBPane, BorderLayout.NORTH);
 	imagePane.add(imageLabel, BorderLayout.CENTER);
 
 	cutterCBox = new JComboBox <JigsawCutter> (cutters);
@@ -249,8 +251,11 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	piecePane.add(pieceLabel, BorderLayout.CENTER);
 	piecePane.setBorder(createTitledBorder("Piece Count"));
 
-	JPanel okPanel = new JPanel(new GridLayout(1, 2, 10, 10));
-	okButton  = new JButton("OK");
+	JPanel okPanel = new JPanel();
+	okPanel.setLayout(new BoxLayout(okPanel, BoxLayout.LINE_AXIS));
+	okPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+	okPanel.add(Box.createHorizontalGlue());
+	okButton  = new JButton("Start Puzzling");
 	okButton.setMnemonic(KeyEvent.VK_K);
 	okPanel.add(okButton);
 	okButton.addActionListener(this);
