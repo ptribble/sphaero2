@@ -236,7 +236,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	JPanel cutterPane = new JPanel(new BorderLayout());
 	cutterPane.add(cutterCBox, BorderLayout.NORTH);
 	cutterPane.add(cutterDescLabel, BorderLayout.CENTER);
-	cutterPane.setBorder(createTitledBorder("Cutting Style"));
+	cutterPane.setBorder(createTitledBorder("Piece Style"));
 	fireCutterChanged();
 
 	pieceSpinner = new JSpinner(new SpinnerNumberModel(
@@ -412,11 +412,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	cutterDescLabel.setText("<html>"+cutter.getDescription());
     }
 
-    private void fireOKAction() {
-	setUpPuzzle();
-    }
-
-    private void setUpPuzzle() {
+    private void setupPuzzle() {
 	// Get the image.
 	File file = new File(imageField.getText());
 
@@ -498,7 +494,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	} else if (e.getSource() == cutterCBox) {
 	    fireCutterChanged();
 	} else if (e.getSource() == okButton) {
-	    fireOKAction();
+	    setupPuzzle();
 	}
     }
 }

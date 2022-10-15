@@ -2,6 +2,7 @@ package uk.co.petertribble.sphaero2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Insets;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,11 +33,16 @@ public class SamplePanel extends JPanel implements ActionListener {
 	 * The sample directories contain an image foo.jpg and a thumbnail
 	 * thumb.foo.jpg. If the thumbnail exists then create a button using
 	 * it and add the primary image filename to the map.
+	 *
+	 * Tighten up the border, a normal JButton has a lot of wasted space
+	 * on the left and right sides.
 	 */
+	Insets margins = new Insets(2, 2, 2, 2);
 	for (String s : fd.list()) {
 	    File f2 = new File(fd, "thumb." + s);
 	    if (f2.exists()) {
 		JButton jb = new JButton(new ImageIcon(f2.getPath()));
+		jb.setMargin(margins);
 		File f1 = new File(fd, s);
 		fmap.put(jb, f1.getPath());
 		jb.addActionListener(this);
