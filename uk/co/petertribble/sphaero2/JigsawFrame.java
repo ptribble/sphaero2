@@ -75,6 +75,9 @@ public class JigsawFrame extends JFrame implements ActionListener {
     private int pHeight = 480;
     private int pWidth = 640;
 
+    private int defaultPieces = JigsawCutter.DEFAULT_PIECES;
+    private JigsawCutter defaultCutter;
+
     private static final JigsawCutter[] cutters = {
 	new Classic4Cutter(),
 	new ClassicCutter(),
@@ -116,18 +119,38 @@ public class JigsawFrame extends JFrame implements ActionListener {
      * they are placed close enough, and are rotated the same way.
      *
      * @param image the BufferedImage to use as the picture
+     * @param pieces the number of pieces to create
      * @param cutter the JigsawCutter to be used to cut the image into pieces
      */
-    public JigsawFrame(BufferedImage image, JigsawCutter cutter) {
+    public JigsawFrame(BufferedImage image, int pieces, JigsawCutter cutter) {
 	super("Jigsaw Puzzle");
+	defaultPieces = pieces;
+	defaultCutter = cutter;
 	initFrameWork();
 	init(image, cutter);
     }
 
-    public JigsawFrame() {
+    /**
+     * Prompt for an image to solve, with the given number of pieces
+     * and piece style.
+     *
+     * @param pieces the number of pieces to create
+     * @param cutter the JigsawCutter to be used to cut the image into pieces
+     */
+    public JigsawFrame(int pieces, JigsawCutter cutter) {
 	super("Jigsaw Puzzle");
+	defaultPieces = pieces;
+	defaultCutter = cutter;
 	initFrameWork();
 	initPrompt();
+    }
+
+    /**
+     * Prompt for an image to solve, with the default number of pieces
+     * and piece style.
+     */
+    public JigsawFrame() {
+	this(JigsawCutter.DEFAULT_PIECES, cutters[0]);
     }
 
     private void initFrameWork() {
@@ -232,6 +255,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	imagePane.add(imageLabel, BorderLayout.CENTER);
 
 	cutterCBox = new JComboBox <JigsawCutter> (cutters);
+	cutterCBox.setSelectedItem(defaultCutter);
 	cutterCBox.addActionListener(this);
 
 	cutterDescLabel = createHelpLabel(null);
@@ -242,7 +266,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	fireCutterChanged();
 
 	pieceSpinner = new JSpinner(new SpinnerNumberModel(
-			 JigsawCutter.DEFAULT_PIECES, JigsawCutter.MIN_PIECES,
+			 defaultPieces, JigsawCutter.MIN_PIECES,
 			 JigsawCutter.MAX_PIECES, 1));
 	JLabel pieceLabel = createHelpLabel("<html>"
 		+" The puzzle will have roughly this many pieces.");
@@ -288,9 +312,8 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	if (args.length == 0) {
 	    new JigsawFrame();
 	} else {
-	    final File defBase = new File(".");
-	    File base = defBase;
-	    String argcutter = "classic";
+	    File base = null;
+	    JigsawCutter prefCutter = cutters[0];
 	    int prefPieces = JigsawCutter.DEFAULT_PIECES;
 	    int arg = 0;
 	    while (arg < args.length) {
@@ -314,7 +337,22 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		} else if ("-c".equals(args[arg])) {
 		    arg++;
 		    if (arg < args.length) {
-			argcutter = args[arg];
+			String argcutter = args[arg];
+			boolean cmatch = false;
+			for (JigsawCutter cutter : cutters) {
+			    if (argcutter.equalsIgnoreCase(cutter.getName())) {
+				cmatch = true;
+				prefCutter = cutter;
+			    }
+			}
+			if (!cmatch) {
+			    System.err.println("Invalid cutter!"); //NOPMD
+			    System.err.println("Valid cutters are:"); //NOPMD
+			    for (JigsawCutter cutter : cutters) {
+				System.err.println(cutter.getName()); //NOPMD
+			    }
+			    System.exit(1);
+			}
 		    } else {
 			fatalError("Expecting an argument to -c!");
 		    }
@@ -325,47 +363,38 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		    } else {
 			fatalError("Invalid file, doesn't exist!");
 		    }
+		    if (base.isFile() && !JigUtil.isImage(base)) {
+			fatalError("Invalid file, not an image!");
+		    }
 		}
 		arg++;
 	    }
-	    if (base.isFile() && !JigUtil.isImage(base)) {
-		fatalError("Invalid file, not an image!");
-	    }
-
-	    File file = null;
-	    try {
-		file = JigUtil.getRandomImageFile(base);
-	    } catch (FileNotFoundException ex) {
-		fatalError("Couldn't find an image in this directory!");
-	    }
-
-	    BufferedImage image = null;
-	    try {
-		image = JigUtil.resizedImage(ImageIO.read(file));
-	    } catch (IOException e) {
-		fatalError("Error reading image file!");
-	    }
 
 	    /*
-	     * Try and use the cutter specified on the command line, or if
-	     * not specified use a Classic Cutter. Error out if we're given
-	     * an invalid cutter, but give the user the full list.
+	     * If not given a file, put up the selection window, but with
+	     * the number of pieces and cutter changed to whatever has been
+	     * given in the arguments.
 	     */
-	    boolean cmatch = false;
-	    for (JigsawCutter cutter : cutters) {
-		if (argcutter.equalsIgnoreCase(cutter.getName())) {
-		    cmatch = true;
-		    cutter.setPreferredPieceCount(prefPieces);
-		    new JigsawFrame(image, cutter);
+	    if (base == null) {
+		new JigsawFrame(prefPieces, prefCutter);
+	    } else {
+
+		File file = null;
+		try {
+		    file = JigUtil.getRandomImageFile(base);
+		} catch (FileNotFoundException ex) {
+		    fatalError("Couldn't find an image in this directory!");
 		}
-	    }
-	    if (!cmatch) {
-		System.err.println("Invalid cutter!"); //NOPMD
-		System.err.println("Valid cutters are:"); //NOPMD
-		for (JigsawCutter cutter : cutters) {
-		    System.err.println(cutter.getName()); //NOPMD
+
+		BufferedImage image = null;
+		try {
+		    image = JigUtil.resizedImage(ImageIO.read(file));
+		} catch (IOException e) {
+		    fatalError("Error reading image file!");
 		}
-		System.exit(1);
+
+		prefCutter.setPreferredPieceCount(prefPieces);
+		new JigsawFrame(image, prefPieces, prefCutter);
 	    }
 	}
     }
@@ -442,16 +471,16 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	}
 
 	// Get the cutter and set its piece count
-	JigsawCutter cutter = (JigsawCutter) cutterCBox.getSelectedItem();
-	int count = ((Number) pieceSpinner.getValue()).intValue();
-	cutter.setPreferredPieceCount(count);
+        defaultCutter = (JigsawCutter) cutterCBox.getSelectedItem();
+	defaultPieces = ((Number) pieceSpinner.getValue()).intValue();
+	defaultCutter.setPreferredPieceCount(defaultPieces);
 
 	try {
 	    BufferedImage image = ImageIO.read(file);
 	    // FIXME this doesn't actually show the window properly until
 	    // after the pieces have been cut???
 	    // So the progress bar doesn't work either
-	    init(JigUtil.resizedImage(image), cutter);
+	    init(JigUtil.resizedImage(image), defaultCutter);
 	} catch (IOException e) {
 	    JOptionPane.showMessageDialog(this, "Image file cannot be read.",
 				"Invalid Image", JOptionPane.ERROR_MESSAGE);
