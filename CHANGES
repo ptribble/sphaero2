@@ -1,8 +1,27 @@
+1.6
+
+Rework startup so that -p and -c do the right thing without
+an image file being supplied
+
+Better Start and Browse buttons.
+
+Improve the cutter descriptions, making them more appropriate for the GUI.
+
+Tighten up JigsawFrame
+
 Force build with java 8 if we can, for compatibility.
+
+Order imports
+
+Clean javadoc
+
+Tidy up help text code
 
 Tidy up more PMD warnings.
 
-Down arrown pushes current piece to the back.
+1.5
+
+Down arrow pushes current piece to the back.
 
 Numeric keypad arrows also work.
 

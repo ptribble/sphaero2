@@ -1,17 +1,3 @@
 #!/bin/sh
-
 bindir=`dirname $0`
-case $# in
-0)
-	java -jar ${bindir}/sphaero2.jar
-	exit 0
-	;;
-esac
-
-#
-# else we invoke JigsawFrame
-# -p #pieces
-# -c cutter
-# filename
-#
-java -cp ${bindir}/sphaero2.jar uk.co.petertribble.sphaero2.JigsawFrame $*
+exec java -jar ${bindir}/sphaero2.jar $*
