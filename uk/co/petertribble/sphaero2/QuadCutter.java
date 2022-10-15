@@ -19,7 +19,7 @@ public class QuadCutter extends JigsawCutter {
 
     @Override
     public String getDescription() {
-	return "Cuts the image into random quadrilaterals.";
+	return "Pieces are random quadrilaterals.";
     }
 
     @Override

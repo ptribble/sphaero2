@@ -15,7 +15,7 @@ public class SquareCutter extends JigsawCutter {
 
     @Override
     public String getDescription() {
-	return "Cuts the image into uniform squares.";
+	return "Pieces are uniform squares.";
     }
 
     @Override

@@ -23,10 +23,10 @@ public class Classic4Cutter extends JigsawCutter {
 
     @Override
     public String getDescription() {
-	return
-	    "Creates pieces where each side is equally likely to have a hole or"
-	    +" a knob; each piece may have 0-4 holes, and will tend to have 2. "
-	    +" Each piece is roughly square, not counting holes and knobs."; }
+	return "Each side is equally likely to have a hole or"
+	    +" a knob; each piece may have 0-4 holes, and will tend to have 2.";
+
+    }
 
     @Override
     public Piece[] cut(BufferedImage image) {

@@ -22,9 +22,8 @@ public class ClassicCutter extends JigsawCutter {
 
     @Override
     public String getDescription() {
-	return "Creates pieces where one pair of opposite sides has holes, and"
-	    +" the other pair of sides has knobs.  Pieces are roughly square,"
-	    +" not counting knobs and holes.";
+	return "Pieces where one pair of opposite sides has holes, and"
+	    +" the other pair of sides has knobs.";
     }
 
     @Override

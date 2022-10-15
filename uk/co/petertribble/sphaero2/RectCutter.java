@@ -14,7 +14,7 @@ public class RectCutter extends JigsawCutter {
 
     @Override
     public String getDescription() {
-	return "Cuts the image into uniform rectangles.";
+	return "Pieces are uniform rectangles.";
     }
 
     @Override
