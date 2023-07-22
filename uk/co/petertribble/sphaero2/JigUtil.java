@@ -89,6 +89,7 @@ public final class JigUtil {
 	int attempts = 0;
 	File file;
 	FileFilter ff = new FileFilter() {
+	    @Override
 	    public boolean accept(File f) {
 		return f.isDirectory() || isImage(f);
 	    }

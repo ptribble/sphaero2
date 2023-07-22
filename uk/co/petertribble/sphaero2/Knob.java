@@ -190,6 +190,7 @@ public class Knob {
 	}
     }
 
+    @Override
     public String toString() {
 	return "Knob[p1=("+x1+","+y1+"),p2=("+x2+","+y2+")]";
     }
