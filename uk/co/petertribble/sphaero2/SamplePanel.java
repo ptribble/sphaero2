@@ -60,6 +60,7 @@ public class SamplePanel extends JPanel implements ActionListener {
      * When a button is pressed, retrieve the name of the corresponding file
      * from the map and poke it back into the text field.
      */
+    @Override
     public void actionPerformed(ActionEvent e) {
 	JButton jb = (JButton) e.getSource();
 	jtf.setText(fmap.get(jb));

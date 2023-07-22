@@ -69,6 +69,7 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
         }
     }
 
+    @Override
     public void propertyChange(PropertyChangeEvent e) {
         boolean update = false;
         String prop = e.getPropertyName();
@@ -94,6 +95,7 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
         }
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
         if (thumbnail == null) {
             loadImage();

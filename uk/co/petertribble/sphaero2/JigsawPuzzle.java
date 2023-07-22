@@ -175,8 +175,13 @@ public class JigsawPuzzle extends JPanel {
 
     // Component methods ----------------------------------------------------
 
+    @Override
     public Dimension getMaximumSize() { return getPreferredSize(); }
+
+    @Override
     public Dimension getMinimumSize() { return getPreferredSize(); }
+
+    @Override
     public Dimension getPreferredSize() { return prefSize; }
 
     /**
@@ -188,6 +193,7 @@ public class JigsawPuzzle extends JPanel {
 	return zOrder != null;
     }
 
+    @Override
     protected void paintComponent(Graphics g) {
 	super.paintComponent(g);
 
@@ -304,6 +310,7 @@ public class JigsawPuzzle extends JPanel {
 
 	ActionListener fader = new ActionListener() {
 	    int trans = 0x00;
+	    @Override
 	    public void actionPerformed(ActionEvent evt) {
 		for (int i = 0; i < data.length; i++) {
 		    data[i] = (data[i] & 0x00ffffff) | (trans << 24);

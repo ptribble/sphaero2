@@ -358,6 +358,7 @@ public class Piece {
 	setPuzzlePosition(x, y);
     }
 
+    @Override
     public String toString() {
 	return "Piece[iPos=("+imageX+","+imageY+"),"
 	    +"iSiz="+origWidth+"x"+origHeight+","

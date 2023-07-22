@@ -63,6 +63,7 @@ public class TimeLabel extends JLabel implements ActionListener {
 	setText(currentLabel + elapsed/1000 + "s");
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
 	updateTime();
     }

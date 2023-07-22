@@ -20,6 +20,7 @@ public abstract class JigsawCutter {
     public int iprogress;
     public int progressmax;
 
+    @Override
     public String toString() {
 	return getName();
     }

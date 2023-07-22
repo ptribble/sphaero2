@@ -510,6 +510,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	return new File((text.length() == 0) ? "." : text);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == exitItem) {
 	    System.exit(0);
