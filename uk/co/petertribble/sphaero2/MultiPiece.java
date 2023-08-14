@@ -152,7 +152,7 @@ public class MultiPiece extends Piece {
 	}
     }
 
-    // This is effectly image blending with support for 0 or max
+    // This is effectively image blending with support for 0 or max
     // transparency, with int arrays as data.  I couldn't find a tool for
     // doing this in JDK.
     /**
@@ -163,7 +163,7 @@ public class MultiPiece extends Piece {
      *
      * @param data the array to overlay the Piece into
      * @param dataX the x coordinate of the data array
-     * @param dataY the y cordinate of the data array
+     * @param dataY the y coordinate of the data array
      * @param width the width of the data array
      * @param height the height of the data array
      * @param piece the Piece to overlay into the data array

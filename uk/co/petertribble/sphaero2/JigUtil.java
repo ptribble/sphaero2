@@ -169,7 +169,7 @@ public final class JigUtil {
     }
 
     /**
-     * The help messsage.
+     * The help message.
      *
      * @return the full help text
      */

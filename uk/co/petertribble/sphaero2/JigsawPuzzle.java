@@ -521,7 +521,7 @@ public class JigsawPuzzle extends JPanel {
 
 	// FIXME we could calculate the areas directly and only create
 	// the one rectangle we need for the shuffle call, or even not
-	// create any rectangles as we only need the neight and width
+	// create any rectangles as we only need the height and width
 	Rectangle north = (ay == 0) ? emptyRect :
 	    new Rectangle(0, 0, w, ay);
 	Rectangle south = (y1 >= h) ? emptyRect :

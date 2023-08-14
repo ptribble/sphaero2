@@ -76,7 +76,7 @@ public abstract class JigsawCutter {
      * Associate a JProgressBar that can be used to display progress of
      * generating the pieces.
      *
-     * @param jp the progres bar to update while cutting is in progress
+     * @param jp the progress bar to update while cutting is in progress
      */
     public void setJProgressBar(JProgressBar jp) {
 	this.jp = jp;
