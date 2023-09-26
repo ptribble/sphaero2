@@ -17,7 +17,8 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.awt.image.MemoryImageSource;
 import java.awt.image.PixelGrabber;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 import javax.swing.JPanel;
@@ -629,40 +630,26 @@ public class JigsawPuzzle extends JPanel {
 	repaint(0, currX, currY, currW, currH);
     }
 
-    // FIXME use Collections.shuffle(zOrder) to actually shuffle zOrder
-    // then could be an ArrayList rather than a LinkedList
+    // Copy pieces into zOrder, and randomize their positions.
     private void shuffle(Piece[] pieces) {
-	zOrder = null;
+	// Arrays.asList() doesn't work, so be explicit
+	zOrder = new ArrayList <Piece> ();
 	int height = getHeight();
 	int width = getWidth();
 
-	// Copy pieces in random order into zOrder, and randomize their
-	// positions.
-	List <Piece> zOrder0 = new LinkedList <Piece> ();
-	int lastIdx = pieces.length-1;
-	while (lastIdx > 0) {
-	    int pIdx = (int) (Math.random() * (lastIdx+1));
-	    Piece piece = pieces[pIdx];
+	for (Piece piece : pieces) {
 	    piece.setPuzzlePosition(
 		(int) (Math.random() * (width  - piece.getCurrentWidth())),
 		(int) (Math.random() * (height - piece.getCurrentHeight())));
-	    zOrder0.add(piece);
-	    if (pIdx != lastIdx) {
-		Piece temp = pieces[lastIdx];
-		pieces[lastIdx] = pieces[pIdx];
-		pieces[pIdx] = temp;
-	    }
-	    lastIdx--;
+	    zOrder.add(piece);
 	}
-	zOrder0.add(pieces[0]);
+	Collections.shuffle(zOrder);
 
 	finished = false;
 	if (finishedImage != null) {
 	    finishedImage.flush();
 	    finishedImage = null;
 	}
-
-	zOrder = zOrder0;
     }
 
     private void prevBackground() {
