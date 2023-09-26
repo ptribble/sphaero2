@@ -11,7 +11,7 @@ import javax.swing.*;
 public class SamplePanel extends JPanel implements ActionListener {
 
     private JTextField jtf;
-    private boolean hasSamples;
+    private int nSamples;
     private Map <JButton, String> fmap = new HashMap <JButton, String> ();
     private static final String SAMPLE_DIR = "/usr/share/sphaero2/samples";
 
@@ -21,7 +21,6 @@ public class SamplePanel extends JPanel implements ActionListener {
     }
 
     private void initSamples() {
-	hasSamples = false;
 	File fd = new File(SAMPLE_DIR);
 	if (!fd.exists()) {
 	    return;
@@ -46,14 +45,14 @@ public class SamplePanel extends JPanel implements ActionListener {
 		File f1 = new File(fd, s);
 		fmap.put(jb, f1.getPath());
 		jb.addActionListener(this);
-		hasSamples = true;
+		nSamples++;
 		add(jb);
 	    }
 	}
     }
 
     public boolean samplesValid() {
-	return hasSamples;
+	return (nSamples > 0);
     }
 
     /*
