@@ -9,7 +9,6 @@ PMDCACHE="${HOME}/.pmd/cache.sphaero2"
 
 JAVAC="javac"
 JAR="jar"
-JFLAGS="-Xlint -Xlint:-serial"
 
 if [ -f /usr/jdk/instances/jdk1.8.0/bin/javac ]; then
     JAVAC="/usr/jdk/instances/jdk1.8.0/bin/javac"
@@ -18,8 +17,8 @@ fi
 
 case $1 in
 clean|-clean)
-	rm -f `find uk -name '*.class'`
-	rm -f `find . -name '*~'`
+	rm -f $(find uk -name '*.class')
+	rm -f $(find . -name '*~')
 	rm -fr javadoc
 	exit 0
 	;;
@@ -64,14 +63,14 @@ pmd|-pmd)
 	exit 0
 	;;
 jstyle|-jstyle)
-	/opt/onbld/bin/jstyle `find uk -name '*.java'`
+	/opt/onbld/bin/jstyle uk/co/petertribble/sphaero2/*.java
 	exit 0
 	;;
 esac
 
 if [ -x /opt/onbld/bin/jstyle ]; then
-    /opt/onbld/bin/jstyle `find uk -name '*.java'`
+    /opt/onbld/bin/jstyle uk/co/petertribble/sphaero2/*.java
 fi
 
-$JAVAC $JFLAGS `find uk -name '*.java'`
-$JAR cmf sphaero2.manifest sphaero2.jar `find uk -name '*.class'` pixmaps/sphaero2.png
+$JAVAC -Xlint -Xlint:-serial uk/co/petertribble/sphaero2/*.java
+$JAR cmf sphaero2.manifest sphaero2.jar $(find uk -name '*.class') pixmaps/sphaero2.png
