@@ -9,10 +9,12 @@ PMDCACHE="${HOME}/.pmd/cache.sphaero2"
 
 JAVAC="javac"
 JAR="jar"
+JAVADOC="javadoc"
 
 if [ -f /usr/jdk/instances/jdk11/bin/javac ]; then
     JAVAC="/usr/jdk/instances/jdk11/bin/javac"
     JAR="/usr/jdk/instances/jdk11/bin/jar"
+    JAVADOC="/usr/jdk/instances/jdk11/bin/javadoc"
 fi
 
 case $1 in
@@ -41,7 +43,7 @@ package|-package)
 javadoc|-javadoc)
 	rm -fr javadoc
 	mkdir javadoc
-	javadoc -Xdoclint:all -d javadoc uk.co.petertribble.sphaero2
+	$JAVADOC -Xdoclint:all -d javadoc uk.co.petertribble.sphaero2
 	exit 0
 	;;
 pmd|-pmd)
