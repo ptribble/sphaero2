@@ -1,3 +1,11 @@
+Bump default Java version to jdk11.
+
+Enable use as a module, so we can create a distribution with jlink.
+
+1.7
+
+Missing Overrides.
+
 1.6
 
 Rework startup so that -p and -c do the right thing without
