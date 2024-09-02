@@ -1,4 +1,7 @@
 #!/bin/sh
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
 
 #
 # new PMD version has rulesets
@@ -10,11 +13,13 @@ PMDCACHE="${HOME}/.pmd/cache.sphaero2"
 JAVAC="javac"
 JAR="jar"
 JAVADOC="javadoc"
+JLINK="jlink"
 
 if [ -f /usr/jdk/instances/jdk11/bin/javac ]; then
     JAVAC="/usr/jdk/instances/jdk11/bin/javac"
     JAR="/usr/jdk/instances/jdk11/bin/jar"
     JAVADOC="/usr/jdk/instances/jdk11/bin/javadoc"
+    JLINK="/usr/jdk/instances/jdk11/bin/jlink"
 fi
 
 case $1 in
@@ -38,6 +43,14 @@ package|-package)
 	    ls -l /tmp/TRIBsphaero2.pkg /tmp/TRIBsphaero2.zap
 	fi
 	rm -fr /tmp/TRIBsphaero2
+	exit 0
+	;;
+jlink|-jlink)
+	if [ -n "$2" ]; then
+	    $JLINK --compress=2 -G --no-header-files --no-man-pages --launcher sphaero2=uk.co.petertribble.sphaero2/uk.co.petertribble.sphaero2.JigsawFrame --module-path=sphaero2.jar --add-modules uk.co.petertribble.sphaero2 --output "$2"
+	else
+	    echo "ERROR: need an output directory to be specified"
+	fi
 	exit 0
 	;;
 javadoc|-javadoc)
