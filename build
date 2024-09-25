@@ -4,10 +4,9 @@
 #
 
 #
-# new PMD version has rulesets
+# new PMD version has categories only
 #
-PMDRULES="basic braces clone empty finalizers imports migrating strictexception strings sunsecure typeresolution unusedcode"
-PMDCATRULES="security bestpractices"
+PMDCATRULES="security bestpractices multithreading"
 PMDCACHE="${HOME}/.pmd/cache.sphaero2"
 
 JAVAC="javac"
@@ -62,11 +61,7 @@ javadoc|-javadoc)
 pmd|-pmd)
 	RULESETS=""
 	shift
-	for RULE in $PMDRULES $*
-	do
-	    RULESETS="${RULESETS},rulesets/java/${RULE}.xml"
-	done
-	for RULE in $PMDCATRULES
+	for RULE in $PMDCATRULES $*
 	do
 	    RULESETS="${RULESETS},category/java/${RULE}.xml"
 	done
