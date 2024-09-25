@@ -34,12 +34,6 @@ public class Piece {
      */
     private static final int posClose = 7;
 
-    /*
-     * A Piece must be within this many degrees of rotation from another to
-     * be considered aligned to it.
-     */
-    private static final int rotClose = 5;
-
     // Constructor and fields -----------------------------------------------
 
     /**
@@ -127,16 +121,15 @@ public class Piece {
     // Image for this Piece. null for a MultiPiece
     private Image image;
 
-    // This is measured in integer degrees, 0-359.  0 is unrotated.  90 is 90
-    // degrees clockwise, etc.
+    // This is measured in integer degrees. 0 is unrotated.  90 is 90
+    // degrees clockwise, etc. Must be 0, 90, 180, or 270.
     private int rotation;
 
     // Accessors ------------------------------------------------------------
 
     /**
      * Returns this Piece's current rotation.  The rotation is given in
-     * integer degrees clockwise, and will always be between 0 and 359
-     * inclusive.
+     * integer degrees clockwise, and will always be 0, 90, 180, or 270.
      *
      * @return the Piece's current rotation.
      *
@@ -148,15 +141,13 @@ public class Piece {
 
     /**
      * Sets this Piece's current rotation.  The rotation is given in integer
-     * degrees clockwise, and should always be between 0 and 359 inclusive.
+     * degrees clockwise, and should always be 0, 90, 180, or 270.
      * If the new rotation is different, this Piece's image data will be
      * recomputed.
      *
      * @param rot The new rotation
      *
      * @see #getRotation
-     *
-     * @throws IllegalArgumentException if rotation is not in [0,359]
      */
     public void setRotation(int rot) {
 	if (rot != rotation) {
@@ -165,20 +156,12 @@ public class Piece {
     }
 
     /**
-     * Sets this Piece's current rotation.  Unlike setRotation(), this
+     * Sets this Piece's current rotation.  This
      * method forces a recompute of the image.
      *
      * @param rot The new rotation
      */
     protected void forceSetRotation(int rot) {
-	if ((rot < 0) || (rot > 359)) {
-	    rot = 0;
-	}
-	// For now, allow only 0, 90, 180, 270.
-	if (rot % 90 != 0) {
-	    int newRot = rot / 90;
-	    rot = 90*newRot;
-	}
 	rotation = rot;
 	recomputeImageData();
 	if (image != null) {
@@ -420,14 +403,12 @@ public class Piece {
      *
      * @param piece The other Piece to check for closeness
      *
-     * @return true if this Peiec and the given Piece are located and oriented
+     * @return true if this Piece and the given Piece are located and oriented
      * close enough together to be fitted
      */
     protected boolean isCloseTo(Piece piece) {
 	// Don't even bother if they're not aligned.
-	int rotD = Math.abs(piece.getRotation() - rotation);
-	rotD = Math.min(rotD, 360-rotD);
-	if (rotD > rotClose) {
+	if (piece.getRotation() != rotation) {
 	    return false;
 	}
 	int puzXD = getPuzzleX() - piece.getPuzzleX();

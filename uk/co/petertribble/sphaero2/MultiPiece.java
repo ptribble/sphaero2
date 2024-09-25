@@ -18,8 +18,6 @@ public class MultiPiece extends Piece {
     // Without it, subpiece images can be thrown away after they're combined
     // to form the joined piece.  With rotation, however, the bevels will
     // need to be repainted, and so the original image data is still needed.
-    // Subs are also necessary if someday I decide to support splitting
-    // joined pieces back into their parts.
     private Set <Piece> subs;
 
     // Constructor and fields -----------------------------------------------
