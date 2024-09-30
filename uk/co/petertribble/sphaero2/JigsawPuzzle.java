@@ -310,7 +310,7 @@ public class JigsawPuzzle extends JPanel {
 	}
 
 	ActionListener fader = new ActionListener() {
-	    int trans = 0x00;
+	    int trans;
 	    @Override
 	    public void actionPerformed(ActionEvent evt) {
 		for (int i = 0; i < data.length; i++) {
