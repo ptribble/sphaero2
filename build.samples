@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+# SPDX-License-Identifier: CDDL-1.0
+#
 # creates a package containing sample images
 #
 
@@ -23,18 +25,18 @@ echo "i pkginfo=${WDIR}/pkginfo" >> ${WDIR}.pp
 echo "d none /usr/share 0755 ${SYSOWNER}" >> ${WDIR}.pp
 echo "d none /usr/share/sphaero2 0755 ${OWNER}" >> ${WDIR}.pp
 echo "d none /usr/share/sphaero2/samples 0755 ${OWNER}" >> ${WDIR}.pp
-for file in $*
+for file in "$@"
 do
-	cp $file ${WDIR}/usr/share/sphaero2/samples
-	nfile=`basename $file`
-	convert $file -resize 96 ${WDIR}/usr/share/sphaero2/samples/thumb.$nfile
+	cp "$file" ${WDIR}/usr/share/sphaero2/samples
+	nfile=${file##*/}
+	convert "$file" -resize 96 ${WDIR}/usr/share/sphaero2/samples/thumb."$nfile"
 	echo "f none /usr/share/sphaero2/samples/${nfile} 0644 ${OWNER}" >> ${WDIR}.pp
 	echo "f none /usr/share/sphaero2/samples/thumb.${nfile} 0644 ${OWNER}" >> ${WDIR}.pp
 done
 
 pkgmk -d /tmp -f ${WDIR}.pp -r ${WDIR} TRIBsphaero2-sample
 pkgtrans -s /tmp /tmp/TRIBsphaero2-sample.pkg TRIBsphaero2-sample
-cd /tmp
+cd /tmp || exit 1
 zip -q -r TRIBsphaero2-sample TRIBsphaero2-sample
 mv TRIBsphaero2-sample.zip TRIBsphaero2-sample.zap
 

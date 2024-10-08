@@ -30,12 +30,12 @@ clean|-clean)
 	;;
 package|-package)
 	./pkg/mkproto > pp
-	pkgmk -d /tmp -f pp -r `pwd` TRIBsphaero2
+	pkgmk -d /tmp -f pp -r $(pwd) TRIBsphaero2
 	pkgtrans -s /tmp /tmp/TRIBsphaero2.pkg TRIBsphaero2
 	rm pp
-	cd /tmp
-	if [ -x ${THOME}/build/create_zap_from_pkg ]; then
-	    ${THOME}/build/create_zap_from_pkg TRIBsphaero2 /tmp/TRIBsphaero2.pkg
+	cd /tmp || exit 1
+	if [ -x "${THOME}"/build/create_zap_from_pkg ]; then
+	    "${THOME}"/build/create_zap_from_pkg TRIBsphaero2 /tmp/TRIBsphaero2.pkg
 	else
 	    zip -q -r TRIBsphaero2 TRIBsphaero2
 	    mv TRIBsphaero2.zip TRIBsphaero2.zap
@@ -61,15 +61,15 @@ javadoc|-javadoc)
 pmd|-pmd)
 	RULESETS=""
 	shift
-	for RULE in $PMDCATRULES $*
+	for RULE in $PMDCATRULES "$@"
 	do
 	    RULESETS="${RULESETS},category/java/${RULE}.xml"
 	done
 	RULESETS=${RULESETS/,/}
-	if [ ! -d ${HOME}/.pmd ]; then
-	    mkdir -p ${HOME}/.pmd
+	if [ ! -d "${HOME}/.pmd" ]; then
+	    mkdir -p "${HOME}/.pmd"
 	fi
-	pmd check --cache ${PMDCACHE} -d uk -R $RULESETS --use-version java-11 --aux-classpath `echo lib/java/* | sed 's= =:=g'` 2>/dev/null
+	pmd check --cache "${PMDCACHE}" -d uk -R "$RULESETS" --use-version java-11 --aux-classpath $(echo lib/java/* | sed 's= =:=g') 2>/dev/null
 	exit 0
 	;;
 jstyle|-jstyle)
