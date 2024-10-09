@@ -40,6 +40,9 @@ import javax.swing.*;
  * ImagePreview.java by FileChooserDemo2.java.
  */
 public class ImagePreview extends JComponent implements PropertyChangeListener {
+
+    private static final long serialVersionUID = 1L;
+
     private ImageIcon thumbnail;
     private File file;
 

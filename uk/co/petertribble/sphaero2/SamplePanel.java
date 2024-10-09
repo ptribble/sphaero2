@@ -10,6 +10,8 @@ import javax.swing.*;
 
 public class SamplePanel extends JPanel implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
+
     private JTextField jtf;
     private int nSamples;
     private Map <JButton, String> fmap = new HashMap <JButton, String> ();

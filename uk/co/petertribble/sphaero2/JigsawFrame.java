@@ -53,6 +53,8 @@ import javax.swing.border.Border;
  */
 public class JigsawFrame extends JFrame implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
+
     private JMenuBar jmb;
     private JMenu jmh;
     private JMenuItem newItem;

@@ -82,6 +82,6 @@ if [ -x /opt/onbld/bin/jstyle ]; then
     /opt/onbld/bin/jstyle uk/co/petertribble/sphaero2/*.java
 fi
 
-$JAVAC -Xlint -Xlint:-serial module-info.java
-$JAVAC -Xlint -Xlint:-serial uk/co/petertribble/sphaero2/*.java
+$JAVAC -Xlint module-info.java
+$JAVAC -Xlint uk/co/petertribble/sphaero2/*.java
 $JAR cmf sphaero2.manifest sphaero2.jar $(find uk -name '*.class') module-info.class pixmaps/sphaero2.png

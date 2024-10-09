@@ -32,6 +32,7 @@ import javax.swing.Timer;
  */
 public class JigsawPuzzle extends JPanel {
     // Class constants ------------------------------------------------------
+    private static final long serialVersionUID = 1L;
 
     // ### Allow background to be changed.
     // ### Allow these to be configured.

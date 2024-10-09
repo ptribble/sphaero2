@@ -13,6 +13,8 @@ import javax.swing.Timer;
  */
 public class TimeLabel extends JLabel implements ActionListener {
 
+    private static final long serialVersionUID = 1L;
+
     private Timer timer;
     private long startmillis;
     private long pausemillis;
