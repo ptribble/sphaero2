@@ -124,21 +124,29 @@ public class JigsawPuzzle extends JPanel {
     private void addWiring() {
 	addMouseListener(new MouseAdapter() {
 	    @Override
-	    public void mousePressed(MouseEvent e) { mousePressed0(e); }
+	    public void mousePressed(MouseEvent e) {
+		mousePressed0(e);
+	    }
 	    @Override
-	    public void mouseReleased(MouseEvent e) { mouseReleased0(e); }
+	    public void mouseReleased(MouseEvent e) {
+		mouseReleased0(e);
+	    }
 	});
 	addMouseMotionListener(new MouseMotionAdapter() {
 	    @Override
-	    public void mouseDragged(MouseEvent e) { mouseDragged0(e); }
+	    public void mouseDragged(MouseEvent e) {
+		mouseDragged0(e);
+	    }
 	});
 	addKeyListener(new KeyAdapter() {
 	    @Override
 	    public void keyTyped(KeyEvent e) {
-		keyTyped0(e); }
+		keyTyped0(e);
+	    }
 	    @Override
 	    public void keyPressed(KeyEvent e) {
-		keyPressed0(e); }
+		keyPressed0(e);
+	    }
 	});
     }
 
@@ -178,13 +186,19 @@ public class JigsawPuzzle extends JPanel {
     // Component methods ----------------------------------------------------
 
     @Override
-    public Dimension getMaximumSize() { return getPreferredSize(); }
+    public Dimension getMaximumSize() {
+	return getPreferredSize();
+    }
 
     @Override
-    public Dimension getMinimumSize() { return getPreferredSize(); }
+    public Dimension getMinimumSize() {
+	return getPreferredSize();
+    }
 
     @Override
-    public Dimension getPreferredSize() { return prefSize; }
+    public Dimension getPreferredSize() {
+	return prefSize;
+    }
 
     /**
      * Returns whether the pieces have been prepared for this puzzle.

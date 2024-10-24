@@ -16,8 +16,8 @@ import javax.swing.JPanel;
  */
 public final class JigUtil {
 
-    private final static JPanel trackerPanel = new JPanel(false);
-    private final static MediaTracker tracker = new MediaTracker(trackerPanel);
+    private static final JPanel trackerPanel = new JPanel(false);
+    private static final MediaTracker tracker = new MediaTracker(trackerPanel);
 
     /*
      * This class should never be instantiated.
@@ -34,8 +34,9 @@ public final class JigUtil {
     public static void ensureLoaded(Image image) {
 	int id = 0;
 	tracker.addImage(image, id);
-	try { tracker.waitForID(id, 0); }
-	catch (InterruptedException e) {}
+	try {
+	    tracker.waitForID(id, 0);
+	} catch (InterruptedException e) {}
 	tracker.removeImage(image, id);
     }
 
@@ -84,8 +85,7 @@ public final class JigUtil {
      *   attempts
      */
     public static File getRandomImageFile(File folder)
-    throws FileNotFoundException
-    {
+	    throws FileNotFoundException {
 	int attempts = 0;
 	File file;
 	FileFilter ff = new FileFilter() {
@@ -157,7 +157,7 @@ public final class JigUtil {
     }
 
     /**
-     * Create one line in a table
+     * Create one line in a table.
      *
      * @param c1 a character
      * @param s2 the description for c1

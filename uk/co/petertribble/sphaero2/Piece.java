@@ -55,8 +55,10 @@ public class Piece {
 	origData = data; //NOPMD
 	this.imageX = imageX;
 	this.imageY = imageY;
-	this.curWidth = this.origWidth = imageWidth;
-	this.curHeight = this.origHeight = imageHeight;
+	this.curWidth = imageWidth;
+	this.curHeight = imageHeight;
+	this.origWidth = imageWidth;
+	this.origHeight = imageHeight;
 	this.totalWidth = totalWidth;
 	this.totalHeight = totalHeight;
     }

@@ -82,7 +82,9 @@ public class ClassicCutter extends JigsawCutter {
 	    for (int i = 0; i < columns-1; i++) {
 		Point p1 = points[i+1][j];
 		Point p2 = points[i+1][j+1];
-		if (flip) { Point temp = p1; p1 = p2; p2 = temp; }
+		if (flip) {
+		    Point temp = p1; p1 = p2; p2 = temp;
+		}
 		vKnobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
 		flip = !flip;
 	    }
@@ -96,7 +98,9 @@ public class ClassicCutter extends JigsawCutter {
 	    for (int i = 0; i < columns; i++) {
 		Point p1 = points[i][j+1];
 		Point p2 = points[i+1][j+1];
-		if (flip) { Point temp = p1; p1 = p2; p2 = temp; }
+		if (flip) {
+		    Point temp = p1; p1 = p2; p2 = temp;
+		}
 		hKnobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
 		flip = !flip;
 	    }

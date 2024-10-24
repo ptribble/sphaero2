@@ -133,7 +133,10 @@ public class Knob {
 	float cy2 = data[idx+delta][Y];
 	float m2 = data[idx+delta][SLOPE];
 	float d2b = data[idx+delta][forward?XDB:XDF];
-	if (!forward) { d1f *= -1.0f; d2b *= -1.0f; }
+	if (!forward) {
+	    d1f *= -1.0f;
+	    d2b *= -1.0f;
+	}
 	float x1 = cx1 + d1f;
 	float y1 = cy1 + d1f*m1;
 	float x2 = cx2 - d2b;
