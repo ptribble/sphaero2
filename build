@@ -72,15 +72,7 @@ pmd|-pmd)
 	pmd check --cache "${PMDCACHE}" -d uk -R "$RULESETS" --use-version java-11 --aux-classpath $(echo lib/java/* | sed 's= =:=g') 2>/dev/null
 	exit 0
 	;;
-jstyle|-jstyle)
-	/opt/onbld/bin/jstyle uk/co/petertribble/sphaero2/*.java
-	exit 0
-	;;
 esac
-
-if [ -x /opt/onbld/bin/jstyle ]; then
-    /opt/onbld/bin/jstyle uk/co/petertribble/sphaero2/*.java
-fi
 
 $JAVAC -Xlint module-info.java
 $JAVAC -Xlint uk/co/petertribble/sphaero2/*.java
