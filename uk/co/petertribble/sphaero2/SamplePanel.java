@@ -14,7 +14,7 @@ public class SamplePanel extends JPanel implements ActionListener {
 
     private JTextField jtf;
     private int nSamples;
-    private Map <JButton, String> fmap = new HashMap <JButton, String> ();
+    private Map <JButton, String> fmap = new HashMap<>();
     private static final String SAMPLE_DIR = "/usr/share/sphaero2/samples";
 
     public SamplePanel(JTextField jtf) {

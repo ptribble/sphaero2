@@ -256,7 +256,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	imagePane.add(imageBPane, BorderLayout.NORTH);
 	imagePane.add(imageLabel, BorderLayout.CENTER);
 
-	cutterCBox = new JComboBox <JigsawCutter> (cutters);
+	cutterCBox = new JComboBox<>(cutters);
 	cutterCBox.setSelectedItem(defaultCutter);
 	cutterCBox.addActionListener(this);
 

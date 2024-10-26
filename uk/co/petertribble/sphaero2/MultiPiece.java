@@ -78,7 +78,7 @@ public class MultiPiece extends Piece {
      * @return the combined MultiPiece
      */
     protected static MultiPiece join(Piece main, Set <Piece> others) {
-	Set <Piece> neighbors = new HashSet <Piece> ();
+	Set <Piece> neighbors = new HashSet<>();
 	neighbors.addAll(main.neighbors);
 	int mainPX = main.getPuzzleX();
 	int mainPY = main.getPuzzleY();
@@ -108,7 +108,7 @@ public class MultiPiece extends Piece {
 	neighbors.removeAll(others);
 
 	// Build the set of subpieces.
-	Set <Piece> subs = new HashSet <Piece> ();
+	Set <Piece> subs = new HashSet<>();
 	addSubs(subs, main);
 	for (Piece piece : others) {
 	    addSubs(subs, piece);

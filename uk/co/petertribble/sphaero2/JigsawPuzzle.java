@@ -648,7 +648,7 @@ public class JigsawPuzzle extends JPanel {
     // Copy pieces into zOrder, and randomize their positions.
     private void shuffle(Piece[] pieces) {
 	// Arrays.asList() doesn't work, so be explicit
-	zOrder = new ArrayList <Piece> ();
+	zOrder = new ArrayList<>();
 	int height = getHeight();
 	int width = getWidth();
 

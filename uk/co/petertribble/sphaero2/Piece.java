@@ -51,7 +51,7 @@ public class Piece {
 		    int imageX, int imageY,
 		    int imageWidth, int imageHeight,
 		    int totalWidth, int totalHeight) {
-	neighbors = new HashSet <Piece> ();
+	neighbors = new HashSet<>();
 	origData = data; //NOPMD
 	this.imageX = imageX;
 	this.imageY = imageY;
@@ -433,7 +433,7 @@ public class Piece {
      *   subsequent Pieces will be the ones it was built from
      */
     public Piece[] join() {
-	Set <Piece> close = new HashSet <Piece> ();
+	Set <Piece> close = new HashSet<>();
 	for (Piece piece : neighbors) {
 	    if (piece.isCloseTo(this)) {
 		close.add(piece);
