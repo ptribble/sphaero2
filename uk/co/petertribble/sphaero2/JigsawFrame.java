@@ -69,7 +69,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
     private static final Color HELP_COLOR = new Color(100, 100, 150);
     private JTextField imageField;
     private JButton browseButton;
-    private JComboBox <JigsawCutter> cutterCBox;
+    private JComboBox<JigsawCutter> cutterCBox;
     private JSpinner pieceSpinner;
     private JLabel cutterDescLabel;
     private JButton okButton;

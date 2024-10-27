@@ -100,7 +100,7 @@ public class Piece {
      * Pieces considered to be neighbors to this one.  They are the only
      * ones that can be fitted to it.
      */
-    protected Set <Piece> neighbors;
+    protected Set<Piece> neighbors;
 
     /**
      * Original image size and data.
@@ -433,7 +433,7 @@ public class Piece {
      *   subsequent Pieces will be the ones it was built from
      */
     public Piece[] join() {
-	Set <Piece> close = new HashSet<>();
+	Set<Piece> close = new HashSet<>();
 	for (Piece piece : neighbors) {
 	    if (piece.isCloseTo(this)) {
 		close.add(piece);
@@ -470,6 +470,10 @@ public class Piece {
      * neighbors.  If NW is transparent and SE is opaque, brighten the
      * central pixel.  If it's the other way around, darken it.  If both or
      * neither are transparent, leave it alone.
+     *
+     * @param data the image data
+     * @param width the width of the image data
+     * @param height the height of the image data
      */
     private static void bevel(int[] data, int width, int height) {
 	// Scan diagonal NW-SE lines.  The first and last lines can be skipped.

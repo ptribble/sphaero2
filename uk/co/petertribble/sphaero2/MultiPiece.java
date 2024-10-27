@@ -18,7 +18,7 @@ public class MultiPiece extends Piece {
     // Without it, subpiece images can be thrown away after they're combined
     // to form the joined piece.  With rotation, however, the bevels will
     // need to be repainted, and so the original image data is still needed.
-    private Set <Piece> subs;
+    private Set<Piece> subs;
 
     // Constructor and fields -----------------------------------------------
 
@@ -34,7 +34,7 @@ public class MultiPiece extends Piece {
      * @param totalHeight height of the entire puzzle in pixels
      * @param rotation initial rotation
      */
-    public MultiPiece(Set <Piece> subs,
+    public MultiPiece(Set<Piece> subs,
 		int imageX, int imageY,
 		int imageWidth, int imageHeight,
 		int totalWidth, int totalHeight,
@@ -77,8 +77,8 @@ public class MultiPiece extends Piece {
      *
      * @return the combined MultiPiece
      */
-    protected static MultiPiece join(Piece main, Set <Piece> others) {
-	Set <Piece> neighbors = new HashSet<>();
+    protected static MultiPiece join(Piece main, Set<Piece> others) {
+	Set<Piece> neighbors = new HashSet<>();
 	neighbors.addAll(main.neighbors);
 	int mainPX = main.getPuzzleX();
 	int mainPY = main.getPuzzleY();
@@ -108,7 +108,7 @@ public class MultiPiece extends Piece {
 	neighbors.removeAll(others);
 
 	// Build the set of subpieces.
-	Set <Piece> subs = new HashSet<>();
+	Set<Piece> subs = new HashSet<>();
 	addSubs(subs, main);
 	for (Piece piece : others) {
 	    addSubs(subs, piece);
@@ -142,7 +142,7 @@ public class MultiPiece extends Piece {
 	return newPiece;
     }
 
-    private static void addSubs(Set <Piece> subset, Piece piece) {
+    private static void addSubs(Set<Piece> subset, Piece piece) {
 	if (piece instanceof MultiPiece) {
 	    subset.addAll(((MultiPiece) piece).subs);
 	} else {

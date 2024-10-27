@@ -183,15 +183,19 @@ public final class JigUtil {
 	    + tableLine(JigsawPuzzle.ROTATE_RIGHT,
 			"rotate piece right 90 degrees")
 	    + tableLine(JigsawPuzzle.SHUFFLE,
-			"shuffle all pieces (good for finding pieces accidentally moved off the board)")
+			"shuffle all pieces (good for finding pieces "
+			+ "accidentally moved off the board)")
 	    + tableLine(JigsawPuzzle.PUSH,
-			"push the top piece to the back (handy if it's hiding other pieces)")
+			"push the top piece to the back (handy if it's "
+			+ "hiding other pieces)")
 	    + tableLine(JigsawPuzzle.PREV_BG,
 			"change background to previous color")
 	    + tableLine(JigsawPuzzle.NEXT_BG,
 			"change background to next color")
 	    + tableLine(JigsawPuzzle.CLEAR,
-			"toggle clear mode; mouse now drags over spaces to be cleared of pieces; cleared pieces are placed randomly elsewhere")
+			"toggle clear mode; mouse now drags over spaces to "
+			+ "be cleared of pieces; cleared pieces are placed "
+			+ "randomly elsewhere")
 	    + tableLine(JigsawPuzzle.HIDE,
 			"toggle hidden mode to pause or unpause the puzzle")
 	    + "</table></html>";

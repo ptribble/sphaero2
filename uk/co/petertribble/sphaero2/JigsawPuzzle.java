@@ -88,7 +88,7 @@ public class JigsawPuzzle extends JPanel {
     private int transX;
     private int transY;
     // Last in list = topmost piece
-    private List <Piece> zOrder;
+    private List<Piece> zOrder;
     private int bgColor = 4;
     private int clearX0;
     private int clearY0;
@@ -398,7 +398,7 @@ public class JigsawPuzzle extends JPanel {
 	int y = e.getY();
 
 	focusPiece = null;
-	ListIterator <Piece> iter = zOrder.listIterator(zOrder.size());
+	ListIterator<Piece> iter = zOrder.listIterator(zOrder.size());
 	while (focusPiece == null && iter.hasPrevious()) {
 	    Piece piece = iter.previous();
 	    if (piece.contains(x, y)) {
@@ -499,6 +499,14 @@ public class JigsawPuzzle extends JPanel {
      * shouldn't.  Ideally, it should grab the part of the Piece in the
      * rectangle, and search it for non-transparent pixels.  Costly, so be
      * careful.
+     *
+     * @param piece the Piece to be checked
+     * @param x0 location of the left of the rectangle
+     * @param y0 location of the bottom of the rectangle
+     * @param x1 location of the right of the rectangle
+     * @param y1 location of the top of the rectangle
+     *
+     * @return true if the Piece intersects with the given rectangle
      */
     private boolean intersects(Piece piece, int x0, int y0, int x1, int y1) {
 	int px = piece.getPuzzleX();
@@ -516,6 +524,12 @@ public class JigsawPuzzle extends JPanel {
     /**
      * Shuffle piece randomly, but keeping it out of the rectangle defined
      * by the given points.
+     *
+     * @param piece the Piece to be shuufled
+     * @param x0 location of the left of the rectangle
+     * @param y0 location of the bottom of the rectangle
+     * @param x1 location of the right of the rectangle
+     * @param y1 location of the top of the rectangle
      */
     private void shuffle(Piece piece, int x0, int y0, int x1, int y1) {
 	// Make the rectangle denoting where the Piece could be placed in the
