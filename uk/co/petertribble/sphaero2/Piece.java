@@ -32,7 +32,7 @@ public class Piece {
      * A Piece must be within this many pixels of "perfect" to be considered
      * close.
      */
-    private static final int posClose = 7;
+    private static final int NEARBY = 7;
 
     // Constructor and fields -----------------------------------------------
 
@@ -380,9 +380,9 @@ public class Piece {
 	int w = getCurrentWidth();
 	int h = getCurrentHeight();
 	return
-	    (puzX <= x) && (x <= (puzX+w-1)) &&
-	    (puzY <= y) && (y <= (puzY+h-1)) &&
-	    (getAlpha(x-puzX, y-puzY) != 0);
+	    (puzX <= x) && (x <= (puzX+w-1))
+	    && (puzY <= y) && (y <= (puzY+h-1))
+	    && (getAlpha(x-puzX, y-puzY) != 0);
     }
 
     /**
@@ -418,8 +418,8 @@ public class Piece {
 	int rotXD = getRotatedX() - piece.getRotatedX();
 	int rotYD = getRotatedY() - piece.getRotatedY();
 	return
-	    (Math.abs(puzXD-rotXD) <= posClose) &&
-	    (Math.abs(puzYD-rotYD) <= posClose);
+	    (Math.abs(puzXD-rotXD) <= NEARBY)
+	    && (Math.abs(puzYD-rotYD) <= NEARBY);
     }
 
     // Joining pieces -------------------------------------------------------
@@ -509,9 +509,9 @@ public class Piece {
     // trust inlining yet. And I certainly don't want to make scads of Color
     // objects for each pixel. It's bad enough these are methods, and not
     // inlined in bevel().
-    private static final int fn = 10;
-    private static final int fd = 7;
-    private static final int maxB = 255 * fd / fn;
+    private static final int FN = 10;
+    private static final int FD = 7;
+    private static final int MAXB = 255 * FD / FN;
     private static int brighter(int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
@@ -525,18 +525,18 @@ public class Piece {
 	g = g < 3 ? 3 : g;
 	b = b < 3 ? 3 : b;
 
-	r = r >= maxB ? 255 : r*fn/fd;
-	g = g >= maxB ? 255 : g*fn/fd;
-	b = b >= maxB ? 255 : b*fn/fd;
+	r = r >= MAXB ? 255 : r*FN/FD;
+	g = g >= MAXB ? 255 : g*FN/FD;
+	b = b >= MAXB ? 255 : b*FN/FD;
 	return ((((0xff00 | r) << 8) | g) << 8) | b;
     }
     private static int darker(int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
 	int b = (val) & 0xff;
-	r = r * fd / fn;
-	g = g * fd / fn;
-	b = b * fd / fn;
+	r = r * FD / FN;
+	g = g * FD / FN;
+	b = b * FD / FN;
 	return ((((0xff00 | r) << 8) | g) << 8) | b;
     }
 

@@ -80,7 +80,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
     private int defaultPieces = JigsawCutter.DEFAULT_PIECES;
     private JigsawCutter defaultCutter;
 
-    private static final JigsawCutter[] cutters = {
+    private static final JigsawCutter[] CUTTERS = {
 	new Classic4Cutter(),
 	new ClassicCutter(),
 	new SquareCutter(),
@@ -152,7 +152,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
      * and piece style.
      */
     public JigsawFrame() {
-	this(JigsawCutter.DEFAULT_PIECES, cutters[0]);
+	this(JigsawCutter.DEFAULT_PIECES, CUTTERS[0]);
     }
 
     private void initFrameWork() {
@@ -256,7 +256,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	imagePane.add(imageBPane, BorderLayout.NORTH);
 	imagePane.add(imageLabel, BorderLayout.CENTER);
 
-	cutterCBox = new JComboBox<>(cutters);
+	cutterCBox = new JComboBox<>(CUTTERS);
 	cutterCBox.setSelectedItem(defaultCutter);
 	cutterCBox.addActionListener(this);
 
@@ -315,7 +315,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	    new JigsawFrame();
 	} else {
 	    File base = null;
-	    JigsawCutter prefCutter = cutters[0];
+	    JigsawCutter prefCutter = CUTTERS[0];
 	    int prefPieces = JigsawCutter.DEFAULT_PIECES;
 	    int arg = 0;
 	    while (arg < args.length) {
@@ -341,7 +341,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 		    if (arg < args.length) {
 			String argcutter = args[arg];
 			boolean cmatch = false;
-			for (JigsawCutter cutter : cutters) {
+			for (JigsawCutter cutter : CUTTERS) {
 			    if (argcutter.equalsIgnoreCase(cutter.getName())) {
 				cmatch = true;
 				prefCutter = cutter;
@@ -350,7 +350,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 			if (!cmatch) {
 			    System.err.println("Invalid cutter!"); //NOPMD
 			    System.err.println("Valid cutters are:"); //NOPMD
-			    for (JigsawCutter cutter : cutters) {
+			    for (JigsawCutter cutter : CUTTERS) {
 				System.err.println(cutter.getName()); //NOPMD
 			    }
 			    System.exit(1);

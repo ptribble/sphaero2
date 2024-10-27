@@ -53,7 +53,7 @@ public class Knob {
     // The knob described protrudes north.  The values are transformed as
     // needed to point the knob in any direction.
 
-    private static final float[][] ctl = new float[][] {
+    private static final float[][] CTL = new float[][] {
 	// X Y SLOPE XDB XDF
 	{ 0f, 0f, 1/8f, 0f, 3/16f, },
 	    { 1/3f, -4/32f,  5/4f, -1/ 8f, -1/10f, },
@@ -98,9 +98,9 @@ public class Knob {
     }
 
     private void initPath() {
-	float[][] data = new float[ctl.length][];
+	float[][] data = new float[CTL.length][];
 	for (int i = 0; i < data.length; i++) {
-	    data[i] = ctl[i].clone();
+	    data[i] = CTL[i].clone();
 	}
 
 	jitter(data, XVARY, YVARY, XDBVARY, XDFVARY);

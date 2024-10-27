@@ -49,7 +49,7 @@ public class JigsawPuzzle extends JPanel {
     public static final char HIDE = 'H';
 
     // Available background colors
-    private static final Color[] bgColors = {
+    private static final Color[] BGCOLORS = {
 	Color.BLACK,
 	new Color(48, 0, 0),
 	new Color(0, 48, 0),
@@ -69,10 +69,11 @@ public class JigsawPuzzle extends JPanel {
     private static final Color CLEAR_COLOR_B = new Color(0, 0, 0, 48);
 
     private static final Cursor
-    NORMAL_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR),
+	NORMAL_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
+    private static final Cursor
 	CLEAR_CURSOR  = new Cursor(Cursor.CROSSHAIR_CURSOR);
 
-    private static final Rectangle emptyRect = new Rectangle(0, 0, 0, 0);
+    private static final Rectangle EMPTYRECT = new Rectangle(0, 0, 0, 0);
 
     private final BufferedImage image;
     Image finishedImage;
@@ -115,7 +116,7 @@ public class JigsawPuzzle extends JPanel {
 	computePreferredSize();
 	setOpaque(true);
 	setFocusable(true);
-	setBackground(bgColors[bgColor]);
+	setBackground(BGCOLORS[bgColor]);
 	setCursor(NORMAL_CURSOR);
 	setClearColor();
 	addWiring();
@@ -538,21 +539,20 @@ public class JigsawPuzzle extends JPanel {
 	// FIXME we could calculate the areas directly and only create
 	// the one rectangle we need for the shuffle call, or even not
 	// create any rectangles as we only need the height and width
-	Rectangle north = (ay == 0) ? emptyRect :
-	    new Rectangle(0, 0, w, ay);
-	Rectangle south = (y1 >= h) ? emptyRect :
-	    new Rectangle(0, y1+1, w, h-y1);
-	Rectangle west  = (ax == 0 || ah == 0) ? emptyRect :
-	    new Rectangle(0, ay, ax, ah);
-	Rectangle east  = (x1 >= w || ah == 0) ? emptyRect :
-	    new Rectangle(x1, ay, w-x1, ah);
+	Rectangle north = (ay == 0) ? EMPTYRECT
+	    : new Rectangle(0, 0, w, ay);
+	Rectangle south = (y1 >= h) ? EMPTYRECT
+	    : new Rectangle(0, y1+1, w, h-y1);
+	Rectangle west  = (ax == 0 || ah == 0) ? EMPTYRECT
+	    : new Rectangle(0, ay, ax, ah);
+	Rectangle east  = (x1 >= w || ah == 0) ? EMPTYRECT
+	    : new Rectangle(x1, ay, w-x1, ah);
 
-	int
-	    nArea = north.width * north.height,
-	    sArea = south.width * south.height,
-	    wArea = west.width * west.height,
-	    eArea = east.width * east.height,
-	    totalArea = nArea + sArea + wArea + eArea;
+	int nArea = north.width * north.height;
+	int sArea = south.width * south.height;
+	int wArea = west.width * west.height;
+	int eArea = east.width * east.height;
+	int totalArea = nArea + sArea + wArea + eArea;
 
 	int rand = (int) (Math.random() * totalArea);
 
@@ -609,14 +609,14 @@ public class JigsawPuzzle extends JPanel {
 
     void keyPressed0(KeyEvent e) {
 	if (!finished) {
-	    if (e.getKeyCode() == KeyEvent.VK_LEFT ||
-		    e.getKeyCode() == KeyEvent.VK_KP_LEFT) {
+	    if (e.getKeyCode() == KeyEvent.VK_LEFT
+		    || e.getKeyCode() == KeyEvent.VK_KP_LEFT) {
 		rotatePiece(270);
-	    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT ||
-		    e.getKeyCode() == KeyEvent.VK_KP_RIGHT) {
+	    } else if (e.getKeyCode() == KeyEvent.VK_RIGHT
+		    || e.getKeyCode() == KeyEvent.VK_KP_RIGHT) {
 		rotatePiece(90);
-	    } else if (e.getKeyCode() == KeyEvent.VK_DOWN ||
-		    e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
+	    } else if (e.getKeyCode() == KeyEvent.VK_DOWN
+		    || e.getKeyCode() == KeyEvent.VK_KP_DOWN) {
 		push();
 	    }
 	}
@@ -670,19 +670,19 @@ public class JigsawPuzzle extends JPanel {
     private void prevBackground() {
 	bgColor--;
 	if (bgColor < 0) {
-	    bgColor = bgColors.length-1;
+	    bgColor = BGCOLORS.length-1;
 	}
-	setBackground(bgColors[bgColor]);
+	setBackground(BGCOLORS[bgColor]);
 	setClearColor();
 	repaint();
     }
 
     private void nextBackground() {
 	bgColor++;
-	if (bgColor >= bgColors.length) {
+	if (bgColor >= BGCOLORS.length) {
 	    bgColor = 0;
 	}
-	setBackground(bgColors[bgColor]);
+	setBackground(BGCOLORS[bgColor]);
 	setClearColor();
 	repaint();
     }
@@ -695,7 +695,7 @@ public class JigsawPuzzle extends JPanel {
     }
 
     private void setClearColor() {
-	clearColor = isBright(bgColors[bgColor]) ? CLEAR_COLOR_B
+	clearColor = isBright(BGCOLORS[bgColor]) ? CLEAR_COLOR_B
 	    : CLEAR_COLOR_W;
     }
 

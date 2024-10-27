@@ -16,8 +16,8 @@ import javax.swing.JPanel;
  */
 public final class JigUtil {
 
-    private static final JPanel trackerPanel = new JPanel(false);
-    private static final MediaTracker tracker = new MediaTracker(trackerPanel);
+    private static final JPanel PTRACKER = new JPanel(false);
+    private static final MediaTracker TRACKER = new MediaTracker(PTRACKER);
 
     /*
      * This class should never be instantiated.
@@ -33,11 +33,11 @@ public final class JigUtil {
      */
     public static void ensureLoaded(Image image) {
 	int id = 0;
-	tracker.addImage(image, id);
+	TRACKER.addImage(image, id);
 	try {
-	    tracker.waitForID(id, 0);
+	    TRACKER.waitForID(id, 0);
 	} catch (InterruptedException e) {}
-	tracker.removeImage(image, id);
+	TRACKER.removeImage(image, id);
     }
 
     /**
@@ -140,9 +140,9 @@ public final class JigUtil {
 	}
 	String ext = name.substring(idot+1);
 	return
-	    "jpg".equalsIgnoreCase(ext) ||
-	    "gif".equalsIgnoreCase(ext) ||
-	    "png".equalsIgnoreCase(ext);
+	    "jpg".equalsIgnoreCase(ext)
+	    || "gif".equalsIgnoreCase(ext)
+	    || "png".equalsIgnoreCase(ext);
     }
 
     /**

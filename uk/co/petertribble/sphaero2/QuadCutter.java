@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  */
 public class QuadCutter extends JigsawCutter {
 
-    private static final double widthToHeightRatio = 1.2;
+    private static final double WSCALE = 1.2;
 
     @Override
     public String getName() {
@@ -40,7 +40,7 @@ public class QuadCutter extends JigsawCutter {
 	 * R = sqrt (NHK/W)
 	 */
 	int rows = (int) Math.round(
-		Math.sqrt(widthToHeightRatio * prefPieces * height / width));
+		Math.sqrt(WSCALE * prefPieces * height / width));
 	int columns = Math.round(prefPieces / rows);
 
 	startProgress(rows*columns);
