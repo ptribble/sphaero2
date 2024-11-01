@@ -111,7 +111,7 @@ public final class JigUtil {
 		    attempts++;
 		    continue;
 		}
-		int idx = (int)Math.floor(Math.random() * files.length);
+		int idx = (int) Math.floor(Math.random() * files.length);
 		file = files[idx];
 	    }
 	    attempts++;

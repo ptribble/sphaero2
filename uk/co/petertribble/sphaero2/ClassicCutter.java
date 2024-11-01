@@ -192,7 +192,7 @@ public class ClassicCutter extends JigsawCutter {
 	int minY = box.y;
 	mask(data, path, minX, minY, width, height);
 
-	int rotation = ((int)(Math.random()*4)) * 90;
+	int rotation = ((int) (Math.random()*4)) * 90;
 
 	return new Piece(data, minX, minY, width, height,
 			tWidth, tHeight, rotation);

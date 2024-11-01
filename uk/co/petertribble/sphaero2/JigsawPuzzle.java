@@ -316,7 +316,7 @@ public class JigsawPuzzle extends JPanel {
 	// Draw the original image on top of the last piece in increasing
 	// opaqueness.  This should make the pieces appear to fade into the
 	// original image.
-	final int[] data = new int [width*height];
+	final int[] data = new int[width*height];
 	try {
 	    new PixelGrabber(image, 0, 0, width, height, data, 0, width)
 		.grabPixels();

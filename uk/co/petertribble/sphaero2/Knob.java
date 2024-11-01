@@ -55,11 +55,11 @@ public class Knob {
 
     private static final float[][] CTL = new float[][] {
 	// X Y SLOPE XDB XDF
-	{ 0f, 0f, 1/8f, 0f, 3/16f, },
-	    { 1/3f, -4/32f,  5/4f, -1/ 8f, -1/10f, },
-		{ 1/2f, -5/16f, 0f,  1/16f,  1/16f, },
-		    { 2/3f, -4/32f, -5/4f, -1/10f, -1/ 8f, },
-			{ 1f, 0f, -1/8f, 3/16f, 0f, },
+	{0f, 0f, 1/8f, 0f, 3/16f, },
+	    {1/3f, -4/32f,  5/4f, -1/ 8f, -1/10f, },
+		{1/2f, -5/16f, 0f,  1/16f,  1/16f, },
+		    {2/3f, -4/32f, -5/4f, -1/10f, -1/ 8f, },
+			{1f, 0f, -1/8f, 3/16f, 0f, },
 			    };
     private static final int X = 0;
     private static final int Y = 1;

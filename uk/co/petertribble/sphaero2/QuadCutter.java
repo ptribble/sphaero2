@@ -112,7 +112,7 @@ public class QuadCutter extends JigsawCutter {
 	maskOutside(data, se, sw, minX, minY, width, height);
 	maskOutside(data, sw, nw, minX, minY, width, height);
 
-	int rotation = ((int)(Math.random()*4)) * 90;
+	int rotation = ((int) (Math.random()*4)) * 90;
 	return
 	    new Piece(data, minX, minY, width, height, tWidth, tHeight,
 			rotation);
