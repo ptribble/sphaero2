@@ -6,7 +6,10 @@ import java.awt.Insets;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class SamplePanel extends JPanel implements ActionListener {
 
