@@ -1,3 +1,5 @@
 #!/bin/sh
-JARDIR=/usr/share/sphaero2
-exec java -jar ${JARDIR}/sphaero2.jar $*
+#
+# SPDX-License-Identifier: CDDL-1.0
+#
+exec java -jar /usr/share/sphaero2/sphaero2.jar "$@"
