@@ -260,6 +260,12 @@ public class JigsawPuzzle extends JPanel {
 	}
     }
 
+    /**
+     * Connect a timer label to this puzzle. If there's a valid label
+     * it will be updated with the running solution time.
+     *
+     * @param tlabel a TimeLabel to be updated
+     */
     public void setTimeLabel(TimeLabel tlabel) {
 	this.tlabel = tlabel;
     }

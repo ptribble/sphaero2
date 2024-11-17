@@ -20,6 +20,12 @@ public class SamplePanel extends JPanel implements ActionListener {
     private Map<JButton, String> fmap = new HashMap<>();
     private static final String SAMPLE_DIR = "/usr/share/sphaero2/samples";
 
+    /**
+     * Create a new SamplePanel, to display some sample jogsaw images.
+     *
+     * @param jtf a JTextField, used by callers of this class to read the
+     * filename of the selected image
+     */
     public SamplePanel(JTextField jtf) {
 	this.jtf = jtf;
 	initSamples();
@@ -56,6 +62,11 @@ public class SamplePanel extends JPanel implements ActionListener {
 	}
     }
 
+    /**
+     * Check if there are some valid sample images.
+     *
+     * @return true if there some sample images.
+     */
     public boolean samplesValid() {
 	return (nSamples > 0);
     }

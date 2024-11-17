@@ -51,12 +51,17 @@ public class ImagePreview extends JComponent implements PropertyChangeListener {
     private ImageIcon thumbnail;
     private File file;
 
+    /**
+     * Create an image previewer for use by the image selector.
+     *
+     * @param fc a JFileChooser to decorate
+     */
     public ImagePreview(JFileChooser fc) {
         setPreferredSize(new Dimension(100, 50));
         fc.addPropertyChangeListener(this);
     }
 
-    public void loadImage() {
+    private void loadImage() {
         if (file == null) {
             thumbnail = null;
             return;

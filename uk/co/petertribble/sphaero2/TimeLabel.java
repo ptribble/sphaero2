@@ -11,7 +11,7 @@ import javax.swing.Timer;
  *
  * @author Peter Tribble
  */
-public class TimeLabel extends JLabel implements ActionListener {
+public final class TimeLabel extends JLabel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,13 +23,18 @@ public class TimeLabel extends JLabel implements ActionListener {
     private static final String PAUSED_LABEL = "(Paused) time: ";
     private String currentLabel;
 
+    /**
+     * Create a new TimeLabel, that will show the current running and
+     * final elapsed time taken to solve the puzzle.
+     */
     public TimeLabel() {
 	super("|", SwingConstants.RIGHT);
 	currentLabel = ELAPSED_LABEL;
     }
 
-    // FIXME pause and resume
-
+    /**
+     * Start solving the puzzle.
+     */
     public void start() {
 	startmillis = System.currentTimeMillis();
 	if (timer == null) {
@@ -38,6 +43,9 @@ public class TimeLabel extends JLabel implements ActionListener {
 	timer.start();
     }
 
+    /**
+     * Pause solving the puzzle.
+     */
     public void pause() {
 	timer.stop();
 	currentLabel = PAUSED_LABEL;
@@ -45,6 +53,9 @@ public class TimeLabel extends JLabel implements ActionListener {
 	updateTime();
     }
 
+    /**
+     * Restart solving the puzzle.
+     */
     public void unpause() {
 	timer.start();
 	currentLabel = ELAPSED_LABEL;
@@ -52,6 +63,11 @@ public class TimeLabel extends JLabel implements ActionListener {
 	updateTime();
     }
 
+    /**
+     * Finish solving the puzzle. The text will change from the current
+     * running time to the final solution time, and will no longer be
+     * updated.
+     */
     public void finished() {
 	if (timer != null) {
 	    timer.stop();
@@ -60,7 +76,7 @@ public class TimeLabel extends JLabel implements ActionListener {
 	setText("Solution time: " + elapsed/1000 + "s");
     }
 
-    public void updateTime() {
+    private void updateTime() {
 	long elapsed = System.currentTimeMillis() - startmillis;
 	setText(currentLabel + elapsed/1000 + "s");
     }

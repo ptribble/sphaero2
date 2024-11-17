@@ -330,6 +330,17 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	System.exit(1);
     }
 
+    /**
+     * Run the sphaero2 application. If given a filename as an argument, use
+     * that as the jigsaw image, otherwise start with an interactive dialog.
+     *
+     * The -p flag expectas the number of pieces.
+     *
+     * The -c flag expects a cutter name, to select the style of pieces.
+     * Valid cutters are: Classic-4, Classic, Squares, Rectangles, Quads
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
 	if (args.length == 0) {
 	    new JigsawFrame();
