@@ -32,16 +32,9 @@ package|-package)
 	./pkg/mkproto > pp
 	pkgmk -d /tmp -f pp -r $(pwd) TRIBsphaero2
 	pkgtrans -s /tmp /tmp/TRIBsphaero2.pkg TRIBsphaero2
-	rm pp
-	cd /tmp || exit 1
-	if [ -x "${THOME}"/build/create_zap_from_pkg ]; then
-	    "${THOME}"/build/create_zap_from_pkg TRIBsphaero2 /tmp/TRIBsphaero2.pkg
-	else
-	    zip -q -r TRIBsphaero2 TRIBsphaero2
-	    mv TRIBsphaero2.zip TRIBsphaero2.zap
-	    ls -l /tmp/TRIBsphaero2.pkg /tmp/TRIBsphaero2.zap
-	fi
 	rm -fr /tmp/TRIBsphaero2
+	ls -l /tmp/TRIBsphaero2.pkg
+	rm pp
 	exit 0
 	;;
 jlink|-jlink)
