@@ -62,7 +62,7 @@ public class MultiPiece extends Piece {
 
     @Override
     public String toString() {
-	return "Multi"+super.toString()+"[pieces="+subs.size()+"]";
+	return "Multi" + super.toString() + "[pieces=" + subs.size() + "]";
     }
 
     // Joining pieces -------------------------------------------------------
@@ -100,8 +100,8 @@ public class MultiPiece extends Piece {
 	    maxY = Math.max(maxY, maxYT);
 	    neighbors.addAll(piece.neighbors);
 	}
-	int width = maxX-minX+1;
-	int height = maxY-minY+1;
+	int width = maxX - minX + 1;
+	int height = maxY - minY + 1;
 
 	// new piece neighbors = main/others' neighbors, minus themselves
 	neighbors.remove(main);
@@ -126,7 +126,7 @@ public class MultiPiece extends Piece {
 	// move.
 	int dx = newPiece.getRotatedX() - main.getRotatedX();
 	int dy = newPiece.getRotatedY() - main.getRotatedY();
-	newPiece.setPuzzlePosition(mainPX+dx, mainPY+dy);
+	newPiece.setPuzzlePosition(mainPX + dx, mainPY + dy);
 
 	// Add each piece as a neighbor, and change each piece's neighbors
 	//  (remove main and others, and add newPiece)
@@ -176,14 +176,14 @@ public class MultiPiece extends Piece {
 	int[] newData = piece.curData;
 
 	// Fold it into the data.  ReSPECT mah transparensah!
-	int offset = (pieceY-dataY) * width + (pieceX-dataX);
+	int offset = (pieceY - dataY) * width + (pieceX - dataX);
 
 	for (int i = 0; i < pieceH; i++) {
-	    int iNDOffset = i*pieceW;
-	    int iDOffset  = i*width;
+	    int iNDOffset = i * pieceW;
+	    int iDOffset  = i * width;
 	    for (int j = 0; j < pieceW; j++) {
 		// int ndOff = iNDOffset+j;
-		int newDatum = newData[iNDOffset+j];
+		int newDatum = newData[iNDOffset + j];
 		if (newDatum != 0) {
 		    data[ offset + iDOffset + j ] = newDatum;
 		}
@@ -196,7 +196,7 @@ public class MultiPiece extends Piece {
     protected void recomputeImageData() {
 	setRotatedPosition();
 	// System.out.println ("recomputing: "+this);
-	int[] data = new int[curWidth*curHeight];
+	int[] data = new int[curWidth * curHeight];
 	int rotX = getRotatedX();
 	int rotY = getRotatedY();
 	for (Piece sub : subs) {

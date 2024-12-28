@@ -229,8 +229,8 @@ public class JigsawPuzzle extends JPanel {
 	if (clearMode && mouseDown) {
 	    int cx = Math.min(clearX0, clearX1);
 	    int cy = Math.min(clearY0, clearY1);
-	    int cw = Math.abs(clearX0-clearX1);
-	    int ch = Math.abs(clearY0-clearY1);
+	    int cw = Math.abs(clearX0 - clearX1);
+	    int ch = Math.abs(clearY0 - clearY1);
 	    g.setColor(clearColor);
 	    g.fillRect(cx, cy, cw, ch);
 	}
@@ -322,11 +322,11 @@ public class JigsawPuzzle extends JPanel {
 	// Draw the original image on top of the last piece in increasing
 	// opaqueness.  This should make the pieces appear to fade into the
 	// original image.
-	final int[] data = new int[width*height];
+	final int[] data = new int[width * height];
 	try {
 	    new PixelGrabber(image, 0, 0, width, height, data, 0, width)
 		.grabPixels();
-	} catch (InterruptedException ex) {}
+	} catch (InterruptedException ex) { }
 	for (int i = 0; i < data.length; i++) {
 	    data[i] = data[i] & 0x00ffffff;
 	}
@@ -431,7 +431,7 @@ public class JigsawPuzzle extends JPanel {
 	int prevY = focusPiece.getPuzzleY();
 	int prevW = focusPiece.getCurrentWidth();
 	int prevH = focusPiece.getCurrentHeight();
-	focusPiece.moveTo(e.getX()-transX, e.getY()-transY);
+	focusPiece.moveTo(e.getX() - transX, e.getY() - transY);
 	// Repaint the focusPiece' previous and current bounding rects.
 	repaint(0, prevX, prevY, prevW, prevH);
 	repaint(0, focusPiece.getPuzzleX(), focusPiece.getPuzzleY(),
@@ -562,11 +562,11 @@ public class JigsawPuzzle extends JPanel {
 	Rectangle north = (ay == 0) ? EMPTYRECT
 	    : new Rectangle(0, 0, w, ay);
 	Rectangle south = (y1 >= h) ? EMPTYRECT
-	    : new Rectangle(0, y1+1, w, h-y1);
+	    : new Rectangle(0, y1 + 1, w, h - y1);
 	Rectangle west  = (ax == 0 || ah == 0) ? EMPTYRECT
 	    : new Rectangle(0, ay, ax, ah);
 	Rectangle east  = (x1 >= w || ah == 0) ? EMPTYRECT
-	    : new Rectangle(x1, ay, w-x1, ah);
+	    : new Rectangle(x1, ay, w - x1, ah);
 
 	int nArea = north.width * north.height;
 	int sArea = south.width * south.height;
@@ -658,8 +658,8 @@ public class JigsawPuzzle extends JPanel {
 	//   of the center.
 	int currW = focusPiece.getCurrentWidth();
 	int currH = focusPiece.getCurrentHeight();
-	int currX = prevX + (prevW - currW)/2;
-	int currY = prevY + (prevH - currH)/2;
+	int currX = prevX + (prevW - currW) / 2;
+	int currY = prevY + (prevH - currH) / 2;
 	focusPiece.moveTo(currX, currY);
 	repaint(0, prevX, prevY, prevW, prevH);
 	repaint(0, currX, currY, currW, currH);
@@ -690,7 +690,7 @@ public class JigsawPuzzle extends JPanel {
     private void prevBackground() {
 	bgColor--;
 	if (bgColor < 0) {
-	    bgColor = BGCOLORS.length-1;
+	    bgColor = BGCOLORS.length - 1;
 	}
 	setBackground(BGCOLORS[bgColor]);
 	setClearColor();

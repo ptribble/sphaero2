@@ -73,12 +73,12 @@ public final class TimeLabel extends JLabel implements ActionListener {
 	    timer.stop();
 	}
 	long elapsed = System.currentTimeMillis() - startmillis;
-	setText("Solution time: " + elapsed/1000 + "s");
+	setText("Solution time: " + elapsed / 1000 + "s");
     }
 
     private void updateTime() {
 	long elapsed = System.currentTimeMillis() - startmillis;
-	setText(currentLabel + elapsed/1000 + "s");
+	setText(currentLabel + elapsed / 1000 + "s");
     }
 
     @Override

@@ -121,22 +121,22 @@ public abstract class JigsawCutter {
      * @return the final array of Pieces
      */
     public Piece[] finalBuild(Piece[][] pieces, int rows, int columns) {
-	Piece[] ret = new Piece[rows*columns];
+	Piece[] ret = new Piece[rows * columns];
 	for (int j = 0; j < rows; j++) {
 	    for (int i = 0; i < columns; i++) {
 		if (i > 0) {
-		    pieces[i][j].addNeighbor(pieces[i-1][j]);
+		    pieces[i][j].addNeighbor(pieces[i - 1][j]);
 		}
 		if (j > 0) {
-		    pieces[i][j].addNeighbor(pieces[i][j-1]);
+		    pieces[i][j].addNeighbor(pieces[i][j - 1]);
 		}
-		if (i < columns-1) {
-		    pieces[i][j].addNeighbor(pieces[i+1][j]);
+		if (i < columns - 1) {
+		    pieces[i][j].addNeighbor(pieces[i + 1][j]);
 		}
-		if (j < rows-1) {
-		    pieces[i][j].addNeighbor(pieces[i][j+1]);
+		if (j < rows - 1) {
+		    pieces[i][j].addNeighbor(pieces[i][j + 1]);
 		}
-		ret[j*columns+i] = pieces[i][j];
+		ret[j * columns + i] = pieces[i][j];
 	    }
 	}
 	return ret;

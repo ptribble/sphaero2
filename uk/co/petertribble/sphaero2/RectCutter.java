@@ -25,31 +25,31 @@ public class RectCutter extends JigsawCutter {
 	int rows = (int) Math.round(Math.sqrt(prefPieces));
 	int columns = (int) Math.round(Math.sqrt(prefPieces));
 
-	startProgress(rows*columns);
+	startProgress(rows * columns);
 
 	// Create piece images
 	Piece[][] matrix = new Piece[rows][columns];
 	for (int i = 0; i < rows; i++) {
 	    int y1 = i * height / rows;
-	    int y2 = (i+1) * height / rows;
+	    int y2 = (i + 1) * height / rows;
 	    if (y2 >= height) {
-		y2 = height-1;
+		y2 = height - 1;
 	    }
 	    if (i > 0) {
 		y1++;
 	    }
 	    for (int j = 0; j < columns; j++) {
 		int x1 = j * width / columns;
-		int x2 = (j+1) * width / columns;
+		int x2 = (j + 1) * width / columns;
 		if (x2 >= width) {
-		    x2 = width-1;
+		    x2 = width - 1;
 		}
 		if (j > 0) {
 		    x1++;
 		}
 		int pieceW = x2 - x1 + 1;
 		int pieceH = y2 - y1 + 1;
-		int rotation = (int) (Math.random()*4) * 90;
+		int rotation = (int) (Math.random() * 4) * 90;
 		matrix[i][j] = new Piece(
 				getImageData(image, x1, y1, pieceW, pieceH),
 				x1, y1, pieceW, pieceH,

@@ -23,8 +23,8 @@ public class Classic4Cutter extends JigsawCutter {
 
     @Override
     public String getDescription() {
-	return "Each side is equally likely to have a hole or"
-	    +" a knob; each piece may have 0-4 holes, and will tend to have 2.";
+	return "Each side is equally likely to have a hole or a knob;"
+	    + " each piece may have 0-4 holes, and will tend to have 2.";
 
     }
 
@@ -48,7 +48,7 @@ public class Classic4Cutter extends JigsawCutter {
 	int rows = (int) Math.round(Math.sqrt(prefPieces * height / width));
 	int columns = Math.round(prefPieces / rows);
 
-	startProgress(rows*columns);
+	startProgress(rows * columns);
 
 	// Make a matrix of points representing the corners of the pieces.
 	// Each point is based on a grid of equal rectangles, and can then
@@ -57,19 +57,19 @@ public class Classic4Cutter extends JigsawCutter {
 	// course, and east/west edge points are fixed horizontally.
 	int hVary = height / (rows * 20);
 	int wVary = width / (columns * 20);
-	Point[][] points = new Point[columns+1][rows+1];
+	Point[][] points = new Point[columns + 1][rows + 1];
 	// i varies horizontally; j varies vertically
 	for (int j = 0; j <= rows; j++) {
-	    int baseY = j*height / rows;
+	    int baseY = j * height / rows;
 	    for (int i = 0; i <= columns; i++) {
 		// int baseX = i*width / columns;
-		int x = i*width / columns;
+		int x = i * width / columns;
 		int y = baseY;
 		if (i > 0 && i < columns) {
-		    x += Math.random()*(2*wVary+1) - wVary;
+		    x += Math.random() * (2 * wVary + 1) - wVary;
 		}
 		if (j > 0 && j < rows) {
-		    y += Math.random()*(2*hVary+1) - hVary;
+		    y += Math.random() * (2 * hVary + 1) - hVary;
 		}
 		points[i][j] = new Point(x, y);
 	    }
@@ -78,12 +78,12 @@ public class Classic4Cutter extends JigsawCutter {
 	// Make a knob for each edge.  Two matrices, one for vertical edges,
 	// one for horizontal.  Remember to alternate knob directions.
 	// boolean flip1 = true;
-	Knob[][] vKnobs = new Knob[columns-1][rows];
+	Knob[][] vKnobs = new Knob[columns - 1][rows];
 	for (int j = 0; j < rows; j++) {
 	    // boolean flip = flip1;
-	    for (int i = 0; i < columns-1; i++) {
-		Point p1 = points[i+1][j];
-		Point p2 = points[i+1][j+1];
+	    for (int i = 0; i < columns - 1; i++) {
+		Point p1 = points[i + 1][j];
+		Point p2 = points[i + 1][j + 1];
 		boolean flip = Math.random() >= 0.5;
 		if (flip) {
 		    Point temp = p1; p1 = p2; p2 = temp;
@@ -95,12 +95,12 @@ public class Classic4Cutter extends JigsawCutter {
 	}
 
 	// flip1 = true;
-	Knob[][] hKnobs = new Knob[columns][rows-1];
-	for (int j = 0; j < rows-1; j++) {
+	Knob[][] hKnobs = new Knob[columns][rows - 1];
+	for (int j = 0; j < rows - 1; j++) {
 	    // boolean flip = flip1;
 	    for (int i = 0; i < columns; i++) {
-		Point p1 = points[i][j+1];
-		Point p2 = points[i+1][j+1];
+		Point p1 = points[i][j + 1];
+		Point p2 = points[i + 1][j + 1];
 		boolean flip = Math.random() >= 0.5;
 		if (flip) {
 		    Point temp = p1; p1 = p2; p2 = temp;
@@ -115,15 +115,15 @@ public class Classic4Cutter extends JigsawCutter {
 	Piece[][] pieces = new Piece[columns][rows];
 	for (int j = 0; j < rows; j++) {
 	    for (int i = 0; i < columns; i++) {
-		Knob knobN = j > 0 ? hKnobs[i][j-1] : null;
-		Knob knobS = j < rows-1 ? hKnobs[i][j] : null;
-		Knob knobW = i > 0 ? vKnobs[i-1][j] : null;
-		Knob knobE = i < columns-1 ? vKnobs[i][j] : null;
+		Knob knobN = j > 0 ? hKnobs[i][j - 1] : null;
+		Knob knobS = j < rows - 1 ? hKnobs[i][j] : null;
+		Knob knobW = i > 0 ? vKnobs[i - 1][j] : null;
+		Knob knobE = i < columns - 1 ? vKnobs[i][j] : null;
 		pieces[i][j] = makePiece(image,
 					points[i][j],
-					points[i][j+1],
-					points[i+1][j],
-					points[i+1][j+1],
+					points[i][j + 1],
+					points[i + 1][j],
+					points[i + 1][j + 1],
 					knobN, knobE, knobS, knobW,
 					width, height);
 		updateProgress();
@@ -189,14 +189,14 @@ public class Classic4Cutter extends JigsawCutter {
 	    height = tHeight - box.y;
 	}
 
-	int[] data = new int[width*height];
+	int[] data = new int[width * height];
 	data = image.getRGB(box.x, box.y, width, height, data, 0, width);
 
 	int minX = box.x;
 	int minY = box.y;
 	mask(data, path, minX, minY, width, height);
 
-	int rotation = ((int) (Math.random()*4)) * 90;
+	int rotation = ((int) (Math.random() * 4)) * 90;
 
 	return new Piece(data, minX, minY, width, height,
 			tWidth, tHeight, rotation);
@@ -209,7 +209,7 @@ public class Classic4Cutter extends JigsawCutter {
 	    for (int i = 0; i < width; i++) {
 		// int pathX = minX + i;
 		if (!path.contains(minX + i, pathY)) {
-		    data[j*width+i] = 0;
+		    data[j * width + i] = 0;
 		}
 	    }
 	}

@@ -56,11 +56,11 @@ public class Knob {
 
     private static final float[][] CTL = new float[][] {
 	// X Y SLOPE XDB XDF
-	{0f, 0f, 1/8f, 0f, 3/16f, },
-	    {1/3f, -4/32f,  5/4f, -1/ 8f, -1/10f, },
-		{1/2f, -5/16f, 0f,  1/16f,  1/16f, },
-		    {2/3f, -4/32f, -5/4f, -1/10f, -1/ 8f, },
-			{1f, 0f, -1/8f, 3/16f, 0f, },
+	{0f, 0f, 1 / 8f, 0f, 3 / 16f, },
+	    {1 / 3f, -4 / 32f,  5 / 4f, -1 / 8f, -1 / 10f, },
+		{1 / 2f, -5 / 16f, 0f,  1 / 16f,  1 / 16f, },
+		    {2 / 3f, -4 / 32f, -5 / 4f, -1 / 10f, -1 / 8f, },
+			{1f, 0f, -1 / 8f, 3 / 16f, 0f, },
 			    };
     private static final int X = 0;
     private static final int Y = 1;
@@ -69,11 +69,11 @@ public class Knob {
     private static final int XDF = 4;
 
     // x,y each varies by + or - itsVar
-    private static final float XVARY = 1/20f;
-    private static final float YVARY = 1/20f;
+    private static final float XVARY = 1 / 20f;
+    private static final float YVARY = 1 / 20f;
     // b,f each varies by + or - it*itsVar
-    private static final float XDBVARY = 1/4f;
-    private static final float XDFVARY = 1/4f;
+    private static final float XDBVARY = 1 / 4f;
+    private static final float XDFVARY = 1 / 4f;
 
     private final int x1;
     private final int y1;
@@ -106,19 +106,19 @@ public class Knob {
 
 	jitter(data, XVARY, YVARY, XDBVARY, XDFVARY);
 
-	cPath = new GeneralPath(GeneralPath.WIND_NON_ZERO, data.length*3 - 2);
+	cPath = new GeneralPath(GeneralPath.WIND_NON_ZERO, data.length * 3 - 2);
 	cPathReverse
-          = new GeneralPath(GeneralPath.WIND_NON_ZERO, data.length*3 - 2);
+          = new GeneralPath(GeneralPath.WIND_NON_ZERO, data.length * 3 - 2);
 	cPath.moveTo(data[0][X], data[0][Y]);
-	cPathReverse.moveTo(data[data.length-1][X], data[data.length-1][Y]);
-	for (int i = 0; i < data.length-1; i++) {
+	cPathReverse.moveTo(data[data.length - 1][X], data[data.length - 1][Y]);
+	for (int i = 0; i < data.length - 1; i++) {
 	    curveTo(cPath, data, i, true);
-	    curveTo(cPathReverse, data, data.length-1-i, false);
+	    curveTo(cPathReverse, data, data.length - 1 - i, false);
 	}
 
 	// Transform to coincide with line segment (x1,y1)-(x2,y2)
 	AffineTransform affine =
-	    new AffineTransform(x2-x1, y2-y1, y1-y2, x2-x1, x1, y1);
+	    new AffineTransform(x2 - x1, y2 - y1, y1 - y2, x2 - x1, x1, y1);
 	cPath.transform(affine);
 	cPathReverse.transform(affine);
     }
@@ -129,19 +129,19 @@ public class Knob {
 	float cx1 = data[idx][X];
 	float cy1 = data[idx][Y];
 	float m1 = data[idx][SLOPE];
-	float d1f = data[idx][forward?XDF:XDB];
-	float cx2 = data[idx+delta][X];
-	float cy2 = data[idx+delta][Y];
-	float m2 = data[idx+delta][SLOPE];
-	float d2b = data[idx+delta][forward?XDB:XDF];
+	float d1f = data[idx][forward ? XDF : XDB];
+	float cx2 = data[idx + delta][X];
+	float cy2 = data[idx + delta][Y];
+	float m2 = data[idx + delta][SLOPE];
+	float d2b = data[idx + delta][forward ? XDB : XDF];
 	if (!forward) {
 	    d1f *= -1.0f;
 	    d2b *= -1.0f;
 	}
 	float x1 = cx1 + d1f;
-	float y1 = cy1 + d1f*m1;
+	float y1 = cy1 + d1f * m1;
 	float x2 = cx2 - d2b;
-	float y2 = cy2 - d2b*m2;
+	float y2 = cy2 - d2b * m2;
 	path.curveTo(x1, y1, x2, y2, cx2, cy2);
     }
 
@@ -164,7 +164,7 @@ public class Knob {
 	    return (GeneralPath) cPathReverse.clone();
 	} else {
 	    throw new IllegalArgumentException(
-					"Not an endpoint: ("+x+","+y+")");
+				"Not an endpoint: (" + x + "," + y + ")");
 	}
     }
 
@@ -184,18 +184,18 @@ public class Knob {
 	    float f = pts[i][XDF];
 	    // x,y each varies by + or - itsVar
 	    // first and last x do not vary
-	    if ((i > 0) && (i < pts.length-1)) {
-		pts[i][X] += Math.random()*xVar*2 - xVar;
+	    if ((i > 0) && (i < pts.length - 1)) {
+		pts[i][X] += Math.random() * xVar * 2 - xVar;
 	    }
-	    pts[i][Y] += Math.random()*yVar*2 - yVar;
+	    pts[i][Y] += Math.random() * yVar * 2 - yVar;
 	    // b,f each varies by + or - it*itsVar
-	    pts[i][XDB] += Math.random()*b*bVar*2 - b*bVar;
-	    pts[i][XDF] += Math.random()*f*fVar*2 - f*fVar;
+	    pts[i][XDB] += Math.random() * b * bVar * 2 - b * bVar;
+	    pts[i][XDF] += Math.random() * f * fVar * 2 - f * fVar;
 	}
     }
 
     @Override
     public String toString() {
-	return "Knob[p1=("+x1+","+y1+"),p2=("+x2+","+y2+")]";
+	return "Knob[p1=(" + x1 + "," + y1 + "),p2=(" + x2 + "," + y2 + ")]";
     }
 }

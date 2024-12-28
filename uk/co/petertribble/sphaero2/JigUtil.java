@@ -36,7 +36,7 @@ public final class JigUtil {
 	TRACKER.addImage(image, id);
 	try {
 	    TRACKER.waitForID(id, 0);
-	} catch (InterruptedException e) {}
+	} catch (InterruptedException e) { }
 	TRACKER.removeImage(image, id);
     }
 
@@ -49,8 +49,8 @@ public final class JigUtil {
      */
     public static BufferedImage resizedImage(BufferedImage image) {
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-	int wtarg = 3*screen.width/5;
-	int htarg = 3*screen.height/5;
+	int wtarg = 3 * screen.width / 5;
+	int htarg = 3 * screen.height / 5;
 	/*
 	 * If already small enough, just recreate the Image. The reason for
 	 * this is that ImageIO uses type 0, which gives a very noticeable
@@ -138,7 +138,7 @@ public final class JigUtil {
 	    // thumbnail file
 	    return false;
 	}
-	String ext = name.substring(idot+1);
+	String ext = name.substring(idot + 1);
 	return
 	    "jpg".equalsIgnoreCase(ext)
 	    || "gif".equalsIgnoreCase(ext)

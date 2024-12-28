@@ -261,9 +261,9 @@ public class JigsawFrame extends JFrame implements ActionListener {
 	browseButton.addActionListener(this);
 
 	JLabel imageLabel = createHelpLabel("<html>"
-		+"If this is an image file, it is used to create the puzzle. "
-		+"If it is a folder, an image file is selected from it "
-		+"(including any subfolders) at random.");
+		+ "If this is an image file, it is used to create the puzzle. "
+		+ "If it is a folder, an image file is selected from it "
+		+ "(including any subfolders) at random.");
 
 	JPanel imageBPane = new JPanel();
 	imageBPane.setLayout(new BoxLayout(imageBPane, BoxLayout.LINE_AXIS));
@@ -291,7 +291,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 			 defaultPieces, JigsawCutter.MIN_PIECES,
 			 JigsawCutter.MAX_PIECES, 1));
 	JLabel pieceLabel = createHelpLabel("<html>"
-		+" The puzzle will have roughly this many pieces.");
+		+ " The puzzle will have roughly this many pieces.");
 	JPanel piecePane = new JPanel(new BorderLayout());
 	piecePane.add(pieceSpinner, BorderLayout.NORTH);
 	piecePane.add(pieceLabel, BorderLayout.CENTER);
@@ -476,7 +476,7 @@ public class JigsawFrame extends JFrame implements ActionListener {
 
     private void fireCutterChanged() {
 	JigsawCutter cutter = (JigsawCutter) cutterCBox.getSelectedItem();
-	cutterDescLabel.setText("<html>"+cutter.getDescription());
+	cutterDescLabel.setText("<html>" + cutter.getDescription());
     }
 
     private void setupPuzzle() {

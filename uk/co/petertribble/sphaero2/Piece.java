@@ -345,11 +345,11 @@ public class Piece {
 
     @Override
     public String toString() {
-	return "Piece[iPos=("+imageX+","+imageY+"),"
-	    +"iSiz="+origWidth+"x"+origHeight+","
-	    +"rot="+rotation+","
-	    +"rPos=("+rotatedX+","+rotatedY+"),"
-	    +"pPos=("+puzzleX+","+puzzleY+")]";
+	return "Piece[iPos=(" + imageX + "," + imageY + "),"
+	    + "iSiz=" + origWidth + "x" + origHeight + ","
+	    + "rot=" + rotation + ","
+	    + "rPos=(" + rotatedX + "," + rotatedY + "),"
+	    + "pPos=(" + puzzleX + "," + puzzleY + ")]";
     }
 
     /**
@@ -380,9 +380,9 @@ public class Piece {
 	int w = getCurrentWidth();
 	int h = getCurrentHeight();
 	return
-	    (puzX <= x) && (x <= (puzX+w-1))
-	    && (puzY <= y) && (y <= (puzY+h-1))
-	    && (getAlpha(x-puzX, y-puzY) != 0);
+	    (puzX <= x) && (x <= (puzX + w - 1))
+	    && (puzY <= y) && (y <= (puzY + h - 1))
+	    && (getAlpha(x - puzX, y - puzY) != 0);
     }
 
     /**
@@ -395,7 +395,7 @@ public class Piece {
      * @return the alpha transparency at the given coordinates
      */
     protected int getAlpha(int x, int y) {
-	int pixel = curData[y*curWidth + x];
+	int pixel = curData[y * curWidth + x];
 	return (pixel >> 24) & 0xff;
     }
 
@@ -418,8 +418,8 @@ public class Piece {
 	int rotXD = getRotatedX() - piece.getRotatedX();
 	int rotYD = getRotatedY() - piece.getRotatedY();
 	return
-	    (Math.abs(puzXD-rotXD) <= NEARBY)
-	    && (Math.abs(puzYD-rotYD) <= NEARBY);
+	    (Math.abs(puzXD - rotXD) <= NEARBY)
+	    && (Math.abs(puzYD - rotYD) <= NEARBY);
     }
 
     // Joining pieces -------------------------------------------------------
@@ -448,7 +448,7 @@ public class Piece {
 	// currently in its list.  These might include other MultiPieces, which
 	// wouldn't be in the new Piece's subpiece list.
 	Piece newPiece = MultiPiece.join(this, close);
-	Piece[] ret = new Piece[close.size()+2];
+	Piece[] ret = new Piece[close.size() + 2];
 	ret[0] = newPiece;
 	ret[1] = this;
 	this.image.flush();
@@ -481,23 +481,23 @@ public class Piece {
 	boolean nw; // true iff that pixel is opaque
 	boolean c; // true iff that pixel is opaque
 	boolean se; // true iff that pixel is opaque
-	for (int i = 0; i < width+height-3; i++) {
+	for (int i = 0; i < width + height - 3; i++) {
 	    nw = false;
-	    int x = Math.max(0, i-height+2);
-	    int y = Math.max(0, height-i-2);
-	    c = (((data[y*width+x] >> 24) & 0xff) > 0);
+	    int x = Math.max(0, i - height + 2);
+	    int y = Math.max(0, height - i - 2);
+	    c = (((data[y * width + x] >> 24) & 0xff) > 0);
 	    while ((x < width) && (y < height)) {
-		if ((x+1 < width) && (y+1 < height)) {
-		    se = (((data[(y+1)*width+(x+1)] >> 24) & 0xff) > 0);
+		if ((x + 1 < width) && (y + 1 < height)) {
+		    se = (((data[(y + 1) * width + (x + 1)] >> 24) & 0xff) > 0);
 		} else {
 		    se = false;
 		}
 		if (c) {
-		    int datum = data[y*width+x];
+		    int datum = data[y * width + x];
 		    if (nw && !se) {
-			data[y*width+x] = darker(datum);
+			data[y * width + x] = darker(datum);
 		    } else if (!nw && se) {
-			data[y*width+x] = brighter(datum);
+			data[y * width + x] = brighter(datum);
 		    }
 		}
 		nw = c;
@@ -529,9 +529,9 @@ public class Piece {
 	g = g < 3 ? 3 : g;
 	b = b < 3 ? 3 : b;
 
-	r = r >= MAXB ? 255 : r*FN/FD;
-	g = g >= MAXB ? 255 : g*FN/FD;
-	b = b >= MAXB ? 255 : b*FN/FD;
+	r = r >= MAXB ? 255 : r * FN / FD;
+	g = g >= MAXB ? 255 : g * FN / FD;
+	b = b >= MAXB ? 255 : b * FN / FD;
 	return ((((0xff00 | r) << 8) | g) << 8) | b;
     }
     private static int darker(int val) {
@@ -556,19 +556,23 @@ public class Piece {
     protected void setRotatedPosition() {
 	if (rotation == 0) {
 	    rotatedX = imageX; rotatedY =  imageY;
-	    curWidth = origWidth; curHeight = origHeight;
+	    curWidth = origWidth;
+	    curHeight = origHeight;
 	} else if (rotation == 90) {
-	    rotatedX = totalHeight-imageY-origHeight;
+	    rotatedX = totalHeight - imageY - origHeight;
 	    rotatedY = imageX;
-	    curWidth = origHeight; curHeight = origWidth;
+	    curWidth = origHeight;
+	    curHeight = origWidth;
 	} else if (rotation == 180) {
-	    rotatedX = totalWidth -imageX-origWidth;
-	    rotatedY = totalHeight-imageY-origHeight;
-	    curWidth = origWidth; curHeight = origHeight;
+	    rotatedX = totalWidth - imageX - origWidth;
+	    rotatedY = totalHeight - imageY - origHeight;
+	    curWidth = origWidth;
+	    curHeight = origHeight;
 	} else if (rotation == 270) {
 	    rotatedX = imageY;
-	    rotatedY = totalWidth -imageX-origWidth;
-	    curWidth = origHeight; curHeight = origWidth;
+	    rotatedY = totalWidth - imageX - origWidth;
+	    curWidth = origHeight;
+	    curHeight = origWidth;
 	}
     }
 
@@ -584,8 +588,8 @@ public class Piece {
 	    curData = new int[origData.length];
 	    for (int i = 0; i < curWidth; i++) {
 		for (int j = 0; j < curHeight; j++) {
-		    curData[j*curWidth+i] =
-			origData[(origHeight-i-1)*origWidth + j];
+		    curData[j * curWidth + i] =
+			origData[(origHeight - i - 1) * origWidth + j];
 		}
 	    }
 	} else if (rotation == 180) {
@@ -598,14 +602,14 @@ public class Piece {
 	     */
 	    // it's just a reverse
 	    for (int i = 0; i < origData.length; i++) {
-		curData[i] = origData[origData.length-i-1];
+		curData[i] = origData[origData.length - i - 1];
 	    }
 	} else if (rotation == 270) {
 	    curData = new int[origData.length];
 	    for (int i = 0; i < curWidth; i++) {
 		for (int j = 0; j < curHeight; j++) {
-		    curData[j*curWidth+i] =
-			origData[i*origWidth + (origWidth-j-1)];
+		    curData[j * curWidth + i] =
+			origData[i * origWidth + (origWidth - j - 1)];
 		}
 	    }
 	}

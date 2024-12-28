@@ -43,7 +43,7 @@ public class QuadCutter extends JigsawCutter {
 		Math.sqrt(WSCALE * prefPieces * height / width));
 	int columns = Math.round(prefPieces / rows);
 
-	startProgress(rows*columns);
+	startProgress(rows * columns);
 
 	// Make a matrix of points representing the corners of each piece.
 	// Each point is based on a grid of equal rectangles, but may drift by
@@ -51,19 +51,19 @@ public class QuadCutter extends JigsawCutter {
 	// cannot drift in certain dimensions.
 	int hVary = height / (rows * 10);
 	int wVary = width / (columns * 10);
-	Point[][] points = new Point[columns+1][rows+1];
+	Point[][] points = new Point[columns + 1][rows + 1];
 	// i varies horizontally; j varies vertically
 	for (int j = 0; j <= rows; j++) {
-	    int baseY = j*height / rows;
+	    int baseY = j * height / rows;
 	    for (int i = 0; i <= columns; i++) {
-		int baseX = i*width / columns;
+		int baseX = i * width / columns;
 		int x = baseX;
 		int y = baseY;
 		if (i > 0 && i < columns) {
-		    x += Math.random()*(2*wVary+1) - wVary;
+		    x += Math.random() * (2 * wVary + 1) - wVary;
 		}
 		if (j > 0 && j < rows) {
-		    y += Math.random()*(2*hVary+1) - hVary;
+		    y += Math.random() * (2 * hVary + 1) - hVary;
 		}
 		points[i][j] = new Point(x, y);
 	    }
@@ -75,9 +75,9 @@ public class QuadCutter extends JigsawCutter {
 	    for (int i = 0; i < columns; i++) {
 		pieces[i][j] = makePiece(image,
 					  points[i][j],
-					  points[i][j+1],
-					  points[i+1][j],
-					  points[i+1][j+1],
+					  points[i][j + 1],
+					  points[i + 1][j],
+					  points[i + 1][j + 1],
 					  width, height);
 		updateProgress();
 	    }
@@ -100,10 +100,10 @@ public class QuadCutter extends JigsawCutter {
 	    width = tWidth - minX;
 	}
 	if (minY + height > tHeight) {
-	    height = tHeight-minY;
+	    height = tHeight - minY;
 	}
 
-	int[] data = new int[width*height];
+	int[] data = new int[width * height];
 	data = image.getRGB(minX, minY, width, height, data, 0, width);
 
 	// Mask out anything outside the lines.
@@ -112,7 +112,7 @@ public class QuadCutter extends JigsawCutter {
 	maskOutside(data, se, sw, minX, minY, width, height);
 	maskOutside(data, sw, nw, minX, minY, width, height);
 
-	int rotation = ((int) (Math.random()*4)) * 90;
+	int rotation = ((int) (Math.random() * 4)) * 90;
 	return
 	    new Piece(data, minX, minY, width, height, tWidth, tHeight,
 			rotation);
@@ -139,8 +139,8 @@ public class QuadCutter extends JigsawCutter {
 	    for (int i = 0; i < width; i++) {
 		// int x = i+minX;
 		int x = i;
-		if (y*mD < mN*x + bN) {
-		    data[j*width+i] = 0;
+		if (y * mD < mN * x + bN) {
+		    data[j * width + i] = 0;
 		}
 	    }
 	}
