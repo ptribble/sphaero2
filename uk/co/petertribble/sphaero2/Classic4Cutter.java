@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
  * 0-4 holes, and will mostly likely have 2. Pieces are all roughly square,
  * not counting the knobs and holes.
  */
-public class Classic4Cutter extends JigsawCutter {
+public final class Classic4Cutter extends JigsawCutter {
 
     @Override
     public String getName() {

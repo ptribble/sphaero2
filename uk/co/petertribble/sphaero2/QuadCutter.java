@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  * rows and columns, with their edges tilting at various angles. Each piece
  * will be about 1.2 times as wide as it is tall.
  */
-public class QuadCutter extends JigsawCutter {
+public final class QuadCutter extends JigsawCutter {
 
     private static final double WSCALE = 1.2;
 

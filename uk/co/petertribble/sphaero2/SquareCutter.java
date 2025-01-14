@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
  * Cuts the puzzle into uniform squares. If the image dimensions aren't an
  * integer number of squares the ends are extended to fit.
  */
-public class SquareCutter extends JigsawCutter {
+public final class SquareCutter extends JigsawCutter {
 
     @Override
     public String getName() {

@@ -8,7 +8,7 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author Peter Tribble
  */
-public class JigFileFilter extends FileFilter {
+public final class JigFileFilter extends FileFilter {
     @Override
     public boolean accept(File f) {
 	return f.isDirectory() || JigUtil.isImage(f);

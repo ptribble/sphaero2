@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * Cuts the puzzle into uniform rectangles.
  */
-public class RectCutter extends JigsawCutter {
+public final class RectCutter extends JigsawCutter {
 
     @Override
     public String getName() {

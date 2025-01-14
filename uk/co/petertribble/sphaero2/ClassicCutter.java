@@ -13,7 +13,7 @@ import java.awt.image.BufferedImage;
  * sides; two opposite sides have knobs, and the other two have holes.
  * Pieces are all roughly square, not counting the knobs and holes.
  */
-public class ClassicCutter extends JigsawCutter {
+public final class ClassicCutter extends JigsawCutter {
 
     @Override
     public String getName() {

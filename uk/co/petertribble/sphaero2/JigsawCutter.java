@@ -21,7 +21,7 @@ public abstract class JigsawCutter {
     public int progressmax;
 
     @Override
-    public String toString() {
+    public final String toString() {
 	return getName();
     }
 
