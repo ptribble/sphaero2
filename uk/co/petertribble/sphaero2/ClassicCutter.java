@@ -9,8 +9,8 @@ import java.awt.image.BufferedImage;
 //   small.
 
 /**
- * Cuts pieces into the "classic" look.  Every non-border piece has four
- * sides; two opposite sides have knobs, and the other two have holes.
+ * Cuts the image into pieces with the "classic" look.  Every non-border piece
+ * has four sides; two opposite sides have knobs, and the other two have holes.
  * Pieces are all roughly square, not counting the knobs and holes.
  */
 public final class ClassicCutter extends JigsawCutter {

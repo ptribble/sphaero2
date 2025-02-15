@@ -3,7 +3,7 @@ package uk.co.petertribble.sphaero2;
 import java.awt.image.BufferedImage;
 
 /**
- * Cuts the puzzle into uniform rectangles.
+ * Cuts the image into uniform rectangles.
  */
 public final class RectCutter extends JigsawCutter {
 

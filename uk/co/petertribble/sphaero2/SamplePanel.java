@@ -11,6 +11,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * A panel displaying some sample images, allowing the user to select
+ * a built in image for the jigsaw.
+ */
 public class SamplePanel extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
@@ -21,7 +25,7 @@ public class SamplePanel extends JPanel implements ActionListener {
     private static final String SAMPLE_DIR = "/usr/share/sphaero2/samples";
 
     /**
-     * Create a new SamplePanel, to display some sample jogsaw images.
+     * Create a new SamplePanel, to display some sample jigsaw images.
      *
      * @param jtf a JTextField, used by callers of this class to read the
      * filename of the selected image

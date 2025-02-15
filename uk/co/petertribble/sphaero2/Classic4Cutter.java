@@ -9,10 +9,10 @@ import java.awt.image.BufferedImage;
 //   small.
 
 /**
- * Cuts pieces with each side being equally likely of having the knob
- * facing north, south, east or west.  Each piece subsequently may have
- * 0-4 holes, and will mostly likely have 2. Pieces are all roughly square,
- * not counting the knobs and holes.
+ * Cuts the image into pieces with each side being equally likely of having
+ * the knob facing north, south, east or west.  Each piece subsequently may
+ * have 0-4 holes, and will mostly likely have 2. Pieces are all roughly
+ * square, not counting the knobs and holes.
  */
 public final class Classic4Cutter extends JigsawCutter {
 

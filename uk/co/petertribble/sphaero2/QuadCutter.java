@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 
 /**
- * Cuts pieces into random quadrilaterals.  Pieces are arranged into rough
+ * Cuts the image into random quadrilaterals.  Pieces are arranged into rough
  * rows and columns, with their edges tilting at various angles. Each piece
  * will be about 1.2 times as wide as it is tall.
  */
