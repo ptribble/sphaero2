@@ -12,7 +12,7 @@ import java.util.Set;
  * Piece object.  Pieces that weren't created this way are referred to here
  * as <i>atomic pieces</i>.
  */
-public class MultiPiece extends Piece {
+public final class MultiPiece extends Piece {
 
     // Subpieces.  Records of subs are necessary because of rotation.
     // Without it, subpiece images can be thrown away after they're combined

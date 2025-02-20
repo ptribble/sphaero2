@@ -71,7 +71,7 @@ import javax.swing.border.Border;
  * 256Mb for large (1024x768 pixels) images, 200 pieces, and occasionally
  * will still get an OutOfMemoryError as above.
  */
-public class JigsawFrame extends JFrame implements ActionListener {
+public final class JigsawFrame extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 

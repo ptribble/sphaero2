@@ -30,7 +30,7 @@ import javax.swing.Timer;
 /**
  * Jigsaw puzzle.
  */
-public class JigsawPuzzle extends JPanel {
+public final class JigsawPuzzle extends JPanel {
     // Class constants ------------------------------------------------------
     private static final long serialVersionUID = 1L;
 

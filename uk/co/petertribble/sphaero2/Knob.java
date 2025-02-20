@@ -20,7 +20,7 @@ import java.awt.geom.GeneralPath;
  * A knob on one side of an interlocking jigsaw piece.  Knobs are also
  * known as tabs.
  */
-public class Knob {
+public final class Knob {
 
     // Control data.  There are five points describing a knob.
     //  #1 is the start corner.

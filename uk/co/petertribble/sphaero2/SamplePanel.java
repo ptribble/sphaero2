@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  * A panel displaying some sample images, allowing the user to select
  * a built in image for the jigsaw.
  */
-public class SamplePanel extends JPanel implements ActionListener {
+public final class SamplePanel extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 

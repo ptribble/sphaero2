@@ -343,6 +343,11 @@ public class Piece {
 	setPuzzlePosition(x, y);
     }
 
+    /**
+     * Return a String, solely for debugging purposes.
+     *
+     * @return a String describing the properties of this Piece
+     */
     @Override
     public String toString() {
 	return "Piece[iPos=(" + imageX + "," + imageY + "),"
