@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: CDDL-1.0
 #
+# Copyright 2025 Peter C. Tribble
+#
 
 #
 # new PMD version has categories only
@@ -62,7 +64,7 @@ pmd)
 	if [ ! -d "${HOME}/.pmd" ]; then
 	    mkdir -p "${HOME}/.pmd"
 	fi
-	pmd check --cache "${PMDCACHE}" -d uk -R "$RULESETS" --use-version java-11 --aux-classpath $(echo lib/java/* | sed 's= =:=g') 2>/dev/null
+	pmd check --cache "${PMDCACHE}" -d uk -R "$RULESETS" --use-version java-11 2>/dev/null
 	exit 0
 	;;
 esac
