@@ -3,6 +3,7 @@ package uk.co.petertribble.sphaero2;
 import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
+import java.util.concurrent.ThreadLocalRandom;
 
 // ### Trouble with this scheme: roundoff error, apparently.  Transformed
 //   paths aren't guaranteed to end up exactly at the endpoints.
@@ -179,18 +180,19 @@ public final class Knob {
 
     private void jitter(float[][] pts, float xVar, float yVar,
 			 float bVar, float fVar) {
+	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	for (int i = 0; i < pts.length; i++) {
 	    float b = pts[i][XDB];
 	    float f = pts[i][XDF];
 	    // x,y each varies by + or - itsVar
 	    // first and last x do not vary
 	    if ((i > 0) && (i < pts.length - 1)) {
-		pts[i][X] += Math.random() * xVar * 2 - xVar;
+		pts[i][X] += trandom.nextFloat() * xVar * 2 - xVar;
 	    }
-	    pts[i][Y] += Math.random() * yVar * 2 - yVar;
+	    pts[i][Y] += trandom.nextFloat() * yVar * 2 - yVar;
 	    // b,f each varies by + or - it*itsVar
-	    pts[i][XDB] += Math.random() * b * bVar * 2 - b * bVar;
-	    pts[i][XDF] += Math.random() * f * fVar * 2 - f * fVar;
+	    pts[i][XDB] += trandom.nextFloat() * b * bVar * 2 - b * bVar;
+	    pts[i][XDF] += trandom.nextFloat() * f * fVar * 2 - f * fVar;
 	}
     }
 

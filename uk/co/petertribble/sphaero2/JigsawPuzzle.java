@@ -19,6 +19,7 @@ import java.awt.image.MemoryImageSource;
 import java.awt.image.PixelGrabber;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.List;
 import java.util.ListIterator;
 import javax.swing.JPanel;
@@ -574,7 +575,7 @@ public final class JigsawPuzzle extends JPanel {
 	int eArea = east.width * east.height;
 	int totalArea = nArea + sArea + wArea + eArea;
 
-	int rand = (int) (Math.random() * totalArea);
+	int rand = ThreadLocalRandom.current().nextInt(totalArea);
 
 	rand -= nArea;
 	if (rand < 0) {
@@ -595,8 +596,8 @@ public final class JigsawPuzzle extends JPanel {
     }
 
     private void shuffle(Piece piece, Rectangle rect) {
-	int dx = (int) (Math.random() * rect.width);
-	int dy = (int) (Math.random() * rect.height);
+	int dx = ThreadLocalRandom.current().nextInt(rect.width);
+	int dy = ThreadLocalRandom.current().nextInt(rect.height);
 	piece.moveTo(rect.x + dx, rect.y + dy);
     }
 
@@ -672,10 +673,11 @@ public final class JigsawPuzzle extends JPanel {
 	int height = getHeight();
 	int width = getWidth();
 
+	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	for (Piece piece : pieces) {
 	    piece.setPuzzlePosition(
-		(int) (Math.random() * (width  - piece.getCurrentWidth())),
-		(int) (Math.random() * (height - piece.getCurrentHeight())));
+		trandom.nextInt((width  - piece.getCurrentWidth())),
+		trandom.nextInt((height - piece.getCurrentHeight())));
 	    zOrder.add(piece);
 	}
 	Collections.shuffle(zOrder);

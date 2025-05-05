@@ -1,6 +1,7 @@
 package uk.co.petertribble.sphaero2;
 
 import java.awt.image.BufferedImage;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Cuts the image into uniform squares. If the image dimensions aren't an
@@ -44,7 +45,7 @@ public final class SquareCutter extends JigsawCutter {
 	    for (int j = 0; j < columns; j++) {
 		int pieceW = x2 - x1 + 1;
 		int pieceH = y2 - y1 + 1;
-		int rotation = (int) (Math.random() * 4) * 90;
+		int rotation = ThreadLocalRandom.current().nextInt(4) * 90;
 		matrix[i][j] = new Piece(
 				getImageData(image, x1, y1, pieceW, pieceH),
 				x1, y1, pieceW, pieceH,

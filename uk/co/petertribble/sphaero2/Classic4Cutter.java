@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.ThreadLocalRandom;
 
 // ### Pieces are a bit "prickly" in appearance, particularly if they're
 //   small.
@@ -49,6 +50,7 @@ public final class Classic4Cutter extends JigsawCutter {
 	int columns = Math.round(prefPieces / rows);
 
 	startProgress(rows * columns);
+	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 
 	// Make a matrix of points representing the corners of the pieces.
 	// Each point is based on a grid of equal rectangles, and can then
@@ -66,10 +68,10 @@ public final class Classic4Cutter extends JigsawCutter {
 		int x = i * width / columns;
 		int y = baseY;
 		if (i > 0 && i < columns) {
-		    x += Math.random() * (2 * wVary + 1) - wVary;
+		    x += trandom.nextInt(2 * wVary + 1) - wVary;
 		}
 		if (j > 0 && j < rows) {
-		    y += Math.random() * (2 * hVary + 1) - hVary;
+		    y += trandom.nextInt(2 * hVary + 1) - hVary;
 		}
 		points[i][j] = new Point(x, y);
 	    }
@@ -84,7 +86,7 @@ public final class Classic4Cutter extends JigsawCutter {
 	    for (int i = 0; i < columns - 1; i++) {
 		Point p1 = points[i + 1][j];
 		Point p2 = points[i + 1][j + 1];
-		boolean flip = Math.random() >= 0.5;
+		boolean flip = trandom.nextBoolean();
 		if (flip) {
 		    Point temp = p1; p1 = p2; p2 = temp;
 		}
@@ -101,7 +103,7 @@ public final class Classic4Cutter extends JigsawCutter {
 	    for (int i = 0; i < columns; i++) {
 		Point p1 = points[i][j + 1];
 		Point p2 = points[i + 1][j + 1];
-		boolean flip = Math.random() >= 0.5;
+		boolean flip = trandom.nextBoolean();
 		if (flip) {
 		    Point temp = p1; p1 = p2; p2 = temp;
 		}
@@ -196,7 +198,7 @@ public final class Classic4Cutter extends JigsawCutter {
 	int minY = box.y;
 	mask(data, path, minX, minY, width, height);
 
-	int rotation = ((int) (Math.random() * 4)) * 90;
+	int rotation = ThreadLocalRandom.current().nextInt(4) * 90;
 
 	return new Piece(data, minX, minY, width, height,
 			tWidth, tHeight, rotation);

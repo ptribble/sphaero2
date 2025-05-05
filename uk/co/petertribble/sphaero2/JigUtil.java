@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JPanel;
 
 /**
@@ -111,7 +112,7 @@ public final class JigUtil {
 		    attempts++;
 		    continue;
 		}
-		int idx = (int) Math.floor(Math.random() * files.length);
+		int idx = ThreadLocalRandom.current().nextInt(files.length);
 		file = files[idx];
 	    }
 	    attempts++;

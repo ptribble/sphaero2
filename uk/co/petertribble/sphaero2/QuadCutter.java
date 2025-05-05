@@ -2,6 +2,7 @@ package uk.co.petertribble.sphaero2;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Cuts the image into random quadrilaterals.  Pieces are arranged into rough
@@ -52,6 +53,7 @@ public final class QuadCutter extends JigsawCutter {
 	int hVary = height / (rows * 10);
 	int wVary = width / (columns * 10);
 	Point[][] points = new Point[columns + 1][rows + 1];
+	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	// i varies horizontally; j varies vertically
 	for (int j = 0; j <= rows; j++) {
 	    int baseY = j * height / rows;
@@ -60,10 +62,10 @@ public final class QuadCutter extends JigsawCutter {
 		int x = baseX;
 		int y = baseY;
 		if (i > 0 && i < columns) {
-		    x += Math.random() * (2 * wVary + 1) - wVary;
+		    x += trandom.nextInt(2 * wVary + 1) - wVary;
 		}
 		if (j > 0 && j < rows) {
-		    y += Math.random() * (2 * hVary + 1) - hVary;
+		    y += trandom.nextInt(2 * hVary + 1) - hVary;
 		}
 		points[i][j] = new Point(x, y);
 	    }
@@ -112,7 +114,7 @@ public final class QuadCutter extends JigsawCutter {
 	maskOutside(data, se, sw, minX, minY, width, height);
 	maskOutside(data, sw, nw, minX, minY, width, height);
 
-	int rotation = ((int) (Math.random() * 4)) * 90;
+	int rotation = ThreadLocalRandom.current().nextInt(4) * 90;
 	return
 	    new Piece(data, minX, minY, width, height, tWidth, tHeight,
 			rotation);

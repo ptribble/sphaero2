@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.GeneralPath;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.ThreadLocalRandom;
 
 // ### Pieces are a bit "prickly" in appearance, particularly if they're
 //   small.
@@ -56,6 +57,7 @@ public final class ClassicCutter extends JigsawCutter {
 	int hVary = height / (rows * 20);
 	int wVary = width / (columns * 20);
 	Point[][] points = new Point[columns + 1][rows + 1];
+	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	// i varies horizontally; j varies vertically
 	for (int j = 0; j <= rows; j++) {
 	    int baseY = j * height / rows;
@@ -64,10 +66,10 @@ public final class ClassicCutter extends JigsawCutter {
 		int x = i * width / columns;
 		int y = baseY;
 		if (i > 0 && i < columns) {
-		    x += Math.random() * (2 * wVary + 1) - wVary;
+		    x += trandom.nextInt(2 * wVary + 1) - wVary;
 		}
 		if (j > 0 && j < rows) {
-		    y += Math.random() * (2 * hVary + 1) - hVary;
+		    y += trandom.nextInt(2 * hVary + 1) - hVary;
 		}
 		points[i][j] = new Point(x, y);
 	    }
@@ -192,7 +194,7 @@ public final class ClassicCutter extends JigsawCutter {
 	int minY = box.y;
 	mask(data, path, minX, minY, width, height);
 
-	int rotation = ((int) (Math.random() * 4)) * 90;
+	int rotation = ThreadLocalRandom.current().nextInt(4) * 90;
 
 	return new Piece(data, minX, minY, width, height,
 			tWidth, tHeight, rotation);
