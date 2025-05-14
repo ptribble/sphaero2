@@ -82,8 +82,8 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     private JMenuItem helpItem;
     private JMenuItem aboutItem;
     private JMenuItem pictureItem;
-    private Image image;
-    private Icon miniImage;
+    private transient Image image;
+    private transient Icon miniImage;
 
     // for the interactive prompt
     private static final Color HELP_COLOR = new Color(100, 100, 150);
@@ -98,7 +98,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     private int pWidth = 640;
 
     private int defaultPieces = JigsawCutter.DEFAULT_PIECES;
-    private JigsawCutter defaultCutter;
+    private transient JigsawCutter defaultCutter;
 
     private static final JigsawCutter[] CUTTERS = {
 	new Classic4Cutter(),

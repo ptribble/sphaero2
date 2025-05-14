@@ -76,9 +76,9 @@ public final class JigsawPuzzle extends JPanel {
 
     private static final Rectangle EMPTYRECT = new Rectangle(0, 0, 0, 0);
 
-    private final BufferedImage image;
-    Image finishedImage;
-    private final JigsawCutter cutter;
+    private final transient BufferedImage image;
+    transient Image finishedImage;
+    private final transient JigsawCutter cutter;
     private Dimension prefSize;
     private boolean mouseDown;
     private boolean finished;
@@ -89,7 +89,7 @@ public final class JigsawPuzzle extends JPanel {
     private int transX;
     private int transY;
     // Last in list = topmost piece
-    private List<Piece> zOrder;
+    private transient List<Piece> zOrder;
     private int bgColor = 4;
     private int clearX0;
     private int clearY0;
@@ -99,7 +99,7 @@ public final class JigsawPuzzle extends JPanel {
 
     // If a keyboard command can affect a piece, it'll be this one.
     // Typically, this piece should be last in zOrder, but you never know.
-    private Piece focusPiece;
+    private transient Piece focusPiece;
 
     // this is the timer label
     private TimeLabel tlabel;

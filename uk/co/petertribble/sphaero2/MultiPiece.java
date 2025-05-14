@@ -192,7 +192,7 @@ public final class MultiPiece extends Piece {
     }
 
     // 4-way rotation -------------------------------------------------------
-
+    @Override
     protected void recomputeImageData() {
 	setRotatedPosition();
 	// System.out.println ("recomputing: "+this);
