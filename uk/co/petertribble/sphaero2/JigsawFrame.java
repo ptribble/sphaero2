@@ -36,38 +36,38 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 
 /**
- * JFrame that runs a JigsawPuzzle. This is the front end for
+ * <p>JFrame that runs a JigsawPuzzle. This is the front end for
  * JigsawPuzzle, the main class of the jigsaw application.
  *
- * "Sphaero" is short for "Sphaerodactylinea". This is the name of one
+ * <p>"Sphaero" is short for "Sphaerodactylinea". This is the name of one
  * of the subfamilies of geckos, including house geckos, tokay geckos,
  * striped leaf geckos, and several other common varieties. It reminded me
  * of Escher's depiction of a 2D surface tiled by lizards, which vaguely
  * resemble jigsaw puzzle pieces. Hence the name. ("Gecko" was already
  * taken.)
  *
- * Known Bugs
+ * <p>Known Bugs
  *
- * You can rotate a piece or pieces while dragging them; that's a
+ * <p>You can rotate a piece or pieces while dragging them; that's a
  * feature.  However, it doesn't rotate around the mouse cursor in that
  * case. It uses the center of mass of the piece (I think); the upshot is
  * that a piece may appear to jump out from under the cursor, yet still
  * respond to dragging.
  *
- * The program may report one or more NullPointerExceptions when
+ * <p>The program may report one or more NullPointerExceptions when
  * loading the image. This seems to be in the native image-loading code,
  * possibly due to some image data being accessed before it has loaded.
  * I've never seen any missing pieces or image data as a result of this,
  * however.
  *
- * The most serious bug is an OutOfMemoryError while the puzzle is
+ * <p>The most serious bug is an OutOfMemoryError while the puzzle is
  * being solved. This occurs particularly on large images and large
  * numbers of pieces (200+), and even then only if picture is solved by
  * forming one large set of fitted pieces, and adding pieces singly to
  * that. If it's solved instead by forming medium-sized sections first,
  * and then fitting those sections together at the end, no problems arise.
  *
- * This program uses a fair bit of memory. I use a max heap size of
+ * <p>This program uses a fair bit of memory. I use a max heap size of
  * 256Mb for large (1024x768 pixels) images, 200 pieces, and occasionally
  * will still get an OutOfMemoryError as above.
  */
@@ -75,28 +75,76 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The menu bar at the top of the game.
+     */
     private JMenuBar jmb;
+    /**
+     * The main menu.
+     */
     private JMenu jmh;
+    /**
+     * A JMenuItem to start a new puzzle.
+     */
     private JMenuItem newItem;
+    /**
+     * A JMenuItem to exit the game.
+     */
     private JMenuItem exitItem;
+    /**
+     * A JMenuItem to show the help window.
+     */
     private JMenuItem helpItem;
+    /**
+     * A JMenuItem to show the about text.
+     */
     private JMenuItem aboutItem;
+    /**
+     * A JMenuItem to show the main image.
+     */
     private JMenuItem pictureItem;
     private transient Image image;
     private transient Icon miniImage;
 
     // for the interactive prompt
     private static final Color HELP_COLOR = new Color(100, 100, 150);
+    /**
+     * A field to display the name of the image.
+     */
     private JTextField imageField;
+    /**
+     * A button to browse the file system.
+     */
     private JButton browseButton;
+    /**
+     * A comb box to select the cutter.
+     */
     private JComboBox<JigsawCutter> cutterCBox;
+    /**
+     * A spinner to change the number of pieces.
+     */
     private JSpinner pieceSpinner;
+    /**
+     * A label to describe the selected cutter.
+     */
     private JLabel cutterDescLabel;
+    /**
+     * The confirmation button.
+     */
     private JButton okButton;
 
+    /**
+     * Preferred height.
+     */
     private int pHeight = 480;
+    /**
+     * Preferred width.
+     */
     private int pWidth = 640;
 
+    /**
+     * The starting number of pieces to show.
+     */
     private int defaultPieces = JigsawCutter.DEFAULT_PIECES;
     private transient JigsawCutter defaultCutter;
 
@@ -114,7 +162,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      * on the command line, it will be used; otherwise the user will be
      * prompted.
      *
-     * <h1>Command line arguments</h1>
+     * <b>Command line arguments</b>
      *
      * <pre>
      * -p &lt;<i>number</i>&gt; Cut the picture into roughly this number of
@@ -130,9 +178,9 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      * <p>100 pieces are created by default. If no filename is given, the
      * current folder is used.
      *
-     * <h1>Puzzle commands</h1>
+     * <b>Puzzle commands</b>
      *
-     * <p> Pieces can be dragged around with the mouse. The piece (or group
+     * <p>Pieces can be dragged around with the mouse. The piece (or group
      * of pieces) most recently dragged or clicked on is the active piece.
      * Press R to rotate the active piece (or group) 90 degrees clockwise.
      * Press E to rotate it 90 degrees counter-clockwise. (Case doesn't

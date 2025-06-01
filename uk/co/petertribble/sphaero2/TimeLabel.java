@@ -15,12 +15,29 @@ public final class TimeLabel extends JLabel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * The Timer to track how long it has taken to solve the puzzle.
+     */
     private Timer timer;
+
+    /**
+     * The time the puzzle was started.
+     */
     private long startmillis;
+
+    /**
+     * If the puzzle is paused, this will save the time at which the pause
+     * started.
+     */
     private long pausemillis;
 
     private static final String ELAPSED_LABEL = "Elapsed time: ";
     private static final String PAUSED_LABEL = "(Paused) time: ";
+
+    /**
+     * A String to hold the currently displayed type of label, which will
+     * vary depending on whether the game is running or paused.
+     */
     private String currentLabel;
 
     /**

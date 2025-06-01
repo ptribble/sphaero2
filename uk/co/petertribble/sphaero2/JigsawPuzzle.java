@@ -38,15 +38,40 @@ public final class JigsawPuzzle extends JPanel {
     // ### Allow background to be changed.
     // ### Allow these to be configured.
     // Keyboard commands
+    /**
+     * The character, E, used to rotate a piece to the left.
+     */
     public static final char ROTATE_LEFT = 'E';
+    /**
+     * The character, R, used to rotate a piece to the right.
+     */
     public static final char ROTATE_RIGHT = 'R';
+    /**
+     * The character, S, used to shuffle the puzzle pieces.
+     */
     public static final char SHUFFLE = 'S';
     // change to Next and Previous ?
+    /**
+     * The character, V, used to change to the previous background color.
+     */
     public static final char PREV_BG = 'V';
+    /**
+     * The character, B, used to change to the next background color.
+     */
     public static final char NEXT_BG = 'B';
+    /**
+     * The character, P, used to push a piece to the back.
+     */
     public static final char PUSH = 'P';
+    /**
+     * The character, C, used to toggle clear mode, in which pieces are moved
+     * out of the selected area.
+     */
     public static final char CLEAR = 'C';
     // hide for pause
+    /**
+     * The character, H, used to hide pieces, to pause the puzzle.
+     */
     public static final char HIDE = 'H';
 
     // Available background colors
@@ -79,29 +104,70 @@ public final class JigsawPuzzle extends JPanel {
     private final transient BufferedImage image;
     transient Image finishedImage;
     private final transient JigsawCutter cutter;
+    /**
+     * The preferred size of the game.
+     */
     private Dimension prefSize;
+    /**
+     * Remember if the mouse is held down.
+     */
     private boolean mouseDown;
+    /**
+     * Track if the puzzle is finished.
+     */
     private boolean finished;
+    /**
+     * Track if the game is in clear mode.
+     */
     private boolean clearMode;
+    /**
+     * Track if the puzzle is paused.
+     */
     private boolean paused;
-    // Translation from a piece's upper-left corner to the point you clicked
-    // on.
+    /**
+     * Translation from a piece's upper-left corner to the point you clicked
+     * on.
+     */
     private int transX;
+    /**
+     * Translation from a piece's upper-left corner to the point you clicked
+     * on.
+     */
     private int transY;
     // Last in list = topmost piece
     private transient List<Piece> zOrder;
+    /**
+     * An int holding the current background color.
+     */
     private int bgColor = 4;
+    /**
+     * The coordinates of the clear box.
+     */
     private int clearX0;
+    /**
+     * The coordinates of the clear box.
+     */
     private int clearY0;
+    /**
+     * The coordinates of the clear box.
+     */
     private int clearX1;
+    /**
+     * The coordinates of the clear box.
+     */
     private int clearY1;
+    /**
+     * The Color of the clear box.
+     */
     private Color clearColor;
 
     // If a keyboard command can affect a piece, it'll be this one.
     // Typically, this piece should be last in zOrder, but you never know.
     private transient Piece focusPiece;
 
-    // this is the timer label
+    /**
+     * The timer label that shows the running or finished solution time.
+     */
     private TimeLabel tlabel;
 
     /**

@@ -103,17 +103,29 @@ public class Piece {
     protected Set<Piece> neighbors;
 
     /**
-     * Original image size and data.
+     * Original image width.
      */
     protected int origWidth;
+    /**
+     * Original image height.
+     */
     protected int origHeight;
+    /*
+     * Original image data.
+     */
     private int[] origData;
 
     /**
-     * Current size and data, taking rotation into account.
+     * Current width, taking rotation into account.
      */
     protected int curWidth;
+    /**
+     * Current height, taking rotation into account.
+     */
     protected int curHeight;
+    /**
+     * Current data, taking rotation into account.
+     */
     protected int[] curData;
 
     // Location in the puzzle panel.

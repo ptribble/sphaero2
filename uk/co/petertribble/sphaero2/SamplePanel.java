@@ -19,7 +19,14 @@ public final class SamplePanel extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * A JTextField, used by callers of this class to read the
+     * filename of the selected image.
+     */
     private JTextField jtf;
+    /**
+     * The number of available sample images.
+     */
     private int nSamples;
     private transient Map<JButton, String> fmap = new HashMap<>();
     private static final String SAMPLE_DIR = "/usr/share/sphaero2/samples";

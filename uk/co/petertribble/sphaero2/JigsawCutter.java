@@ -12,12 +12,39 @@ import javax.swing.JProgressBar;
  */
 public abstract class JigsawCutter {
 
+    /**
+     * The default number of pieces, 100.
+     */
     public static final int DEFAULT_PIECES = 100;
+
+    /**
+     * The minimum number of pieces, 4, that the gui will allow the user
+     * to choose.
+     */
     public static final int MIN_PIECES = 4;
+
+    /**
+     * The maximum number of pieces, 1000, that the gui will allow the user
+     * to choose.
+     */
     public static final int MAX_PIECES = 1000;
+
+    /**
+     * The number of pieces the user requests the picture be cut into.
+     * The game will attempt to create close to that many pieces.
+     */
     public int prefPieces = DEFAULT_PIECES;
+    /**
+     * A bar to show progress to the user.
+     */
     public JProgressBar jp;
+    /**
+     * How far the progress bar has got.
+     */
     public int iprogress;
+    /**
+     * The maximum value progress can reach.
+     */
     public int progressmax;
 
     @Override

@@ -49,7 +49,13 @@ public final class ImagePreview extends JComponent
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * An ImageIcon to display a thumbnail of the selected image.
+     */
     private ImageIcon thumbnail;
+    /**
+     * The File selected by the user.
+     */
     private File file;
 
     /**
