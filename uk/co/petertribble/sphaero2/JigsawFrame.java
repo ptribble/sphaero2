@@ -224,7 +224,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     }
 
     private void initFrameWork() {
-	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	JMenu jmf = new JMenu("File");
 	jmf.setMnemonic(KeyEvent.VK_F);

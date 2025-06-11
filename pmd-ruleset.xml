@@ -16,7 +16,6 @@
       <exclude name="EmptyCatchBlock"/>
       <exclude name="ReturnEmptyCollectionRatherThanNull"/>
       <exclude name="DoNotCallGarbageCollectionExplicitly"/>
-      <exclude name="UnnecessaryFullyQualifiedName"/>
     </rule>
     <rule ref="category/java/performance.xml">
       <exclude name="AvoidArrayLoops"/>

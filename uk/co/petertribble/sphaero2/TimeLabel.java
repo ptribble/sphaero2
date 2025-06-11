@@ -3,7 +3,6 @@ package uk.co.petertribble.sphaero2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 /**
@@ -45,7 +44,7 @@ public final class TimeLabel extends JLabel implements ActionListener {
      * final elapsed time taken to solve the puzzle.
      */
     public TimeLabel() {
-	super("|", SwingConstants.RIGHT);
+	super("|", RIGHT);
 	currentLabel = ELAPSED_LABEL;
     }
 
