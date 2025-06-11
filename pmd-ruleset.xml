@@ -31,7 +31,6 @@
       <exclude name="CompareObjectsWithEquals"/>
       <exclude name="EmptyCatchBlock"/>
       <exclude name="NullAssignment"/>
-      <exclude name="AvoidFieldNameMatchingMethodName"/>
       <exclude name="UseProperClassLoader"/>
       <exclude name="ConstructorCallsOverridableMethod"/>
       <exclude name="ReturnEmptyCollectionRatherThanNull"/>

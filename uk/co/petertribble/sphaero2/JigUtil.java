@@ -183,10 +183,10 @@ public final class JigUtil {
 			"rotate piece left 90 degrees")
 	    + tableLine(JigsawPuzzle.ROTATE_RIGHT,
 			"rotate piece right 90 degrees")
-	    + tableLine(JigsawPuzzle.SHUFFLE,
+	    + tableLine(JigsawPuzzle.SHUFFLE_KEY,
 			"shuffle all pieces (good for finding pieces "
 			+ "accidentally moved off the board)")
-	    + tableLine(JigsawPuzzle.PUSH,
+	    + tableLine(JigsawPuzzle.PUSH_KEY,
 			"push the top piece to the back (handy if it's "
 			+ "hiding other pieces)")
 	    + tableLine(JigsawPuzzle.PREV_BG,

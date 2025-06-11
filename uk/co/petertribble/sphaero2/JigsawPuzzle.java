@@ -49,7 +49,7 @@ public final class JigsawPuzzle extends JPanel {
     /**
      * The character, S, used to shuffle the puzzle pieces.
      */
-    public static final char SHUFFLE = 'S';
+    public static final char SHUFFLE_KEY = 'S';
     // change to Next and Previous ?
     /**
      * The character, V, used to change to the previous background color.
@@ -62,7 +62,7 @@ public final class JigsawPuzzle extends JPanel {
     /**
      * The character, P, used to push a piece to the back.
      */
-    public static final char PUSH = 'P';
+    public static final char PUSH_KEY = 'P';
     /**
      * The character, C, used to toggle clear mode, in which pieces are moved
      * out of the selected area.
@@ -683,9 +683,9 @@ public final class JigsawPuzzle extends JPanel {
 	    rotatePiece(270);
 	} else if (ch == ROTATE_RIGHT) {
 	    rotatePiece(90);
-	} else if (ch == SHUFFLE) {
+	} else if (ch == SHUFFLE_KEY) {
 	    shuffle();
-	} else if (ch == PUSH) {
+	} else if (ch == PUSH_KEY) {
 	    push();
 	} else if (ch == CLEAR) {
 	    toggleClearMode();
