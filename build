@@ -6,9 +6,9 @@
 #
 
 #
-# new PMD version has categories only
+# new PMD version 7 only has categories, configured in pmd-ruleset.xml
 #
-PMDCATRULES="security bestpractices multithreading"
+PMDRULES="./pmd-ruleset.xml"
 PMDCACHE="${HOME}/.pmd/cache.sphaero2"
 
 JAVAC="javac"
@@ -54,17 +54,10 @@ javadoc)
 	exit 0
 	;;
 pmd)
-	RULESETS=""
-	shift
-	for RULE in $PMDCATRULES "$@"
-	do
-	    RULESETS="${RULESETS},category/java/${RULE}.xml"
-	done
-	RULESETS=${RULESETS/,/}
 	if [ ! -d "${HOME}/.pmd" ]; then
 	    mkdir -p "${HOME}/.pmd"
 	fi
-	pmd check --cache "${PMDCACHE}" -d uk -R "$RULESETS" --use-version java-11 2>/dev/null
+	pmd check --cache "${PMDCACHE}" -d uk -R ${PMDRULES} --use-version java-11 2>/dev/null
 	exit 0
 	;;
 esac
