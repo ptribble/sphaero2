@@ -505,7 +505,7 @@ public class Piece {
 	    c = (((data[y * width + x] >> 24) & 0xff) > 0);
 	    while ((x < width) && (y < height)) {
 		if ((x + 1 < width) && (y + 1 < height)) {
-		    se = (((data[(y + 1) * width + (x + 1)] >> 24) & 0xff) > 0);
+		    se = ((data[(y + 1) * width + x + 1] >> 24) & 0xff) > 0;
 		} else {
 		    se = false;
 		}
@@ -536,7 +536,7 @@ public class Piece {
     private static int brighter(int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
-	int b = (val) & 0xff;
+	int b = val & 0xff;
 
 	// Black goes to #030303 gray
 	if (r == 0 && g == 0 && b == 0) {
@@ -554,7 +554,7 @@ public class Piece {
     private static int darker(int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
-	int b = (val) & 0xff;
+	int b = val & 0xff;
 	r = r * FD / FN;
 	g = g * FD / FN;
 	b = b * FD / FN;
@@ -626,7 +626,7 @@ public class Piece {
 	    for (int i = 0; i < curWidth; i++) {
 		for (int j = 0; j < curHeight; j++) {
 		    curData[j * curWidth + i] =
-			origData[i * origWidth + (origWidth - j - 1)];
+			origData[i * origWidth + origWidth - j - 1];
 		}
 	    }
 	}

@@ -176,7 +176,7 @@ public final class MultiPiece extends Piece {
 	int[] newData = piece.curData;
 
 	// Fold it into the data.  ReSPECT mah transparensah!
-	int offset = (pieceY - dataY) * width + (pieceX - dataX);
+	int offset = (pieceY - dataY) * width + pieceX - dataX;
 
 	for (int i = 0; i < pieceH; i++) {
 	    int iNDOffset = i * pieceW;

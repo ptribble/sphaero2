@@ -79,7 +79,7 @@ public final class SamplePanel extends JPanel implements ActionListener {
      * @return true if there some sample images.
      */
     public boolean samplesValid() {
-	return (nSamples > 0);
+	return nSamples > 0;
     }
 
     /*

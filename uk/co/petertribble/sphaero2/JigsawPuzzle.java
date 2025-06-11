@@ -742,8 +742,8 @@ public final class JigsawPuzzle extends JPanel {
 	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	for (Piece piece : pieces) {
 	    piece.setPuzzlePosition(
-		trandom.nextInt((width  - piece.getCurrentWidth())),
-		trandom.nextInt((height - piece.getCurrentHeight())));
+		trandom.nextInt(width  - piece.getCurrentWidth()),
+		trandom.nextInt(height - piece.getCurrentHeight()));
 	    zOrder.add(piece);
 	}
 	Collections.shuffle(zOrder);
