@@ -60,6 +60,14 @@ pmd)
 	pmd check --cache "${PMDCACHE}" -d uk -R ${PMDRULES} --use-version java-11 2>/dev/null
 	exit 0
 	;;
+spotbugs)
+	#
+	# spotbugs works on the class files, so those need to be available
+	#
+	$JAVAC  -Xlint uk/co/petertribble/sphaero2/*.java
+	spotbugs -auxclasspath sphaero2.jar uk
+	exit 0
+	;;
 esac
 
 $JAVAC -Xlint module-info.java
