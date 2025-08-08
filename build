@@ -5,23 +5,14 @@
 # Copyright 2025 Peter C. Tribble
 #
 
+PATH=/usr/jdk/instances/jdk11/bin:$PATH
+export PATH
+
 #
 # new PMD version 7 only has categories, configured in pmd-ruleset.xml
 #
 PMDRULES="./pmd-ruleset.xml"
 PMDCACHE="${HOME}/.pmd/cache.sphaero2"
-
-JAVAC="javac"
-JAR="jar"
-JAVADOC="javadoc"
-JLINK="jlink"
-
-if [ -f /usr/jdk/instances/jdk11/bin/javac ]; then
-    JAVAC="/usr/jdk/instances/jdk11/bin/javac"
-    JAR="/usr/jdk/instances/jdk11/bin/jar"
-    JAVADOC="/usr/jdk/instances/jdk11/bin/javadoc"
-    JLINK="/usr/jdk/instances/jdk11/bin/jlink"
-fi
 
 case $1 in
 clean)
@@ -41,7 +32,7 @@ package)
 	;;
 jlink)
 	if [ -n "$2" ]; then
-	    $JLINK --compress=2 -G --no-header-files --no-man-pages --launcher sphaero2=uk.co.petertribble.sphaero2/uk.co.petertribble.sphaero2.JigsawFrame --module-path=sphaero2.jar --add-modules uk.co.petertribble.sphaero2 --output "$2"
+	    jlink --compress=2 -G --no-header-files --no-man-pages --launcher sphaero2=uk.co.petertribble.sphaero2/uk.co.petertribble.sphaero2.JigsawFrame --module-path=sphaero2.jar --add-modules uk.co.petertribble.sphaero2 --output "$2"
 	else
 	    echo "ERROR: need an output directory to be specified"
 	fi
@@ -50,7 +41,7 @@ jlink)
 javadoc)
 	rm -fr javadoc
 	mkdir javadoc
-	$JAVADOC -Xdoclint:all -d javadoc uk.co.petertribble.sphaero2
+	javadoc -Xdoclint:all -d javadoc uk.co.petertribble.sphaero2
 	exit 0
 	;;
 pmd)
@@ -64,12 +55,12 @@ spotbugs)
 	#
 	# spotbugs works on the class files, so those need to be available
 	#
-	$JAVAC  -Xlint uk/co/petertribble/sphaero2/*.java
+	javac -Xlint uk/co/petertribble/sphaero2/*.java
 	spotbugs -auxclasspath sphaero2.jar uk
 	exit 0
 	;;
 esac
 
-$JAVAC -Xlint module-info.java
-$JAVAC -Xlint uk/co/petertribble/sphaero2/*.java
-$JAR cmf sphaero2.manifest sphaero2.jar $(find uk -name '*.class') module-info.class pixmaps/sphaero2.png
+javac -Xlint module-info.java
+javac -Xlint uk/co/petertribble/sphaero2/*.java
+jar cmf sphaero2.manifest sphaero2.jar $(find uk -name '*.class') module-info.class pixmaps/sphaero2.png
