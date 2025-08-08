@@ -57,6 +57,7 @@ spotbugs)
 	#
 	javac -Xlint uk/co/petertribble/sphaero2/*.java
 	spotbugs -auxclasspath sphaero2.jar uk
+	rm -f $(find . -name '*.class')
 	exit 0
 	;;
 esac
@@ -64,3 +65,4 @@ esac
 javac -Xlint module-info.java
 javac -Xlint uk/co/petertribble/sphaero2/*.java
 jar cmf sphaero2.manifest sphaero2.jar $(find uk -name '*.class') module-info.class pixmaps/sphaero2.png
+rm -f $(find . -name '*.class')
