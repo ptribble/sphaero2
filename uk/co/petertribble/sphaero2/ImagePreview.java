@@ -63,7 +63,7 @@ public final class ImagePreview extends JComponent
      *
      * @param fc a JFileChooser to decorate
      */
-    public ImagePreview(JFileChooser fc) {
+    public ImagePreview(final JFileChooser fc) {
         setPreferredSize(new Dimension(100, 50));
         fc.addPropertyChangeListener(this);
     }
@@ -90,7 +90,7 @@ public final class ImagePreview extends JComponent
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent e) {
+    public void propertyChange(final PropertyChangeEvent e) {
         boolean update = false;
         String prop = e.getPropertyName();
 
@@ -116,7 +116,7 @@ public final class ImagePreview extends JComponent
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(final Graphics g) {
         if (thumbnail == null) {
             loadImage();
         }

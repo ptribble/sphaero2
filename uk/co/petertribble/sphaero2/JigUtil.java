@@ -32,7 +32,7 @@ public final class JigUtil {
      *
      * @param image the Image to track loading progress of
      */
-    public static void ensureLoaded(Image image) {
+    public static void ensureLoaded(final Image image) {
 	int id = 0;
 	TRACKER.addImage(image, id);
 	try {
@@ -48,7 +48,7 @@ public final class JigUtil {
      *
      * @return the resized Image
      */
-    public static BufferedImage resizedImage(BufferedImage image) {
+    public static BufferedImage resizedImage(final BufferedImage image) {
 	Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 	int wtarg = 3 * screen.width / 5;
 	int htarg = 3 * screen.height / 5;
@@ -85,13 +85,13 @@ public final class JigUtil {
      * @throws FileNotFoundException if no image file could be found after 10
      *   attempts
      */
-    public static File getRandomImageFile(File folder)
+    public static File getRandomImageFile(final File folder)
 	    throws FileNotFoundException {
 	int attempts = 0;
 	File file;
 	FileFilter ff = new FileFilter() {
 	    @Override
-	    public boolean accept(File f) {
+	    public boolean accept(final File f) {
 		return f.isDirectory() || isImage(f);
 	    }
 	};
@@ -128,7 +128,7 @@ public final class JigUtil {
      *
      * @return true if the given File is of a recognized image type
      */
-    public static boolean isImage(File file) {
+    public static boolean isImage(final File file) {
 	String name = file.getName();
 	int idot = name.lastIndexOf('.');
 	if (idot < 0) {
@@ -165,7 +165,7 @@ public final class JigUtil {
      *
      * @return a formatted line ready to put in a table
      */
-    public static String tableLine(char c1, String s2) {
+    public static String tableLine(final char c1, final String s2) {
 	return "<tr><td>" + c1 + "</td><td> " + s2 + "</td></tr>";
     }
 

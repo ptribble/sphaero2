@@ -89,7 +89,7 @@ public abstract class JigsawCutter {
      * @param nPieces the preferred number of pieces; the cutter will try
      * to produce close to this many
      */
-    public void setPreferredPieceCount(int nPieces) {
+    public void setPreferredPieceCount(final int nPieces) {
 	prefPieces = nPieces;
 	if (prefPieces < MIN_PIECES) {
 	    prefPieces = MIN_PIECES;
@@ -105,7 +105,7 @@ public abstract class JigsawCutter {
      *
      * @param jp the progress bar to update while cutting is in progress
      */
-    public void setJProgressBar(JProgressBar jp) {
+    public void setJProgressBar(final JProgressBar jp) {
 	this.jp = jp;
 	if (progressmax > 0) {
 	    jp.setMaximum(progressmax);
@@ -119,7 +119,7 @@ public abstract class JigsawCutter {
      *
      * @param progressmax the anticipated number of steps
      */
-    public void startProgress(int progressmax) {
+    public void startProgress(final int progressmax) {
 	this.progressmax = progressmax;
 	iprogress = 0;
 	if (jp != null) {
@@ -147,7 +147,8 @@ public abstract class JigsawCutter {
      *
      * @return the final array of Pieces
      */
-    public Piece[] finalBuild(Piece[][] pieces, int rows, int columns) {
+    public Piece[] finalBuild(final Piece[][] pieces,
+			      final int rows, final int columns) {
 	Piece[] ret = new Piece[rows * columns];
 	for (int j = 0; j < rows; j++) {
 	    for (int i = 0; i < columns; i++) {

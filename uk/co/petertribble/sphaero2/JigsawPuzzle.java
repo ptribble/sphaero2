@@ -175,7 +175,7 @@ public final class JigsawPuzzle extends JPanel {
      * @param image the final picture
      * @param cutter the JigsawCutter to use on the image
      */
-    public JigsawPuzzle(BufferedImage image, JigsawCutter cutter) {
+    public JigsawPuzzle(final BufferedImage image, final JigsawCutter cutter) {
 	super(false);
 	this.image = image;
 	this.cutter = cutter;
@@ -192,27 +192,27 @@ public final class JigsawPuzzle extends JPanel {
     private void addWiring() {
 	addMouseListener(new MouseAdapter() {
 	    @Override
-	    public void mousePressed(MouseEvent e) {
+	    public void mousePressed(final MouseEvent e) {
 		mousePressed0(e);
 	    }
 	    @Override
-	    public void mouseReleased(MouseEvent e) {
+	    public void mouseReleased(final MouseEvent e) {
 		mouseReleased0(e);
 	    }
 	});
 	addMouseMotionListener(new MouseMotionAdapter() {
 	    @Override
-	    public void mouseDragged(MouseEvent e) {
+	    public void mouseDragged(final MouseEvent e) {
 		mouseDragged0(e);
 	    }
 	});
 	addKeyListener(new KeyAdapter() {
 	    @Override
-	    public void keyTyped(KeyEvent e) {
+	    public void keyTyped(final KeyEvent e) {
 		keyTyped0(e);
 	    }
 	    @Override
-	    public void keyPressed(KeyEvent e) {
+	    public void keyPressed(final KeyEvent e) {
 		keyPressed0(e);
 	    }
 	});
@@ -278,7 +278,7 @@ public final class JigsawPuzzle extends JPanel {
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(final Graphics g) {
 	super.paintComponent(g);
 
 	if (zOrder == null) {
@@ -310,7 +310,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void setClearMode(boolean flag) {
+    private void setClearMode(final boolean flag) {
 	clearMode = flag;
 	setCursor(clearMode ? CLEAR_CURSOR : NORMAL_CURSOR);
     }
@@ -333,7 +333,7 @@ public final class JigsawPuzzle extends JPanel {
      *
      * @param tlabel a TimeLabel to be updated
      */
-    public void setTimeLabel(TimeLabel tlabel) {
+    public void setTimeLabel(final TimeLabel tlabel) {
 	this.tlabel = tlabel;
     }
 
@@ -401,7 +401,7 @@ public final class JigsawPuzzle extends JPanel {
 	ActionListener fader = new ActionListener() {
 	    int trans;
 	    @Override
-	    public void actionPerformed(ActionEvent evt) {
+	    public void actionPerformed(final ActionEvent evt) {
 		for (int i = 0; i < data.length; i++) {
 		    data[i] = (data[i] & 0x00ffffff) | (trans << 24);
 		}
@@ -431,7 +431,7 @@ public final class JigsawPuzzle extends JPanel {
 
     // Mouse event handling -------------------------------------------------
 
-    void mousePressed0(MouseEvent e) {
+    void mousePressed0(final MouseEvent e) {
 	if (finished) {
 	    return;
 	}
@@ -443,7 +443,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    void mouseDragged0(MouseEvent e) {
+    void mouseDragged0(final MouseEvent e) {
 	if (finished) {
 	    return;
 	}
@@ -454,7 +454,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    void mouseReleased0(MouseEvent e) {
+    void mouseReleased0(final MouseEvent e) {
 	if (finished) {
 	    return;
 	}
@@ -466,7 +466,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void grabPiece(MouseEvent e) {
+    private void grabPiece(final MouseEvent e) {
 	int x = e.getX();
 	int y = e.getY();
 
@@ -490,7 +490,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void dragPiece(MouseEvent e) {
+    private void dragPiece(final MouseEvent e) {
 	if (focusPiece == null) {
 	    return;
 	}
@@ -528,12 +528,12 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void startClearRect(MouseEvent e) {
+    private void startClearRect(final MouseEvent e) {
 	clearX0 = e.getX();
 	clearY0 = e.getY();
     }
 
-    private void dragClearRect(MouseEvent e) {
+    private void dragClearRect(final MouseEvent e) {
 	int prevX1 = clearX1;
 	int prevY1 = clearY1;
 	clearX1 = e.getX();
@@ -550,7 +550,7 @@ public final class JigsawPuzzle extends JPanel {
 	repaint(0, x, y, w, h);
     }
 
-    private void finishClearRect(MouseEvent e) {
+    private void finishClearRect(final MouseEvent e) {
 	clearX1 = e.getX();
 	clearY1 = e.getY();
 	int cx0 = Math.max(0, Math.min(clearX0, clearX1));
@@ -581,7 +581,9 @@ public final class JigsawPuzzle extends JPanel {
      *
      * @return true if the Piece intersects with the given rectangle
      */
-    private boolean intersects(Piece piece, int x0, int y0, int x1, int y1) {
+    private boolean intersects(final Piece piece,
+			       final int x0, final int y0,
+			       final int x1, final int y1) {
 	int px = piece.getPuzzleX();
 	int py = piece.getPuzzleY();
 	int pw = piece.getCurrentWidth();
@@ -604,7 +606,9 @@ public final class JigsawPuzzle extends JPanel {
      * @param x1 location of the right of the rectangle
      * @param y1 location of the top of the rectangle
      */
-    private void shuffle(Piece piece, int x0, int y0, int x1, int y1) {
+    private void shuffle(final Piece piece,
+			 final int x0, final int y0,
+			 final int x1, final int y1) {
 	// Make the rectangle denoting where the Piece could be placed in the
 	// whole panel.  Top point will be (0,0).
 	int w = getWidth() - piece.getCurrentWidth();
@@ -661,7 +665,7 @@ public final class JigsawPuzzle extends JPanel {
 	shuffle(piece, east);
     }
 
-    private void shuffle(Piece piece, Rectangle rect) {
+    private void shuffle(final Piece piece, final Rectangle rect) {
 	int dx = ThreadLocalRandom.current().nextInt(rect.width);
 	int dy = ThreadLocalRandom.current().nextInt(rect.height);
 	piece.moveTo(rect.x + dx, rect.y + dy);
@@ -669,7 +673,7 @@ public final class JigsawPuzzle extends JPanel {
 
     // Keyboard event handling ----------------------------------------------
 
-    void keyTyped0(KeyEvent e) {
+    void keyTyped0(final KeyEvent e) {
 	char ch = Character.toUpperCase(e.getKeyChar());
 	if (ch == PREV_BG) {
 	    prevBackground();
@@ -694,7 +698,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    void keyPressed0(KeyEvent e) {
+    void keyPressed0(final KeyEvent e) {
 	if (!finished) {
 	    if (e.getKeyCode() == KeyEvent.VK_LEFT
 		    || e.getKeyCode() == KeyEvent.VK_KP_LEFT) {
@@ -709,7 +713,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
     }
 
-    private void rotatePiece(int amount) {
+    private void rotatePiece(final int amount) {
 	if (focusPiece == null) {
 	    return;
 	}
@@ -733,7 +737,7 @@ public final class JigsawPuzzle extends JPanel {
     }
 
     // Copy pieces into zOrder, and randomize their positions.
-    private void shuffle(Piece[] pieces) {
+    private void shuffle(final Piece[] pieces) {
 	// Arrays.asList() doesn't work, so be explicit
 	zOrder = new ArrayList<>();
 	int height = getHeight();
@@ -787,7 +791,7 @@ public final class JigsawPuzzle extends JPanel {
 	    : CLEAR_COLOR_W;
     }
 
-    private boolean isBright(Color c) {
+    private boolean isBright(final Color c) {
 	float[] hsb =
 	    Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
 	return hsb[2] > 0.5;

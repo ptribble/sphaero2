@@ -28,7 +28,7 @@ public final class ClassicCutter extends JigsawCutter {
     }
 
     @Override
-    public Piece[] cut(BufferedImage image) {
+    public Piece[] cut(final BufferedImage image) {
 	JigUtil.ensureLoaded(image);
 	int width = image.getWidth(null);
 	int height = image.getHeight(null);
@@ -132,10 +132,12 @@ public final class ClassicCutter extends JigsawCutter {
 	return finalBuild(pieces, rows, columns);
     }
 
-    private Piece makePiece(BufferedImage image,
-			    Point nw, Point sw, Point ne, Point se,
-			    Knob knobN, Knob knobE, Knob knobS, Knob knobW,
-			    int tWidth, int tHeight) {
+    private Piece makePiece(final BufferedImage image,
+			    final Point nw, final Point sw,
+			    final Point ne, final Point se,
+			    final Knob knobN, final Knob knobE,
+			    final Knob knobS, final Knob knobW,
+			    final int tWidth, final int tHeight) {
 	// Build a path out of the knobs/puzzle edges.
 	GeneralPath path = new GeneralPath();
 	path.moveTo(nw.x, nw.y);
@@ -200,8 +202,9 @@ public final class ClassicCutter extends JigsawCutter {
 			tWidth, tHeight, rotation);
     }
 
-    private void mask(int[] data, GeneralPath path,
-			int minX, int minY, int width, int height) {
+    private void mask(final int[] data, final GeneralPath path,
+		      final int minX, final int minY,
+		      final int width, final int height) {
 	for (int j = 0; j < height; j++) {
 	    int pathY = minY + j;
 	    for (int i = 0; i < width; i++) {

@@ -47,10 +47,10 @@ public class Piece {
      * @param totalWidth the width of the entire picture
      * @param totalHeight the height of the entire picture
      */
-    protected Piece(int[] data,
-		    int imageX, int imageY,
-		    int imageWidth, int imageHeight,
-		    int totalWidth, int totalHeight) {
+    protected Piece(final int[] data,
+		    final int imageX, final int imageY,
+		    final int imageWidth, final int imageHeight,
+		    final int totalWidth, final int totalHeight) {
 	neighbors = new HashSet<>();
 	origData = data; //NOPMD
 	this.imageX = imageX;
@@ -74,11 +74,11 @@ public class Piece {
      * @param totalHeight the height of the entire picture
      * @param rotation initial rotation
      */
-    public Piece(int[] data,
-		 int imageX, int imageY,
-		 int imageWidth, int imageHeight,
-		 int totalWidth, int totalHeight,
-		 int rotation) {
+    public Piece(final int[] data,
+		 final int imageX, final int imageY,
+		 final int imageWidth, final int imageHeight,
+		 final int totalWidth, final int totalHeight,
+		 final int rotation) {
 	this(data, imageX, imageY, imageWidth, imageHeight,
 		totalWidth, totalHeight);
 	forceSetRotation(rotation);
@@ -163,7 +163,7 @@ public class Piece {
      *
      * @see #getRotation
      */
-    public void setRotation(int rot) {
+    public void setRotation(final int rot) {
 	if (rot != rotation) {
 	    forceSetRotation(rot);
 	}
@@ -175,7 +175,7 @@ public class Piece {
      *
      * @param rot The new rotation
      */
-    protected void forceSetRotation(int rot) {
+    protected void forceSetRotation(final int rot) {
 	rotation = rot;
 	recomputeImageData();
 	if (image != null) {
@@ -193,7 +193,7 @@ public class Piece {
      * @param x The Piece's new x position
      * @param y The Piece's new y position
      */
-    public void setPuzzlePosition(int x, int y) {
+    public void setPuzzlePosition(final int x, final int y) {
 	this.puzzleX = x;
 	this.puzzleY = y;
     }
@@ -331,7 +331,7 @@ public class Piece {
      *
      * @param neighbor the Piece to add to this Piece's set of neighbors
      */
-    public void addNeighbor(Piece neighbor) {
+    public void addNeighbor(final Piece neighbor) {
 	neighbors.add(neighbor);
     }
 
@@ -340,7 +340,7 @@ public class Piece {
      *
      * @param neighbor the Piece to remove from this Piece's set of neighbors
      */
-    public void removeNeighbor(Piece neighbor) {
+    public void removeNeighbor(final Piece neighbor) {
 	neighbors.remove(neighbor);
     }
 
@@ -351,7 +351,7 @@ public class Piece {
      * @param x The Piece's new x position
      * @param y The Piece's new y position
      */
-    public void moveTo(int x, int y) {
+    public void moveTo(final int x, final int y) {
 	setPuzzlePosition(x, y);
     }
 
@@ -375,7 +375,7 @@ public class Piece {
      *
      * @param g the Graphics object to draw to
      */
-    protected void draw(Graphics g) {
+    protected void draw(final Graphics g) {
 	Image img = getImage();
 	if (img != null) {
 	    g.drawImage(img, getPuzzleX(), getPuzzleY(), null);
@@ -391,7 +391,7 @@ public class Piece {
      *
      * @return true if the given coordinates are inside the current Piece
      */
-    public boolean contains(int x, int y) {
+    public boolean contains(final int x, final int y) {
 	int puzX = getPuzzleX();
 	int puzY = getPuzzleY();
 	int w = getCurrentWidth();
@@ -411,7 +411,7 @@ public class Piece {
      *
      * @return the alpha transparency at the given coordinates
      */
-    protected int getAlpha(int x, int y) {
+    protected int getAlpha(final int x, final int y) {
 	int pixel = curData[y * curWidth + x];
 	return (pixel >> 24) & 0xff;
     }
@@ -425,7 +425,7 @@ public class Piece {
      * @return true if this Piece and the given Piece are located and oriented
      * close enough together to be fitted
      */
-    protected boolean isCloseTo(Piece piece) {
+    protected boolean isCloseTo(final Piece piece) {
 	// Don't even bother if they're not aligned.
 	if (piece.getRotation() != rotation) {
 	    return false;
@@ -492,7 +492,8 @@ public class Piece {
      * @param width the width of the image data
      * @param height the height of the image data
      */
-    private static void bevel(int[] data, int width, int height) {
+    private static void bevel(final int[] data,
+			      final int width, final int height) {
 	// Scan diagonal NW-SE lines.  The first and last lines can be skipped.
 	// moved these out of the loop
 	boolean nw; // true iff that pixel is opaque
@@ -533,7 +534,8 @@ public class Piece {
     private static final int FN = 10;
     private static final int FD = 7;
     private static final int MAXB = 255 * FD / FN;
-    private static int brighter(int val) {
+
+    private static int brighter(final int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
 	int b = val & 0xff;
@@ -551,7 +553,8 @@ public class Piece {
 	b = b >= MAXB ? 255 : b * FN / FD;
 	return ((((0xff00 | r) << 8) | g) << 8) | b;
     }
-    private static int darker(int val) {
+
+    private static int darker(final int val) {
 	int r = (val >> 16) & 0xff;
 	int g = (val >> 8) & 0xff;
 	int b = val & 0xff;

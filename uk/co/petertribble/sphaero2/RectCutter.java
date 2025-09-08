@@ -19,7 +19,7 @@ public final class RectCutter extends JigsawCutter {
     }
 
     @Override
-    public Piece[] cut(BufferedImage image) {
+    public Piece[] cut(final BufferedImage image) {
 	JigUtil.ensureLoaded(image);
 	int height = image.getHeight(null);
 	int width = image.getWidth(null);
@@ -62,8 +62,9 @@ public final class RectCutter extends JigsawCutter {
 	return finalBuild(matrix, columns, rows);
     }
 
-    private int[] getImageData(BufferedImage image, int x, int y,
-				int width, int height) {
+    private int[] getImageData(final BufferedImage image,
+			       final int x, final int y,
+			       final int width, final int height) {
 	int[] data = new int[height * width];
 	data = image.getRGB(x, y, width, height, data, 0, width);
 	return data;

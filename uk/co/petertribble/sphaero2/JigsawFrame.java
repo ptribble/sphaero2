@@ -192,7 +192,8 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      * @param pieces the number of pieces to create
      * @param cutter the JigsawCutter to be used to cut the image into pieces
      */
-    public JigsawFrame(BufferedImage image, int pieces, JigsawCutter cutter) {
+    public JigsawFrame(final BufferedImage image, final int pieces,
+		       final JigsawCutter cutter) {
 	super("Jigsaw Puzzle");
 	defaultPieces = pieces;
 	defaultCutter = cutter;
@@ -207,7 +208,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      * @param pieces the number of pieces to create
      * @param cutter the JigsawCutter to be used to cut the image into pieces
      */
-    public JigsawFrame(int pieces, JigsawCutter cutter) {
+    public JigsawFrame(final int pieces, final JigsawCutter cutter) {
 	super("Jigsaw Puzzle");
 	defaultPieces = pieces;
 	defaultCutter = cutter;
@@ -263,7 +264,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	jmh.add(pictureItem);
     }
 
-    private void init(BufferedImage image, JigsawCutter cutter) {
+    private void init(final BufferedImage image, final JigsawCutter cutter) {
 	this.image = image;
 
 	JigsawPuzzle puzzle = new JigsawPuzzle(image, cutter);
@@ -373,7 +374,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	setVisible(true);
     }
 
-    private static void fatalError(String s) {
+    private static void fatalError(final String s) {
 	System.err.println(s); //NOPMD
 	System.exit(1);
     }
@@ -389,7 +390,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      *
      * @param args command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
 	if (args.length == 0) {
 	    new JigsawFrame();
 	} else {
@@ -480,14 +481,14 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	}
     }
 
-    private JLabel createHelpLabel(String text) {
+    private JLabel createHelpLabel(final String text) {
 	JLabel label = new JLabel(text);
 	label.setBorder(BorderFactory.createEmptyBorder(5, 1, 1, 1));
 	label.setForeground(HELP_COLOR);
 	return label;
     }
 
-    private Border createTitledBorder(String title) {
+    private Border createTitledBorder(final String title) {
 	Border outer = BorderFactory.createTitledBorder(
 				BorderFactory.createEtchedBorder(), title);
 	Border inner = BorderFactory.createEmptyBorder(2, 5, 5, 5);
@@ -592,7 +593,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
 	if (e.getSource() == exitItem) {
 	    System.exit(0);
 	} else if (e.getSource() == newItem) {

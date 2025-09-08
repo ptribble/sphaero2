@@ -24,7 +24,7 @@ public final class QuadCutter extends JigsawCutter {
     }
 
     @Override
-    public Piece[] cut(BufferedImage image) {
+    public Piece[] cut(final BufferedImage image) {
 	JigUtil.ensureLoaded(image);
 	int width = image.getWidth(null);
 	int height = image.getHeight(null);
@@ -89,9 +89,9 @@ public final class QuadCutter extends JigsawCutter {
 	return finalBuild(pieces, rows, columns);
     }
 
-    private Piece makePiece(BufferedImage image,
-		Point nw, Point sw, Point ne, Point se,
-			    int tWidth, int tHeight) {
+    private Piece makePiece(final BufferedImage image,
+		final Point nw, final Point sw, final Point ne, final Point se,
+		final int tWidth, final int tHeight) {
 	int minX = Math.min(nw.x, sw.x);
 	int maxX = Math.max(ne.x, se.x);
 	int minY = Math.min(nw.y, ne.y);
@@ -120,8 +120,9 @@ public final class QuadCutter extends JigsawCutter {
 			rotation);
     }
 
-    private void maskOutside(int[] data, Point p1, Point p2,
-			int minX, int minY, int width, int height) {
+    private void maskOutside(final int[] data, final Point p1, final Point p2,
+			     final int minX, final int minY,
+			     final int width, final int height) {
 	p1.translate(-minX, -minY);
 	p2.translate(-minX, -minY);
 	// y = mx + b

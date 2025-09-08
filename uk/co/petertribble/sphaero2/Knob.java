@@ -91,7 +91,7 @@ public final class Knob {
      * @param x2 x coordinate of the finish endpoint
      * @param y2 y coordinate of the finish endpoint
      */
-    public Knob(int x1, int y1, int x2, int y2) {
+    public Knob(final int x1, final int y1, final int x2, final int y2) {
 	this.x1 = x1;
 	this.y1 = y1;
 	this.x2 = x2;
@@ -124,8 +124,8 @@ public final class Knob {
 	cPathReverse.transform(affine);
     }
 
-    private void curveTo(GeneralPath path, float[][] data,
-			  int idx, boolean forward) {
+    private void curveTo(final GeneralPath path, final float[][] data,
+			  final int idx, final boolean forward) {
 	int delta = forward ? 1 : -1;
 	float cx1 = data[idx][X];
 	float cy1 = data[idx][Y];
@@ -158,7 +158,7 @@ public final class Knob {
      * @throws IllegalArgumentException if (x,y) is not an endpoint of this
      *   Knob
      */
-    public GeneralPath getCurvePath(int x, int y) {
+    public GeneralPath getCurvePath(final int x, final int y) {
 	if ((x == x1) && (y == y1)) {
 	    return (GeneralPath) cPath.clone();
 	} else if ((x == x2) && (y == y2)) {
@@ -178,8 +178,8 @@ public final class Knob {
 	return cPath.getBounds();
     }
 
-    private void jitter(float[][] pts, float xVar, float yVar,
-			 float bVar, float fVar) {
+    private void jitter(final float[][] pts, final float xVar, final float yVar,
+			 final float bVar, final float fVar) {
 	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	for (int i = 0; i < pts.length; i++) {
 	    float b = pts[i][XDB];

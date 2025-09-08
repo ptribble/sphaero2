@@ -37,7 +37,7 @@ public final class SamplePanel extends JPanel implements ActionListener {
      * @param jtf a JTextField, used by callers of this class to read the
      * filename of the selected image
      */
-    public SamplePanel(JTextField jtf) {
+    public SamplePanel(final JTextField jtf) {
 	this.jtf = jtf;
 	initSamples();
     }
@@ -87,7 +87,7 @@ public final class SamplePanel extends JPanel implements ActionListener {
      * from the map and poke it back into the text field.
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(final ActionEvent e) {
 	JButton jb = (JButton) e.getSource();
 	jtf.setText(fmap.get(jb));
     }

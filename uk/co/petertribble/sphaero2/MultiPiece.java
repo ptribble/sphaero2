@@ -34,11 +34,11 @@ public final class MultiPiece extends Piece {
      * @param totalHeight height of the entire puzzle in pixels
      * @param rotation initial rotation
      */
-    public MultiPiece(Set<Piece> subs,
-		int imageX, int imageY,
-		int imageWidth, int imageHeight,
-		int totalWidth, int totalHeight,
-		int rotation) {
+    public MultiPiece(final Set<Piece> subs,
+		final int imageX, final int imageY,
+		final int imageWidth, final int imageHeight,
+		final int totalWidth, final int totalHeight,
+		final int rotation) {
 	super(null, imageX, imageY, imageWidth, imageHeight,
 		totalWidth, totalHeight);
 	this.subs = subs;
@@ -52,7 +52,7 @@ public final class MultiPiece extends Piece {
     // Accessors ------------------------------------------------------------
 
     @Override
-    public void setRotation(int rot) {
+    public void setRotation(final int rot) {
 	for (Piece piece : subs) {
 	    piece.setRotation(rot);
 	}
@@ -77,7 +77,8 @@ public final class MultiPiece extends Piece {
      *
      * @return the combined MultiPiece
      */
-    protected static MultiPiece join(Piece main, Set<Piece> others) {
+    protected static MultiPiece join(final Piece main,
+				     final Set<Piece> others) {
 	Set<Piece> neighbors = new HashSet<>();
 	neighbors.addAll(main.neighbors);
 	int mainPX = main.getPuzzleX();
@@ -142,7 +143,7 @@ public final class MultiPiece extends Piece {
 	return newPiece;
     }
 
-    private static void addSubs(Set<Piece> subset, Piece piece) {
+    private static void addSubs(final Set<Piece> subset, final Piece piece) {
 	if (piece instanceof MultiPiece) {
 	    subset.addAll(((MultiPiece) piece).subs);
 	} else {
@@ -166,8 +167,10 @@ public final class MultiPiece extends Piece {
      * @param height the height of the data array
      * @param piece the Piece to overlay into the data array
      */
-    protected static void overlay(int[] data, int dataX, int dataY,
-				   int width, int height, Piece piece) {
+    protected static void overlay(final int[] data,
+				  final int dataX, final int dataY,
+				  final int width, final int height,
+				  final Piece piece) {
 	int pieceX = piece.getRotatedX();
 	int pieceY = piece.getRotatedY();
 	int pieceW = piece.getCurrentWidth();
