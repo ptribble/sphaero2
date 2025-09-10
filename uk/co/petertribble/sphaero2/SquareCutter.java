@@ -26,11 +26,11 @@ public final class SquareCutter extends JigsawCutter {
 	int width = image.getWidth(null);
 	int edge = (int) Math.round(Math.sqrt(height * width / prefPieces));
 	int hRemain = height % edge;
-	int wRemain = width  % edge;
+	int wRemain = width % edge;
 	int rows = height / edge;
-	int columns = width  / edge;
+	int columns = width / edge;
 	int firstSouthEdge = edge + (hRemain / 2) - 1;
-	int firstEastEdge  = edge + (wRemain / 2) - 1;
+	int firstEastEdge = edge + (wRemain / 2) - 1;
 
 	int y1 = 0;
 	int y2 = firstSouthEdge;

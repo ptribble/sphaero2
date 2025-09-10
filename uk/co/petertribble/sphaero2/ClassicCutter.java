@@ -179,7 +179,7 @@ public final class ClassicCutter extends JigsawCutter {
 	    box.y = 0;
 	}
 
-	int width  = box.width;
+	int width = box.width;
 	int height = box.height;
 
 	if (box.x + width > tWidth) {

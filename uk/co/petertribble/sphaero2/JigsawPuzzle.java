@@ -97,7 +97,7 @@ public final class JigsawPuzzle extends JPanel {
     private static final Cursor
 	NORMAL_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
     private static final Cursor
-	CLEAR_CURSOR  = new Cursor(Cursor.CROSSHAIR_CURSOR);
+	CLEAR_CURSOR = new Cursor(Cursor.CROSSHAIR_CURSOR);
 
     private static final Rectangle EMPTYRECT = new Rectangle(0, 0, 0, 0);
 
@@ -347,12 +347,12 @@ public final class JigsawPuzzle extends JPanel {
      */
     private void computePreferredSize() {
 	JigUtil.ensureLoaded(image);
-	int iWidth  = image.getWidth(null);
+	int iWidth = image.getWidth(null);
 	int iHeight = image.getHeight(null);
 	int area = iWidth * iHeight * 3 / 2;
 	int width = (int) Math.sqrt(area * 5 / 3);
 	int height = width * 3 / 5;
-	width  = Math.max(width, iWidth);
+	width = Math.max(width, iWidth);
 	height = Math.max(height, iHeight);
 	prefSize = new Dimension(width, height);
     }
@@ -590,7 +590,7 @@ public final class JigsawPuzzle extends JPanel {
 	int ph = piece.getCurrentHeight();
 	int w = x1 - x0;
 	int h = y1 - y0;
-	Rectangle r  = new Rectangle(x0, y0, w, h);
+	Rectangle r = new Rectangle(x0, y0, w, h);
 	Rectangle rp = new Rectangle(px, py, pw, ph);
 	return r.intersects(rp);
     }
@@ -634,9 +634,9 @@ public final class JigsawPuzzle extends JPanel {
 	    : new Rectangle(0, 0, w, ay);
 	Rectangle south = (y1 >= h) ? EMPTYRECT
 	    : new Rectangle(0, y1 + 1, w, h - y1);
-	Rectangle west  = (ax == 0 || ah == 0) ? EMPTYRECT
+	Rectangle west = (ax == 0 || ah == 0) ? EMPTYRECT
 	    : new Rectangle(0, ay, ax, ah);
-	Rectangle east  = (x1 >= w || ah == 0) ? EMPTYRECT
+	Rectangle east = (x1 >= w || ah == 0) ? EMPTYRECT
 	    : new Rectangle(x1, ay, w - x1, ah);
 
 	int nArea = north.width * north.height;
@@ -746,7 +746,7 @@ public final class JigsawPuzzle extends JPanel {
 	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	for (Piece piece : pieces) {
 	    piece.setPuzzlePosition(
-		trandom.nextInt(width  - piece.getCurrentWidth()),
+		trandom.nextInt(width - piece.getCurrentWidth()),
 		trandom.nextInt(height - piece.getCurrentHeight()));
 	    zOrder.add(piece);
 	}

@@ -350,7 +350,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	okPanel.setLayout(new BoxLayout(okPanel, BoxLayout.LINE_AXIS));
 	okPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 	okPanel.add(Box.createHorizontalGlue());
-	okButton  = new JButton("Start Puzzling");
+	okButton = new JButton("Start Puzzling");
 	okButton.setMnemonic(KeyEvent.VK_K);
 	okPanel.add(okButton);
 	okButton.addActionListener(this);

@@ -96,7 +96,7 @@ public final class QuadCutter extends JigsawCutter {
 	int maxX = Math.max(ne.x, se.x);
 	int minY = Math.min(nw.y, ne.y);
 	int maxY = Math.max(sw.y, se.y);
-	int width  = maxX - minX + 1;
+	int width = maxX - minX + 1;
 	int height = maxY - minY + 1;
 	if (minX + width > tWidth) {
 	    width = tWidth - minX;
