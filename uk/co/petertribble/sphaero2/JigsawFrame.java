@@ -188,17 +188,17 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      * keeping fitted pieces together. Pieces are fitted automatically if
      * they are placed close enough, and are rotated the same way.
      *
-     * @param image the BufferedImage to use as the picture
+     * @param nimage the BufferedImage to use as the picture
      * @param pieces the number of pieces to create
      * @param cutter the JigsawCutter to be used to cut the image into pieces
      */
-    public JigsawFrame(final BufferedImage image, final int pieces,
+    public JigsawFrame(final BufferedImage nimage, final int pieces,
 		       final JigsawCutter cutter) {
 	super("Jigsaw Puzzle");
 	defaultPieces = pieces;
 	defaultCutter = cutter;
 	initFrameWork();
-	init(image, cutter);
+	init(nimage, cutter);
     }
 
     /**
@@ -264,10 +264,10 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	jmh.add(pictureItem);
     }
 
-    private void init(final BufferedImage image, final JigsawCutter cutter) {
-	this.image = image;
+    private void init(final BufferedImage nimage, final JigsawCutter cutter) {
+	image = nimage;
 
-	JigsawPuzzle puzzle = new JigsawPuzzle(image, cutter);
+	JigsawPuzzle puzzle = new JigsawPuzzle(nimage, cutter);
 	JPanel ppanel = new JPanel(new BorderLayout());
 	ppanel.add(new JScrollPane(puzzle));
 	TimeLabel tlabel = new TimeLabel();
@@ -558,11 +558,11 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	defaultCutter.setPreferredPieceCount(defaultPieces);
 
 	try {
-	    BufferedImage image = ImageIO.read(file);
+	    BufferedImage nimage = ImageIO.read(file);
 	    // FIXME this doesn't actually show the window properly until
 	    // after the pieces have been cut???
 	    // So the progress bar doesn't work either
-	    init(JigUtil.resizedImage(image), defaultCutter);
+	    init(JigUtil.resizedImage(nimage), defaultCutter);
 	} catch (IOException e) {
 	    JOptionPane.showMessageDialog(this, "Image file cannot be read.",
 				"Invalid Image", JOptionPane.ERROR_MESSAGE);

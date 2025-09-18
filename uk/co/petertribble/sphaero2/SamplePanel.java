@@ -34,11 +34,11 @@ public final class SamplePanel extends JPanel implements ActionListener {
     /**
      * Create a new SamplePanel, to display some sample jigsaw images.
      *
-     * @param jtf a JTextField, used by callers of this class to read the
+     * @param tf a JTextField, used by callers of this class to read the
      * filename of the selected image
      */
-    public SamplePanel(final JTextField jtf) {
-	this.jtf = jtf;
+    public SamplePanel(final JTextField tf) {
+	jtf = tf;
 	initSamples();
     }
 

@@ -40,48 +40,47 @@ public class Piece {
      * Creates a new Piece.  No initial rotation is done.  (This is needed
      * by MultiPiece, which needs to set its subpieces before rotating.)
      * @param data image data
-     * @param imageX X position of image relative to entire puzzle
-     * @param imageY Y position of image relative to entire puzzle
-     * @param imageWidth width of original image
-     * @param imageHeight height of original image
-     * @param totalWidth the width of the entire picture
-     * @param totalHeight the height of the entire picture
+     * @param xpos X position of image relative to entire puzzle
+     * @param ypos Y position of image relative to entire puzzle
+     * @param iWidth width of original image
+     * @param iHeight height of original image
+     * @param pWidth the width of the entire picture
+     * @param pHeight the height of the entire picture
      */
     protected Piece(final int[] data,
-		    final int imageX, final int imageY,
-		    final int imageWidth, final int imageHeight,
-		    final int totalWidth, final int totalHeight) {
+		    final int xpos, final int ypos,
+		    final int iWidth, final int iHeight,
+		    final int pWidth, final int pHeight) {
 	neighbors = new HashSet<>();
 	origData = data; //NOPMD
-	this.imageX = imageX;
-	this.imageY = imageY;
-	this.curWidth = imageWidth;
-	this.curHeight = imageHeight;
-	this.origWidth = imageWidth;
-	this.origHeight = imageHeight;
-	this.totalWidth = totalWidth;
-	this.totalHeight = totalHeight;
+	imageX = xpos;
+	imageY = ypos;
+	curWidth = iWidth;
+	curHeight = iHeight;
+	origWidth = iWidth;
+	origHeight = iHeight;
+	totalWidth = pWidth;
+	totalHeight = pHeight;
     }
 
     /**
      * Creates a new Piece.
      * @param data image data
-     * @param imageX X position of image relative to entire puzzle
-     * @param imageY Y position of image relative to entire puzzle
-     * @param imageWidth width of original image
-     * @param imageHeight height of original image
-     * @param totalWidth the width of the entire picture
-     * @param totalHeight the height of the entire picture
-     * @param rotation initial rotation
+     * @param xpos X position of image relative to entire puzzle
+     * @param ypos Y position of image relative to entire puzzle
+     * @param iWidth width of original image
+     * @param iHeight height of original image
+     * @param pWidth the width of the entire picture
+     * @param pHeight the height of the entire picture
+     * @param irotation initial rotation
      */
     public Piece(final int[] data,
-		 final int imageX, final int imageY,
-		 final int imageWidth, final int imageHeight,
-		 final int totalWidth, final int totalHeight,
-		 final int rotation) {
-	this(data, imageX, imageY, imageWidth, imageHeight,
-		totalWidth, totalHeight);
-	forceSetRotation(rotation);
+		 final int xpos, final int ypos,
+		 final int iWidth, final int iHeight,
+		 final int pWidth, final int pHeight,
+		 final int irotation) {
+	this(data, xpos, ypos, iWidth, iHeight, pWidth, pHeight);
+	forceSetRotation(irotation);
     }
 
     // Location in the image.

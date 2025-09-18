@@ -172,13 +172,14 @@ public final class JigsawPuzzle extends JPanel {
 
     /**
      * Creates a new JigsawPuzzle.
-     * @param image the final picture
-     * @param cutter the JigsawCutter to use on the image
+     * @param nimage the final picture
+     * @param ncutter the JigsawCutter to use on the image
      */
-    public JigsawPuzzle(final BufferedImage image, final JigsawCutter cutter) {
+    public JigsawPuzzle(final BufferedImage nimage,
+			final JigsawCutter ncutter) {
 	super(false);
-	this.image = image;
-	this.cutter = cutter;
+	image = nimage;
+	cutter = ncutter;
 
 	computePreferredSize();
 	setOpaque(true);
@@ -331,10 +332,10 @@ public final class JigsawPuzzle extends JPanel {
      * Connect a timer label to this puzzle. If there's a valid label
      * it will be updated with the running solution time.
      *
-     * @param tlabel a TimeLabel to be updated
+     * @param nlabel a TimeLabel to be updated
      */
-    public void setTimeLabel(final TimeLabel tlabel) {
-	this.tlabel = tlabel;
+    public void setTimeLabel(final TimeLabel nlabel) {
+	tlabel = nlabel;
     }
 
     // Private methods ------------------------------------------------------

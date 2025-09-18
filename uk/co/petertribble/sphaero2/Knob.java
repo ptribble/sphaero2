@@ -86,16 +86,16 @@ public final class Knob {
     /**
      * Creates a new Knob, anchored on the given coordinates.
      *
-     * @param x1 x coordinate of the start endpoint
-     * @param y1 y coordinate of the start endpoint
-     * @param x2 x coordinate of the finish endpoint
-     * @param y2 y coordinate of the finish endpoint
+     * @param xx1 x coordinate of the start endpoint
+     * @param yy1 y coordinate of the start endpoint
+     * @param xx2 x coordinate of the finish endpoint
+     * @param yy2 y coordinate of the finish endpoint
      */
-    public Knob(final int x1, final int y1, final int x2, final int y2) {
-	this.x1 = x1;
-	this.y1 = y1;
-	this.x2 = x2;
-	this.y2 = y2;
+    public Knob(final int xx1, final int yy1, final int xx2, final int yy2) {
+	x1 = xx1;
+	y1 = yy1;
+	x2 = xx2;
+	y2 = yy2;
 	initPath();
     }
 
@@ -139,11 +139,11 @@ public final class Knob {
 	    d1f *= -1.0f;
 	    d2b *= -1.0f;
 	}
-	float x1 = cx1 + d1f;
-	float y1 = cy1 + d1f * m1;
-	float x2 = cx2 - d2b;
-	float y2 = cy2 - d2b * m2;
-	path.curveTo(x1, y1, x2, y2, cx2, cy2);
+	float nx1 = cx1 + d1f;
+	float ny1 = cy1 + d1f * m1;
+	float nx2 = cx2 - d2b;
+	float ny2 = cy2 - d2b * m2;
+	path.curveTo(nx1, ny1, nx2, ny2, cx2, cy2);
     }
 
     /**

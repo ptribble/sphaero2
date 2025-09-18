@@ -24,7 +24,7 @@ public final class MultiPiece extends Piece {
 
     /**
      * Creates a new MultiPiece.
-     * @param subs A set of Pieces used directly by MultiPiece,
+     * @param nsubs A set of Pieces used directly by MultiPiece,
      *   should not be modified afterward
      * @param imageX X position of image relative to entire puzzle
      * @param imageY Y position of image relative to entire puzzle
@@ -34,14 +34,14 @@ public final class MultiPiece extends Piece {
      * @param totalHeight height of the entire puzzle in pixels
      * @param rotation initial rotation
      */
-    public MultiPiece(final Set<Piece> subs,
+    public MultiPiece(final Set<Piece> nsubs,
 		final int imageX, final int imageY,
 		final int imageWidth, final int imageHeight,
 		final int totalWidth, final int totalHeight,
 		final int rotation) {
 	super(null, imageX, imageY, imageWidth, imageHeight,
 		totalWidth, totalHeight);
-	this.subs = subs;
+	subs = nsubs;
 	forceSetRotation(rotation);
     }
 

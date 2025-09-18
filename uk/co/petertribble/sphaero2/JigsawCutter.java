@@ -103,10 +103,10 @@ public abstract class JigsawCutter {
      * Associate a JProgressBar that can be used to display progress of
      * generating the pieces.
      *
-     * @param jp the progress bar to update while cutting is in progress
+     * @param njp the progress bar to update while cutting is in progress
      */
-    public void setJProgressBar(final JProgressBar jp) {
-	this.jp = jp;
+    public void setJProgressBar(final JProgressBar njp) {
+	jp = njp;
 	if (progressmax > 0) {
 	    jp.setMaximum(progressmax);
 	    jp.setValue(iprogress);
@@ -117,10 +117,10 @@ public abstract class JigsawCutter {
      * Start generating. If there's a progress bar, it will be set to
      * zero.
      *
-     * @param progressmax the anticipated number of steps
+     * @param nprogressmax the anticipated number of steps
      */
-    public void startProgress(final int progressmax) {
-	this.progressmax = progressmax;
+    public void startProgress(final int nprogressmax) {
+	progressmax = nprogressmax;
 	iprogress = 0;
 	if (jp != null) {
 	    jp.setMaximum(progressmax);
