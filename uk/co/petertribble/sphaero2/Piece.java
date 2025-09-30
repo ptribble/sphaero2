@@ -193,8 +193,8 @@ public class Piece {
      * @param y The Piece's new y position
      */
     public void setPuzzlePosition(final int x, final int y) {
-	this.puzzleX = x;
-	this.puzzleY = y;
+	puzzleX = x;
+	puzzleY = y;
     }
 
     /**
