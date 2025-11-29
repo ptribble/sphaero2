@@ -353,8 +353,8 @@ public final class JigsawPuzzle extends JPanel {
 	int area = iWidth * iHeight * 3 / 2;
 	int width = (int) Math.sqrt(area * 5 / 3);
 	int height = width * 3 / 5;
-	width = Math.max(width, iWidth);
-	height = Math.max(height, iHeight);
+	width = Math.max(width, iWidth * 5 / 4);
+	height = Math.max(height, iHeight * 5 / 4);
 	prefSize = new Dimension(width, height);
     }
 
