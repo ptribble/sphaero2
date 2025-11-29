@@ -13,39 +13,42 @@ import javax.swing.JProgressBar;
 public abstract class JigsawCutter {
 
     /**
-     * The default number of pieces, 100.
+     * The default number of pieces, 64.
      */
-    public static final int DEFAULT_PIECES = 100;
+    public static final int DEFAULT_PIECES = 64;
 
     /**
-     * The minimum number of pieces, 4, that the gui will allow the user
+     * The minimum number of pieces, 16, that the gui will allow the user
      * to choose.
      */
-    public static final int MIN_PIECES = 4;
+    public static final int MIN_PIECES = 16;
 
     /**
-     * The maximum number of pieces, 1000, that the gui will allow the user
+     * The maximum number of pieces, 320, that the gui will allow the user
      * to choose.
      */
-    public static final int MAX_PIECES = 1000;
+    public static final int MAX_PIECES = 320;
 
     /**
      * The number of pieces the user requests the picture be cut into.
      * The game will attempt to create close to that many pieces.
      */
     public int prefPieces = DEFAULT_PIECES;
+
     /**
      * A bar to show progress to the user.
      */
-    public JProgressBar jp;
+    private JProgressBar jp;
+
     /**
      * How far the progress bar has got.
      */
-    public int iprogress;
+    private int iprogress;
+
     /**
      * The maximum value progress can reach.
      */
-    public int progressmax;
+    private int progressmax;
 
     @Override
     public final String toString() {
@@ -72,8 +75,8 @@ public abstract class JigsawCutter {
 
     /**
      * Cuts the given Image into Pieces, and returns them.  This is a
-     * potentially time-consuming operation, and should not be run in the AWT
-     * thread.
+     * potentially time-consuming operation, and should not be run in the
+     * AWT thread.
      *
      * @param image the image to be cut
      *
@@ -82,12 +85,12 @@ public abstract class JigsawCutter {
     public abstract Piece[] cut(BufferedImage image);
 
     /**
-     * Sets the preferred number of pieces to create.  The actual number of
-     * pieces may differ slightly, depending on the specific cutting
+     * Sets the preferred number of pieces to create.  The actual number
+     * of pieces may differ slightly, depending on the specific cutting
      * algorithm. If out of range, clamp to the allowed range.
      *
-     * @param nPieces the preferred number of pieces; the cutter will try
-     * to produce close to this many
+     * @param nPieces the preferred number of pieces; the cutter will
+     * try to produce close to this many
      */
     public void setPreferredPieceCount(final int nPieces) {
 	prefPieces = nPieces;
@@ -119,7 +122,7 @@ public abstract class JigsawCutter {
      *
      * @param nprogressmax the anticipated number of steps
      */
-    public void startProgress(final int nprogressmax) {
+    public final void startProgress(final int nprogressmax) {
 	progressmax = nprogressmax;
 	iprogress = 0;
 	if (jp != null) {
@@ -131,7 +134,7 @@ public abstract class JigsawCutter {
     /**
      * Update progress of this cutting operation.
      */
-    public void updateProgress() {
+    public final void updateProgress() {
 	iprogress++;
 	if (jp != null) {
 	    jp.setValue(iprogress);

@@ -338,7 +338,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 
 	pieceSpinner = new JSpinner(new SpinnerNumberModel(
 			 defaultPieces, JigsawCutter.MIN_PIECES,
-			 JigsawCutter.MAX_PIECES, 1));
+			 JigsawCutter.MAX_PIECES, 4));
 	JLabel pieceLabel = createHelpLabel("<html>"
 		+ " The puzzle will have roughly this many pieces.");
 	JPanel piecePane = new JPanel(new BorderLayout());
