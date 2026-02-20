@@ -18,7 +18,7 @@ public final class MultiPiece extends Piece {
     // Without it, subpiece images can be thrown away after they're combined
     // to form the joined piece.  With rotation, however, the bevels will
     // need to be repainted, and so the original image data is still needed.
-    private Set<Piece> subs;
+    private final Set<Piece> subs;
 
     // Constructor and fields -----------------------------------------------
 

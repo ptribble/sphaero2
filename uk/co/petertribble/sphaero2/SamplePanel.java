@@ -23,12 +23,12 @@ public final class SamplePanel extends JPanel implements ActionListener {
      * A JTextField, used by callers of this class to read the
      * filename of the selected image.
      */
-    private JTextField jtf;
+    private final JTextField jtf;
     /**
      * The number of available sample images.
      */
-    private int nSamples;
-    private transient Map<JButton, String> fmap = new HashMap<>();
+    private final int nSamples;
+    private final transient Map<JButton, String> fmap = new HashMap<>();
     private static final String SAMPLE_DIR = "/usr/share/sphaero2/samples";
 
     /**
@@ -39,16 +39,16 @@ public final class SamplePanel extends JPanel implements ActionListener {
      */
     public SamplePanel(final JTextField tf) {
 	jtf = tf;
-	initSamples();
+	nSamples = initSamples();
     }
 
-    private void initSamples() {
+    private int initSamples() {
 	File fd = new File(SAMPLE_DIR);
 	if (!fd.exists()) {
-	    return;
+	    return 0;
 	}
 	if (!fd.isDirectory()) {
-	    return;
+	    return 0;
 	}
 	/*
 	 * The sample directories contain an image foo.jpg and a thumbnail
@@ -58,6 +58,7 @@ public final class SamplePanel extends JPanel implements ActionListener {
 	 * Tighten up the border, a normal JButton has a lot of wasted space
 	 * on the left and right sides.
 	 */
+	int nfound = 0;
 	Insets margins = new Insets(2, 2, 2, 2);
 	for (String s : fd.list()) {
 	    File f2 = new File(fd, "thumb." + s);
@@ -67,10 +68,11 @@ public final class SamplePanel extends JPanel implements ActionListener {
 		File f1 = new File(fd, s);
 		fmap.put(jb, f1.getPath());
 		jb.addActionListener(this);
-		nSamples++;
+		nfound++;
 		add(jb);
 	    }
 	}
+	return nfound;
     }
 
     /**

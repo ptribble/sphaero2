@@ -140,7 +140,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     /**
      * Preferred width.
      */
-    private int pWidth = 640;
+    private static final int PWIDTH = 640;
 
     /**
      * The starting number of pieces to show.
@@ -370,7 +370,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	mainPane.add(okPanel);
 
 	setContentPane(mainPane);
-	setSize(pWidth, pHeight);
+	setSize(PWIDTH, pHeight);
 	setVisible(true);
     }
 
