@@ -172,6 +172,7 @@ public final class JigsawPuzzle extends JPanel {
 
     /**
      * Creates a new JigsawPuzzle.
+     *
      * @param nimage the final picture
      * @param ncutter the JigsawCutter to use on the image
      */

@@ -39,6 +39,7 @@ public class Piece {
     /**
      * Creates a new Piece.  No initial rotation is done.  (This is needed
      * by MultiPiece, which needs to set its subpieces before rotating.)
+     *
      * @param data image data
      * @param xpos X position of image relative to entire puzzle
      * @param ypos Y position of image relative to entire puzzle
@@ -65,6 +66,7 @@ public class Piece {
 
     /**
      * Creates a new Piece.
+     *
      * @param data image data
      * @param xpos X position of image relative to entire puzzle
      * @param ypos Y position of image relative to entire puzzle
