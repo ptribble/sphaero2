@@ -396,7 +396,7 @@ public final class JigsawPuzzle extends JPanel {
 		.grabPixels();
 	} catch (InterruptedException ex) { }
 	for (int i = 0; i < data.length; i++) {
-	    data[i] = data[i] & 0x00ffffff;
+	    data[i] = data[i] & 0x00FFFFFF;
 	}
 
 	ActionListener fader = new ActionListener() {
@@ -404,7 +404,7 @@ public final class JigsawPuzzle extends JPanel {
 	    @Override
 	    public void actionPerformed(final ActionEvent evt) {
 		for (int i = 0; i < data.length; i++) {
-		    data[i] = (data[i] & 0x00ffffff) | (trans << 24);
+		    data[i] = (data[i] & 0x00FFFFFF) | (trans << 24);
 		}
 		if (finishedImage != null) {
 		    finishedImage.flush();
@@ -412,10 +412,10 @@ public final class JigsawPuzzle extends JPanel {
 		finishedImage = Toolkit.getDefaultToolkit().createImage(
 			new MemoryImageSource(width, height, data, 0, width));
 		repaint(0, centerX, centerY, width, height);
-		if (trans < 0xff) {
+		if (trans < 0xFF) {
 		    trans += 0x11;
-		    if (trans >= 0xff) {
-			trans = 0xff;
+		    if (trans >= 0xFF) {
+			trans = 0xFF;
 		    }
 		    Timer timer = new Timer(200, this);
 		    timer.setRepeats(false);

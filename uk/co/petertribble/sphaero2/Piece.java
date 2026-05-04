@@ -412,7 +412,7 @@ public class Piece {
      */
     protected int getAlpha(final int x, final int y) {
 	int pixel = curData[y * curWidth + x];
-	return (pixel >> 24) & 0xff;
+	return (pixel >> 24) & 0xFF;
     }
 
     /**
@@ -502,10 +502,10 @@ public class Piece {
 	    nw = false;
 	    int x = Math.max(0, i - height + 2);
 	    int y = Math.max(0, height - i - 2);
-	    c = (((data[y * width + x] >> 24) & 0xff) > 0);
+	    c = (((data[y * width + x] >> 24) & 0xFF) > 0);
 	    while ((x < width) && (y < height)) {
 		if ((x + 1 < width) && (y + 1 < height)) {
-		    se = ((data[(y + 1) * width + x + 1] >> 24) & 0xff) > 0;
+		    se = ((data[(y + 1) * width + x + 1] >> 24) & 0xFF) > 0;
 		} else {
 		    se = false;
 		}
@@ -536,13 +536,13 @@ public class Piece {
     private static final int MAXB = 255 * FD / FN;
 
     private static int brighter(final int val) {
-	int r = (val >> 16) & 0xff;
-	int g = (val >> 8) & 0xff;
-	int b = val & 0xff;
+	int r = (val >> 16) & 0xFF;
+	int g = (val >> 8) & 0xFF;
+	int b = val & 0xFF;
 
 	// Black goes to #030303 gray
 	if (r == 0 && g == 0 && b == 0) {
-	    return 0xff030303;
+	    return 0xFF030303;
 	}
 	r = r < 3 ? 3 : r;
 	g = g < 3 ? 3 : g;
@@ -551,17 +551,17 @@ public class Piece {
 	r = r >= MAXB ? 255 : r * FN / FD;
 	g = g >= MAXB ? 255 : g * FN / FD;
 	b = b >= MAXB ? 255 : b * FN / FD;
-	return ((((0xff00 | r) << 8) | g) << 8) | b;
+	return ((((0xFF00 | r) << 8) | g) << 8) | b;
     }
 
     private static int darker(final int val) {
-	int r = (val >> 16) & 0xff;
-	int g = (val >> 8) & 0xff;
-	int b = val & 0xff;
+	int r = (val >> 16) & 0xFF;
+	int g = (val >> 8) & 0xFF;
+	int b = val & 0xFF;
 	r = r * FD / FN;
 	g = g * FD / FN;
 	b = b * FD / FN;
-	return ((((0xff00 | r) << 8) | g) << 8) | b;
+	return ((((0xFF00 | r) << 8) | g) << 8) | b;
     }
 
     // 4-way rotation -------------------------------------------------------
