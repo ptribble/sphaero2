@@ -519,7 +519,8 @@ public class Piece {
 		}
 		nw = c;
 		c = se;
-		x++; y++;
+		x++;
+		y++;
 	    }
 	}
     }
@@ -574,7 +575,8 @@ public class Piece {
      */
     protected void setRotatedPosition() {
 	if (rotation == 0) {
-	    rotatedX = imageX; rotatedY =  imageY;
+	    rotatedX = imageX;
+	    rotatedY = imageY;
 	    curWidth = origWidth;
 	    curHeight = origHeight;
 	} else if (rotation == 90) {
