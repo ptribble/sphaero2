@@ -20,7 +20,7 @@ import java.util.Set;
  * image it contains, how its edges are to be drawn, and what its
  * neighboring pieces are.
  *
- * When two or more Pieces are put together, the result is another
+ * <p>When two or more Pieces are put together, the result is another
  * Piece object, a MultiPiece.
  *
  * @see MultiPiece
@@ -53,7 +53,7 @@ public class Piece {
 		    final int iWidth, final int iHeight,
 		    final int pWidth, final int pHeight) {
 	neighbors = new HashSet<>();
-	origData = data; //NOPMD
+	origData = data; // NOPMD
 	imageX = xpos;
 	imageY = ypos;
 	curWidth = iWidth;

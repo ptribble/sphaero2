@@ -10,14 +10,14 @@
  * source. A copy of the CDDL is also available via the Internet at
  * http://www.illumos.org/license/CDDL.
  *
- * Copyright 2025 Peter C. Tribble
+ * Copyright 2026 Peter C. Tribble
  */
 
 /**
  * This package provides the sphaero2 application. The main user interface is
  * a JigsawFrame, while the actual puzzle itself is contained in JigsawPuzzle.
- * <p>
- * A puzzle is comprised of Pieces. The image is cut into Pieces by the
+ *
+ * <p>A puzzle is comprised of Pieces. The image is cut into Pieces by the
  * various Cutters, which are instances of JigsawCutter.
  */
 package uk.co.petertribble.sphaero2;

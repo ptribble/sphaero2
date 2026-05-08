@@ -36,7 +36,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.Border;
 
 /**
- * <p>JFrame that runs a JigsawPuzzle. This is the front end for
+ * JFrame that runs a JigsawPuzzle. This is the front end for
  * JigsawPuzzle, the main class of the jigsaw application.
  *
  * <p>"Sphaero" is short for "Sphaerodactylinea". This is the name of one
@@ -375,7 +375,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     }
 
     private static void fatalError(final String s) {
-	System.err.println(s); //NOPMD
+	System.err.println(s); // NOPMD
 	System.exit(1);
     }
 
@@ -383,9 +383,9 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      * Run the sphaero2 application. If given a filename as an argument, use
      * that as the jigsaw image, otherwise start with an interactive dialog.
      *
-     * The -p flag expectas the number of pieces.
+     * <p>The -p flag expectas the number of pieces.
      *
-     * The -c flag expects a cutter name, to select the style of pieces.
+     * <p>The -c flag expects a cutter name, to select the style of pieces.
      * Valid cutters are: Classic-4, Classic, Squares, Rectangles, Quads
      *
      * @param args command line arguments
@@ -428,10 +428,10 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 			    }
 			}
 			if (!cmatch) {
-			    System.err.println("Invalid cutter!"); //NOPMD
-			    System.err.println("Valid cutters are:"); //NOPMD
+			    System.err.println("Invalid cutter!"); // NOPMD
+			    System.err.println("Valid cutters are:"); // NOPMD
 			    for (JigsawCutter cutter : CUTTERS) {
-				System.err.println(cutter.getName()); //NOPMD
+				System.err.println(cutter.getName()); // NOPMD
 			    }
 			    System.exit(1);
 			}

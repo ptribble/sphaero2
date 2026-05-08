@@ -1,8 +1,8 @@
 package uk.co.petertribble.sphaero2;
 
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Insets;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;

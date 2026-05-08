@@ -6,7 +6,7 @@ import javax.swing.JProgressBar;
 /**
  * A JigsawCutter determines how pieces are to be cut from the image.
  *
- * <p> Suitable piece rotations depend on how the pieces are cut.
+ * <p>Suitable piece rotations depend on how the pieces are cut.
  * Therefore, a JigsawCutter must also provide hints for how a piece may be
  * oriented.  (<i>This feature is not yet implemented.</i>)
  */

@@ -8,7 +8,7 @@ import java.util.Set;
  * Piece knows, generally by way of keeping a set of the simple Pieces it
  * contains.
  *
- * <p> When two or more Pieces are put together, the result is another
+ * <p>When two or more Pieces are put together, the result is another
  * Piece object.  Pieces that weren't created this way are referred to here
  * as <i>atomic pieces</i>.
  */
