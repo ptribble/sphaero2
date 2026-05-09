@@ -427,7 +427,6 @@ public class Piece {
      * close enough together to be fitted
      */
     protected boolean isCloseTo(final Piece piece) {
-	// Don't even bother if they're not aligned.
 	if (piece.getRotation() != rotation) {
 	    return false;
 	}
@@ -447,8 +446,8 @@ public class Piece {
      * close enough to be joined to this one.
      *
      * @return an array of Pieces, or null if no neighbors were close enough;
-     *   if the array is non-null, the first Piece will be the new one;
-     *   subsequent Pieces will be the ones it was built from
+     * if the array is non-null, the first Piece will be the new one;
+     * subsequent Pieces will be the ones it was built from
      */
     public Piece[] join() {
 	Set<Piece> close = new HashSet<>();
@@ -479,7 +478,6 @@ public class Piece {
 	System.gc();
 	return ret;
     }
-
 
     // Bevel drawing --------------------------------------------------------
 

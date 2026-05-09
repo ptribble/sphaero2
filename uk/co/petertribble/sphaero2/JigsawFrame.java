@@ -553,7 +553,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	}
 
 	// Get the cutter and set its piece count
-        defaultCutter = (JigsawCutter) cutterCBox.getSelectedItem();
+	defaultCutter = (JigsawCutter) cutterCBox.getSelectedItem();
 	defaultPieces = ((Number) pieceSpinner.getValue()).intValue();
 	defaultCutter.setPreferredPieceCount(defaultPieces);
 

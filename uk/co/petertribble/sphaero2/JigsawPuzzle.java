@@ -197,6 +197,7 @@ public final class JigsawPuzzle extends JPanel {
 	    public void mousePressed(final MouseEvent e) {
 		mousePressed0(e);
 	    }
+
 	    @Override
 	    public void mouseReleased(final MouseEvent e) {
 		mouseReleased0(e);
@@ -213,6 +214,7 @@ public final class JigsawPuzzle extends JPanel {
 	    public void keyTyped(final KeyEvent e) {
 		keyTyped0(e);
 	    }
+
 	    @Override
 	    public void keyPressed(final KeyEvent e) {
 		keyPressed0(e);
@@ -429,7 +431,6 @@ public final class JigsawPuzzle extends JPanel {
 	timer.setRepeats(false);
 	timer.start();
     }
-
 
     // Mouse event handling -------------------------------------------------
 

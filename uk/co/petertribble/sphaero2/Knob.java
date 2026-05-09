@@ -156,7 +156,7 @@ public final class Knob {
      * @return a copy of the Path bounding this Knob
      *
      * @throws IllegalArgumentException if (x,y) is not an endpoint of this
-     *   Knob
+     * Knob
      */
     public GeneralPath getCurvePath(final int x, final int y) {
 	if ((x == x1) && (y == y1)) {
