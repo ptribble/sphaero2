@@ -136,7 +136,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     /**
      * Preferred height.
      */
-    private int pHeight = 480;
+    private int pheight = 480;
     /**
      * Preferred width.
      */
@@ -361,7 +361,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	    samplePane.setBorder(createTitledBorder("Select an image"));
 	    samplePane.add(new JScrollPane(sPanel));
 	    mainPane.add(samplePane);
-	    pHeight = 640;
+	    pheight = 640;
 	}
 
 	mainPane.add(imagePane);
@@ -370,7 +370,7 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	mainPane.add(okPanel);
 
 	setContentPane(mainPane);
-	setSize(PWIDTH, pHeight);
+	setSize(PWIDTH, pheight);
 	setVisible(true);
     }
 

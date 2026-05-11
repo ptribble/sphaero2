@@ -27,7 +27,7 @@ public final class SamplePanel extends JPanel implements ActionListener {
     /**
      * The number of available sample images.
      */
-    private final int nSamples;
+    private final int nsamples;
     private final transient Map<JButton, String> fmap = new HashMap<>();
     private static final String SAMPLE_DIR = "/usr/share/sphaero2/samples";
 
@@ -39,7 +39,7 @@ public final class SamplePanel extends JPanel implements ActionListener {
      */
     public SamplePanel(final JTextField tf) {
 	jtf = tf;
-	nSamples = initSamples();
+	nsamples = initSamples();
     }
 
     private int initSamples() {
@@ -81,7 +81,7 @@ public final class SamplePanel extends JPanel implements ActionListener {
      * @return true if there some sample images.
      */
     public boolean samplesValid() {
-	return nSamples > 0;
+	return nsamples > 0;
     }
 
     /*

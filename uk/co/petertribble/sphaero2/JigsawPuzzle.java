@@ -135,7 +135,7 @@ public final class JigsawPuzzle extends JPanel {
      */
     private int transY;
     // Last in list = topmost piece
-    private transient List<Piece> zOrder;
+    private transient List<Piece> zorder;
     /**
      * An int holding the current background color.
      */
@@ -162,7 +162,7 @@ public final class JigsawPuzzle extends JPanel {
     private Color clearColor;
 
     // If a keyboard command can affect a piece, it'll be this one.
-    // Typically, this piece should be last in zOrder, but you never know.
+    // Typically, this piece should be last in zorder, but you never know.
     private transient Piece focusPiece;
 
     /**
@@ -230,7 +230,7 @@ public final class JigsawPuzzle extends JPanel {
      * not be done in the AWT thread.
      */
     public void reset() {
-	zOrder = null;
+	zorder = null;
 	Piece[] pieces = cutter.cut(image);
 	shuffle(pieces);
     }
@@ -239,8 +239,8 @@ public final class JigsawPuzzle extends JPanel {
      * Push the top piece (at the front) to the bottom (the back).
      */
     private void push() {
-	Piece p = zOrder.remove(zOrder.size() - 1);
-	zOrder.add(0, p);
+	Piece p = zorder.remove(zorder.size() - 1);
+	zorder.add(0, p);
 	repaint();
     }
 
@@ -267,14 +267,14 @@ public final class JigsawPuzzle extends JPanel {
      * @return true if the Pieces have been cut for this puzzle
      */
     public boolean isCut() {
-	return zOrder != null;
+	return zorder != null;
     }
 
     @Override
     protected void paintComponent(final Graphics g) {
 	super.paintComponent(g);
 
-	if (zOrder == null) {
+	if (zorder == null) {
 	    return;
 	}
 
@@ -282,7 +282,7 @@ public final class JigsawPuzzle extends JPanel {
 	    return;
 	}
 
-	for (Piece piece : zOrder) {
+	for (Piece piece : zorder) {
 	    piece.draw(g);
 	}
 
@@ -296,7 +296,7 @@ public final class JigsawPuzzle extends JPanel {
 	}
 
 	if (finished && finishedImage != null) {
-	    Piece lastPiece = zOrder.get(0);
+	    Piece lastPiece = zorder.get(0);
 	    int x = lastPiece.getPuzzleX();
 	    int y = lastPiece.getPuzzleY();
 	    g.drawImage(finishedImage, x, y, null);
@@ -352,11 +352,11 @@ public final class JigsawPuzzle extends JPanel {
 
     // ### Should this be public?
     private void finish() {
-	if (zOrder.size() != 1) {
+	if (zorder.size() != 1) {
 	    return;
 	}
 	finished = true;
-	Piece lastPiece = zOrder.get(0);
+	Piece lastPiece = zorder.get(0);
 
 	// Auto-rotate the puzzle to its correct position.
 	lastPiece.setRotation(0);
@@ -463,7 +463,7 @@ public final class JigsawPuzzle extends JPanel {
 	int y = e.getY();
 
 	focusPiece = null;
-	ListIterator<Piece> iter = zOrder.listIterator(zOrder.size());
+	ListIterator<Piece> iter = zorder.listIterator(zorder.size());
 	while (focusPiece == null && iter.hasPrevious()) {
 	    Piece piece = iter.previous();
 	    if (piece.contains(x, y)) {
@@ -472,7 +472,7 @@ public final class JigsawPuzzle extends JPanel {
 	    }
 	}
 	if (focusPiece != null) {
-	    zOrder.add(focusPiece);
+	    zorder.add(focusPiece);
 	    transX = x - focusPiece.getPuzzleX();
 	    transY = y - focusPiece.getPuzzleY();
 	    // The focusPiece might have moved up in Z-order. At worst, we have
@@ -505,16 +505,16 @@ public final class JigsawPuzzle extends JPanel {
 	if (result != null) {
 	    Piece newPiece = result[0];
 	    for (int i = 1; i < result.length; i++) {
-		zOrder.remove(result[i]);
+		zorder.remove(result[i]);
 	    }
-	    zOrder.add(newPiece);
+	    zorder.add(newPiece);
 	    focusPiece = newPiece;
 	    // Joined pieces may be of any size and number. Mouse release isn't
 	    // a terribly frequent event, so just repaint the whole thing.  If
 	    // it's really necessary later, the thing to do would be to repaint
 	    // the bounding rect for every piece in the result array above.
 	    repaint();
-	    if (zOrder.size() == 1) {
+	    if (zorder.size() == 1) {
 		finish();
 	    }
 	}
@@ -549,7 +549,7 @@ public final class JigsawPuzzle extends JPanel {
 	int cy0 = Math.max(0, Math.min(clearY0, clearY1));
 	int cx1 = Math.min(getWidth(), Math.max(clearX0, clearX1));
 	int cy1 = Math.min(getHeight(), Math.max(clearY0, clearY1));
-	for (Piece piece : zOrder) {
+	for (Piece piece : zorder) {
 	    if (intersects(piece, cx0, cy0, cx1, cy1)) {
 		shuffle(piece, cx0, cy0, cx1, cy1);
 	    }
@@ -592,8 +592,8 @@ public final class JigsawPuzzle extends JPanel {
      * randomize rotation.
      */
     private void shuffle() {
-	Piece[] pieces = new Piece[zOrder.size()];
-	zOrder.toArray(pieces);
+	Piece[] pieces = new Piece[zorder.size()];
+	zorder.toArray(pieces);
 	shuffle(pieces);
 	repaint();
     }
@@ -674,10 +674,10 @@ public final class JigsawPuzzle extends JPanel {
 	piece.moveTo(rect.x + dx, rect.y + dy);
     }
 
-    // Copy pieces into zOrder, and randomize their positions.
+    // Copy pieces into zorder, and randomize their positions.
     private void shuffle(final Piece[] pieces) {
 	// Arrays.asList() doesn't work, so be explicit
-	zOrder = new ArrayList<>();
+	zorder = new ArrayList<>();
 	int height = getHeight();
 	int width = getWidth();
 
@@ -686,9 +686,9 @@ public final class JigsawPuzzle extends JPanel {
 	    piece.setPuzzlePosition(
 		trandom.nextInt(width - piece.getCurrentWidth()),
 		trandom.nextInt(height - piece.getCurrentHeight()));
-	    zOrder.add(piece);
+	    zorder.add(piece);
 	}
-	Collections.shuffle(zOrder);
+	Collections.shuffle(zorder);
 
 	finished = false;
 	if (finishedImage != null) {

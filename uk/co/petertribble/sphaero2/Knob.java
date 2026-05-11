@@ -80,8 +80,8 @@ public final class Knob {
     private final int y1;
     private final int x2;
     private final int y2;
-    private GeneralPath cPath;
-    private GeneralPath cPathReverse;
+    private GeneralPath cpath;
+    private GeneralPath cpathReverse;
 
     /**
      * Creates a new Knob, anchored on the given coordinates.
@@ -107,21 +107,21 @@ public final class Knob {
 
 	jitter(data, XVARY, YVARY, XDBVARY, XDFVARY);
 
-	cPath = new GeneralPath(GeneralPath.WIND_NON_ZERO, data.length * 3 - 2);
-	cPathReverse
+	cpath = new GeneralPath(GeneralPath.WIND_NON_ZERO, data.length * 3 - 2);
+	cpathReverse
           = new GeneralPath(GeneralPath.WIND_NON_ZERO, data.length * 3 - 2);
-	cPath.moveTo(data[0][X], data[0][Y]);
-	cPathReverse.moveTo(data[data.length - 1][X], data[data.length - 1][Y]);
+	cpath.moveTo(data[0][X], data[0][Y]);
+	cpathReverse.moveTo(data[data.length - 1][X], data[data.length - 1][Y]);
 	for (int i = 0; i < data.length - 1; i++) {
-	    curveTo(cPath, data, i, true);
-	    curveTo(cPathReverse, data, data.length - 1 - i, false);
+	    curveTo(cpath, data, i, true);
+	    curveTo(cpathReverse, data, data.length - 1 - i, false);
 	}
 
 	// Transform to coincide with line segment (x1,y1)-(x2,y2)
 	AffineTransform affine =
 	    new AffineTransform(x2 - x1, y2 - y1, y1 - y2, x2 - x1, x1, y1);
-	cPath.transform(affine);
-	cPathReverse.transform(affine);
+	cpath.transform(affine);
+	cpathReverse.transform(affine);
     }
 
     private void curveTo(final GeneralPath path, final float[][] data,
@@ -160,9 +160,9 @@ public final class Knob {
      */
     public GeneralPath getCurvePath(final int x, final int y) {
 	if ((x == x1) && (y == y1)) {
-	    return (GeneralPath) cPath.clone();
+	    return (GeneralPath) cpath.clone();
 	} else if ((x == x2) && (y == y2)) {
-	    return (GeneralPath) cPathReverse.clone();
+	    return (GeneralPath) cpathReverse.clone();
 	} else {
 	    throw new IllegalArgumentException(
 				"Not an endpoint: (" + x + "," + y + ")");
@@ -175,7 +175,7 @@ public final class Knob {
      * @return the Rectangle bounding this Knob
      */
     public Rectangle getBounds() {
-	return cPath.getBounds();
+	return cpath.getBounds();
     }
 
     private void jitter(final float[][] pts, final float xVar, final float yVar,
