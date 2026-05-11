@@ -236,20 +236,9 @@ public final class JigsawPuzzle extends JPanel {
     }
 
     /**
-     * Move current pieces around randomly, randomize z-order, but don't
-     * randomize rotation.
-     */
-    public void shuffle() {
-	Piece[] pieces = new Piece[zOrder.size()];
-	zOrder.toArray(pieces);
-	shuffle(pieces);
-	repaint();
-    }
-
-    /**
      * Push the top piece (at the front) to the bottom (the back).
      */
-    public void push() {
+    private void push() {
 	Piece p = zOrder.remove(zOrder.size() - 1);
 	zOrder.add(0, p);
 	repaint();
@@ -598,6 +587,17 @@ public final class JigsawPuzzle extends JPanel {
 	return r.intersects(rp);
     }
 
+    /**
+     * Move current pieces around randomly, randomize z-order, but don't
+     * randomize rotation.
+     */
+    private void shuffle() {
+	Piece[] pieces = new Piece[zOrder.size()];
+	zOrder.toArray(pieces);
+	shuffle(pieces);
+	repaint();
+    }
+
     // (x1,y1) guaranteed to be SE of (x0,y0)
     /**
      * Shuffle piece randomly, but keeping it out of the rectangle defined
@@ -674,6 +674,29 @@ public final class JigsawPuzzle extends JPanel {
 	piece.moveTo(rect.x + dx, rect.y + dy);
     }
 
+    // Copy pieces into zOrder, and randomize their positions.
+    private void shuffle(final Piece[] pieces) {
+	// Arrays.asList() doesn't work, so be explicit
+	zOrder = new ArrayList<>();
+	int height = getHeight();
+	int width = getWidth();
+
+	ThreadLocalRandom trandom = ThreadLocalRandom.current();
+	for (Piece piece : pieces) {
+	    piece.setPuzzlePosition(
+		trandom.nextInt(width - piece.getCurrentWidth()),
+		trandom.nextInt(height - piece.getCurrentHeight()));
+	    zOrder.add(piece);
+	}
+	Collections.shuffle(zOrder);
+
+	finished = false;
+	if (finishedImage != null) {
+	    finishedImage.flush();
+	    finishedImage = null;
+	}
+    }
+
     // Keyboard event handling ----------------------------------------------
 
     void keyTyped0(final KeyEvent e) {
@@ -737,29 +760,6 @@ public final class JigsawPuzzle extends JPanel {
 	focusPiece.moveTo(currX, currY);
 	repaint(0, prevX, prevY, prevW, prevH);
 	repaint(0, currX, currY, currW, currH);
-    }
-
-    // Copy pieces into zOrder, and randomize their positions.
-    private void shuffle(final Piece[] pieces) {
-	// Arrays.asList() doesn't work, so be explicit
-	zOrder = new ArrayList<>();
-	int height = getHeight();
-	int width = getWidth();
-
-	ThreadLocalRandom trandom = ThreadLocalRandom.current();
-	for (Piece piece : pieces) {
-	    piece.setPuzzlePosition(
-		trandom.nextInt(width - piece.getCurrentWidth()),
-		trandom.nextInt(height - piece.getCurrentHeight()));
-	    zOrder.add(piece);
-	}
-	Collections.shuffle(zOrder);
-
-	finished = false;
-	if (finishedImage != null) {
-	    finishedImage.flush();
-	    finishedImage = null;
-	}
     }
 
     private void prevBackground() {
