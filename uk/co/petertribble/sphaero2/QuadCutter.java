@@ -50,8 +50,8 @@ public final class QuadCutter extends JigsawCutter {
 	// Each point is based on a grid of equal rectangles, but may drift by
 	// a factor of up to 0.1 in any direction.  Edge points, of course,
 	// cannot drift in certain dimensions.
-	int hVary = height / (rows * 10);
-	int wVary = width / (columns * 10);
+	int hvary = height / (rows * 10);
+	int wvary = width / (columns * 10);
 	Point[][] points = new Point[columns + 1][rows + 1];
 	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	// i varies horizontally; j varies vertically
@@ -62,10 +62,10 @@ public final class QuadCutter extends JigsawCutter {
 		int x = baseX;
 		int y = baseY;
 		if (i > 0 && i < columns) {
-		    x += trandom.nextInt(2 * wVary + 1) - wVary;
+		    x += trandom.nextInt(2 * wvary + 1) - wvary;
 		}
 		if (j > 0 && j < rows) {
-		    y += trandom.nextInt(2 * hVary + 1) - hVary;
+		    y += trandom.nextInt(2 * hvary + 1) - hvary;
 		}
 		points[i][j] = new Point(x, y);
 	    }
@@ -91,18 +91,18 @@ public final class QuadCutter extends JigsawCutter {
 
     private Piece makePiece(final BufferedImage image,
 		final Point nw, final Point sw, final Point ne, final Point se,
-		final int tWidth, final int tHeight) {
+		final int twidth, final int theight) {
 	int minX = Math.min(nw.x, sw.x);
 	int maxX = Math.max(ne.x, se.x);
 	int minY = Math.min(nw.y, ne.y);
 	int maxY = Math.max(sw.y, se.y);
 	int width = maxX - minX + 1;
 	int height = maxY - minY + 1;
-	if (minX + width > tWidth) {
-	    width = tWidth - minX;
+	if (minX + width > twidth) {
+	    width = twidth - minX;
 	}
-	if (minY + height > tHeight) {
-	    height = tHeight - minY;
+	if (minY + height > theight) {
+	    height = theight - minY;
 	}
 
 	int[] data = new int[width * height];
@@ -116,7 +116,7 @@ public final class QuadCutter extends JigsawCutter {
 
 	int rotation = ThreadLocalRandom.current().nextInt(4) * 90;
 	return
-	    new Piece(data, minX, minY, width, height, tWidth, tHeight,
+	    new Piece(data, minX, minY, width, height, twidth, theight,
 			rotation);
     }
 
@@ -127,14 +127,14 @@ public final class QuadCutter extends JigsawCutter {
 	p2.translate(-minX, -minY);
 	// y = mx + b
 	// N = numerator; D = denominator
-	int mN = p2.y - p1.y;
-	int mD = p2.x - p1.x;
-	int bN = mD * p1.y - mN * p1.x;
-	// Since bD == mD,
-	// y = mN*x/mD + bN/mD
-	//   = (mN*x + bN)/mD
-	// y*mD = mN*x + bN
-	// make transparent if y*mD > mN*x + bN
+	int mmN = p2.y - p1.y;
+	int mmD = p2.x - p1.x;
+	int bbN = mmD * p1.y - mmN * p1.x;
+	// Since bD == mmD,
+	// y = mN*x/mD + bN/mmD
+	//   = (mN*x + bN)/mmD
+	// y*mmD = mmN*x + bbN
+	// make transparent if y*mmD > mmN*x + bbN
 
 	for (int j = 0; j < height; j++) {
 	    // int y = j+minY;
@@ -142,7 +142,7 @@ public final class QuadCutter extends JigsawCutter {
 	    for (int i = 0; i < width; i++) {
 		// int x = i+minX;
 		int x = i;
-		if (y * mD < mN * x + bN) {
+		if (y * mmD < mmN * x + bbN) {
 		    data[j * width + i] = 0;
 		}
 	    }

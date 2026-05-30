@@ -178,21 +178,21 @@ public final class Knob {
 	return cpath.getBounds();
     }
 
-    private void jitter(final float[][] pts, final float xVar, final float yVar,
-			 final float bVar, final float fVar) {
+    private void jitter(final float[][] pts, final float xvar, final float yvar,
+			 final float bvar, final float fvar) {
 	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	for (int i = 0; i < pts.length; i++) {
 	    float b = pts[i][XDB];
 	    float f = pts[i][XDF];
-	    // x,y each varies by + or - itsVar
+	    // x,y each varies by + or - itsvar
 	    // first and last x do not vary
 	    if ((i > 0) && (i < pts.length - 1)) {
-		pts[i][X] += trandom.nextFloat() * xVar * 2 - xVar;
+		pts[i][X] += trandom.nextFloat() * xvar * 2 - xvar;
 	    }
-	    pts[i][Y] += trandom.nextFloat() * yVar * 2 - yVar;
-	    // b,f each varies by + or - it*itsVar
-	    pts[i][XDB] += trandom.nextFloat() * b * bVar * 2 - b * bVar;
-	    pts[i][XDF] += trandom.nextFloat() * f * fVar * 2 - f * fVar;
+	    pts[i][Y] += trandom.nextFloat() * yvar * 2 - yvar;
+	    // b,f each varies by + or - it*itsvar
+	    pts[i][XDB] += trandom.nextFloat() * b * bvar * 2 - b * bvar;
+	    pts[i][XDF] += trandom.nextFloat() * f * fvar * 2 - f * fvar;
 	}
     }
 

@@ -54,8 +54,8 @@ public final class ClassicCutter extends JigsawCutter {
 	// drift by up to 1/20th the height or width of an average piece.
 	// Points on the north and south edges are fixed vertically, of
 	// course, and east/west edge points are fixed horizontally.
-	int hVary = height / (rows * 20);
-	int wVary = width / (columns * 20);
+	int hvary = height / (rows * 20);
+	int wvary = width / (columns * 20);
 	Point[][] points = new Point[columns + 1][rows + 1];
 	ThreadLocalRandom trandom = ThreadLocalRandom.current();
 	// i varies horizontally; j varies vertically
@@ -66,10 +66,10 @@ public final class ClassicCutter extends JigsawCutter {
 		int x = i * width / columns;
 		int y = baseY;
 		if (i > 0 && i < columns) {
-		    x += trandom.nextInt(2 * wVary + 1) - wVary;
+		    x += trandom.nextInt(2 * wvary + 1) - wvary;
 		}
 		if (j > 0 && j < rows) {
-		    y += trandom.nextInt(2 * hVary + 1) - hVary;
+		    y += trandom.nextInt(2 * hvary + 1) - hvary;
 		}
 		points[i][j] = new Point(x, y);
 	    }
@@ -78,7 +78,7 @@ public final class ClassicCutter extends JigsawCutter {
 	// Make a knob for each edge.  Two matrices, one for vertical edges,
 	// one for horizontal.  Remember to alternate knob directions.
 	boolean flip1 = true;
-	Knob[][] vKnobs = new Knob[columns - 1][rows];
+	Knob[][] vknobs = new Knob[columns - 1][rows];
 	for (int j = 0; j < rows; j++) {
 	    boolean flip = flip1;
 	    for (int i = 0; i < columns - 1; i++) {
@@ -89,14 +89,14 @@ public final class ClassicCutter extends JigsawCutter {
 		    p1 = p2;
 		    p2 = temp;
 		}
-		vKnobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
+		vknobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
 		flip = !flip;
 	    }
 	    flip1 = !flip1;
 	}
 
 	flip1 = true;
-	Knob[][] hKnobs = new Knob[columns][rows - 1];
+	Knob[][] hknobs = new Knob[columns][rows - 1];
 	for (int j = 0; j < rows - 1; j++) {
 	    boolean flip = flip1;
 	    for (int i = 0; i < columns; i++) {
@@ -107,7 +107,7 @@ public final class ClassicCutter extends JigsawCutter {
 		    p1 = p2;
 		    p2 = temp;
 		}
-		hKnobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
+		hknobs[i][j] = new Knob(p1.x, p1.y, p2.x, p2.y);
 		flip = !flip;
 	    }
 	    flip1 = !flip1;
@@ -117,10 +117,10 @@ public final class ClassicCutter extends JigsawCutter {
 	Piece[][] pieces = new Piece[columns][rows];
 	for (int j = 0; j < rows; j++) {
 	    for (int i = 0; i < columns; i++) {
-		Knob knobN = j > 0 ? hKnobs[i][j - 1] : null;
-		Knob knobS = j < rows - 1 ? hKnobs[i][j] : null;
-		Knob knobW = i > 0 ? vKnobs[i - 1][j] : null;
-		Knob knobE = i < columns - 1 ? vKnobs[i][j] : null;
+		Knob knobN = j > 0 ? hknobs[i][j - 1] : null;
+		Knob knobS = j < rows - 1 ? hknobs[i][j] : null;
+		Knob knobW = i > 0 ? vknobs[i - 1][j] : null;
+		Knob knobE = i < columns - 1 ? vknobs[i][j] : null;
 		pieces[i][j] = makePiece(image,
 					points[i][j],
 					points[i][j + 1],
@@ -141,7 +141,7 @@ public final class ClassicCutter extends JigsawCutter {
 			    final Point ne, final Point se,
 			    final Knob knobN, final Knob knobE,
 			    final Knob knobS, final Knob knobW,
-			    final int tWidth, final int tHeight) {
+			    final int twidth, final int theight) {
 	// Build a path out of the knobs/puzzle edges.
 	GeneralPath path = new GeneralPath();
 	path.moveTo(nw.x, nw.y);
@@ -186,11 +186,11 @@ public final class ClassicCutter extends JigsawCutter {
 	int width = box.width;
 	int height = box.height;
 
-	if (box.x + width > tWidth) {
-	    width = tWidth - box.x;
+	if (box.x + width > twidth) {
+	    width = twidth - box.x;
 	}
-	if (box.y + height > tHeight) {
-	    height = tHeight - box.y;
+	if (box.y + height > theight) {
+	    height = theight - box.y;
 	}
 
 	int[] data = new int[width * height];
@@ -203,7 +203,7 @@ public final class ClassicCutter extends JigsawCutter {
 	int rotation = ThreadLocalRandom.current().nextInt(4) * 90;
 
 	return new Piece(data, minX, minY, width, height,
-			tWidth, tHeight, rotation);
+			twidth, theight, rotation);
     }
 
     private void mask(final int[] data, final GeneralPath path,

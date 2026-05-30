@@ -183,13 +183,12 @@ public final class MultiPiece extends Piece {
 	int offset = (pieceY - dataY) * width + pieceX - dataX;
 
 	for (int i = 0; i < pieceH; i++) {
-	    int iNDOffset = i * pieceW;
-	    int iDOffset = i * width;
+	    int indoffset = i * pieceW;
+	    int idoffset = i * width;
 	    for (int j = 0; j < pieceW; j++) {
-		// int ndOff = iNDOffset+j;
-		int newDatum = newData[iNDOffset + j];
+		int newDatum = newData[indoffset + j];
 		if (newDatum != 0) {
-		    data[ offset + iDOffset + j ] = newDatum;
+		    data[ offset + idoffset + j ] = newDatum;
 		}
 	    }
 	}

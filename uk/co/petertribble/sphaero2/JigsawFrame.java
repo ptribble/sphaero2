@@ -355,11 +355,11 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	okPanel.add(okButton);
 	okButton.addActionListener(this);
 
-	SamplePanel sPanel = new SamplePanel(imageField);
-	if (sPanel.samplesValid()) {
+	SamplePanel spanel = new SamplePanel(imageField);
+	if (spanel.samplesValid()) {
 	    JPanel samplePane = new JPanel(new BorderLayout());
 	    samplePane.setBorder(createTitledBorder("Select an image"));
-	    samplePane.add(new JScrollPane(sPanel));
+	    samplePane.add(new JScrollPane(spanel));
 	    mainPane.add(samplePane);
 	    pheight = 640;
 	}

@@ -340,13 +340,13 @@ public final class JigsawPuzzle extends JPanel {
      */
     private void computePreferredSize() {
 	JigUtil.ensureLoaded(image);
-	int iWidth = image.getWidth(null);
-	int iHeight = image.getHeight(null);
-	int area = iWidth * iHeight * 3 / 2;
+	int iwidth = image.getWidth(null);
+	int iheight = image.getHeight(null);
+	int area = iwidth * iheight * 3 / 2;
 	int width = (int) Math.sqrt(area * 5 / 3);
 	int height = width * 3 / 5;
-	width = Math.max(width, iWidth * 5 / 4);
-	height = Math.max(height, iHeight * 5 / 4);
+	width = Math.max(width, iwidth * 5 / 4);
+	height = Math.max(height, iheight * 5 / 4);
 	prefSize = new Dimension(width, height);
     }
 
@@ -642,25 +642,25 @@ public final class JigsawPuzzle extends JPanel {
 	Rectangle east = (x1 >= w || ah == 0) ? EMPTYRECT
 	    : new Rectangle(x1, ay, w - x1, ah);
 
-	int nArea = north.width * north.height;
-	int sArea = south.width * south.height;
-	int wArea = west.width * west.height;
-	int eArea = east.width * east.height;
-	int totalArea = nArea + sArea + wArea + eArea;
+	int narea = north.width * north.height;
+	int sarea = south.width * south.height;
+	int warea = west.width * west.height;
+	int earea = east.width * east.height;
+	int totalArea = narea + sarea + warea + earea;
 
 	int rand = ThreadLocalRandom.current().nextInt(totalArea);
 
-	rand -= nArea;
+	rand -= narea;
 	if (rand < 0) {
 	    shuffle(piece, north);
 	    return;
 	}
-	rand -= sArea;
+	rand -= sarea;
 	if (rand < 0) {
 	    shuffle(piece, south);
 	    return;
 	}
-	rand -= wArea;
+	rand -= warea;
 	if (rand < 0) {
 	    shuffle(piece, west);
 	    return;

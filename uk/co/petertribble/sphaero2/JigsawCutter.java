@@ -89,11 +89,11 @@ public abstract class JigsawCutter {
      * of pieces may differ slightly, depending on the specific cutting
      * algorithm. If out of range, clamp to the allowed range.
      *
-     * @param nPieces the preferred number of pieces; the cutter will
+     * @param npieces the preferred number of pieces; the cutter will
      * try to produce close to this many
      */
-    public void setPreferredPieceCount(final int nPieces) {
-	prefPieces = nPieces;
+    public void setPreferredPieceCount(final int npieces) {
+	prefPieces = npieces;
 	if (prefPieces < MIN_PIECES) {
 	    prefPieces = MIN_PIECES;
 	}
