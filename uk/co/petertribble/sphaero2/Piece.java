@@ -28,13 +28,74 @@ import java.util.Set;
 public class Piece {
     // Class constants ------------------------------------------------------
 
-    /*
+    /**
      * A Piece must be within this many pixels of "perfect" to be considered
      * close.
      */
     private static final int NEARBY = 7;
 
-    // Constructor and fields -----------------------------------------------
+    // see the implementation of brighter()
+    private static final int FN = 10;
+    private static final int FD = 7;
+    private static final int MAXB = 255 * FD / FN;
+
+    /**
+     * Pieces considered to be neighbors to this one.  They are the only
+     * ones that can be fitted to it.
+     */
+    protected Set<Piece> neighbors;
+
+    /**
+     * Current width, taking rotation into account.
+     */
+    protected int curWidth;
+    /**
+     * Current height, taking rotation into account.
+     */
+    protected int curHeight;
+    /**
+     * Current data, taking rotation into account.
+     */
+    protected int[] curData;
+
+    /**
+     * Original image width.
+     */
+    protected int origWidth;
+    /**
+     * Original image height.
+     */
+    protected int origHeight;
+
+    /*
+     * Original image data.
+     */
+    private int[] origData;
+
+    // Location in the image.
+    private int imageX;
+    private int imageY;
+
+    // Size of the entire image.
+    private int totalWidth;
+    private int totalHeight;
+
+    // Location in the image adjusted by current rotation.
+    private int rotatedX;
+    private int rotatedY;
+
+    // Location in the puzzle panel.
+    private int puzzleX;
+    private int puzzleY;
+
+    // Image for this Piece. null for a MultiPiece
+    private Image image;
+
+    // This is measured in integer degrees. 0 is unrotated.  90 is 90
+    // degrees clockwise, etc. Must be 0, 90, 180, or 270.
+    private int rotation;
+
+    // Constructors  -----------------------------------------------
 
     /**
      * Creates a new Piece.  No initial rotation is done.  (This is needed
@@ -84,61 +145,6 @@ public class Piece {
 	this(data, xpos, ypos, iwidth, iheight, pwidth, pheight);
 	forceSetRotation(irotation);
     }
-
-    // Location in the image.
-    private int imageX;
-    private int imageY;
-
-    // Size of the entire image.
-    private int totalWidth;
-    private int totalHeight;
-
-    // Location in the image adjusted by current rotation.
-    private int rotatedX;
-    private int rotatedY;
-
-    /**
-     * Pieces considered to be neighbors to this one.  They are the only
-     * ones that can be fitted to it.
-     */
-    protected Set<Piece> neighbors;
-
-    /**
-     * Original image width.
-     */
-    protected int origWidth;
-    /**
-     * Original image height.
-     */
-    protected int origHeight;
-    /*
-     * Original image data.
-     */
-    private int[] origData;
-
-    /**
-     * Current width, taking rotation into account.
-     */
-    protected int curWidth;
-    /**
-     * Current height, taking rotation into account.
-     */
-    protected int curHeight;
-    /**
-     * Current data, taking rotation into account.
-     */
-    protected int[] curData;
-
-    // Location in the puzzle panel.
-    private int puzzleX;
-    private int puzzleY;
-
-    // Image for this Piece. null for a MultiPiece
-    private Image image;
-
-    // This is measured in integer degrees. 0 is unrotated.  90 is 90
-    // degrees clockwise, etc. Must be 0, 90, 180, or 270.
-    private int rotation;
 
     // Accessors ------------------------------------------------------------
 
@@ -531,9 +537,6 @@ public class Piece {
     // trust inlining yet. And I certainly don't want to make scads of Color
     // objects for each pixel. It's bad enough these are methods, and not
     // inlined in bevel().
-    private static final int FN = 10;
-    private static final int FD = 7;
-    private static final int MAXB = 255 * FD / FN;
 
     private static int brighter(final int val) {
 	int r = (val >> 16) & 0xFF;

@@ -33,7 +33,6 @@ import javax.swing.Timer;
  */
 public final class JigsawPuzzle extends JPanel {
     // Class constants ------------------------------------------------------
-    private static final long serialVersionUID = 1L;
 
     // ### Allow background to be changed.
     // ### Allow these to be configured.
@@ -74,7 +73,11 @@ public final class JigsawPuzzle extends JPanel {
      */
     public static final char HIDE = 'H';
 
-    // Available background colors
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * Available background colors.
+     */
     private static final Color[] BGCOLORS = {
 	Color.BLACK,
 	new Color(48, 0, 0),
@@ -101,8 +104,9 @@ public final class JigsawPuzzle extends JPanel {
 
     private static final Rectangle EMPTYRECT = new Rectangle(0, 0, 0, 0);
 
-    private final transient BufferedImage image;
     transient Image finishedImage;
+
+    private final transient BufferedImage image;
     private final transient JigsawCutter cutter;
     /**
      * The preferred size of the game.

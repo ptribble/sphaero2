@@ -76,6 +76,27 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     /**
+     * The colour of the text in the help label.
+     */
+    private static final Color HELP_COLOR = new Color(100, 100, 150);
+
+    /**
+     * Preferred width.
+     */
+    private static final int PWIDTH = 640;
+
+    /**
+     * A list of all available cutters.
+     */
+    private static final JigsawCutter[] CUTTERS = {
+	new Classic4Cutter(),
+	new ClassicCutter(),
+	new SquareCutter(),
+	new RectCutter(),
+	new QuadCutter(),
+    };
+
+    /**
      * The menu bar at the top of the game.
      */
     private JMenuBar jmb;
@@ -106,8 +127,6 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     private transient Image image;
     private transient Icon miniImage;
 
-    // for the interactive prompt
-    private static final Color HELP_COLOR = new Color(100, 100, 150);
     /**
      * A field to display the name of the image.
      */
@@ -137,24 +156,12 @@ public final class JigsawFrame extends JFrame implements ActionListener {
      * Preferred height.
      */
     private int pheight = 480;
-    /**
-     * Preferred width.
-     */
-    private static final int PWIDTH = 640;
 
     /**
      * The starting number of pieces to show.
      */
     private int defaultPieces = JigsawCutter.DEFAULT_PIECES;
     private transient JigsawCutter defaultCutter;
-
-    private static final JigsawCutter[] CUTTERS = {
-	new Classic4Cutter(),
-	new ClassicCutter(),
-	new SquareCutter(),
-	new RectCutter(),
-	new QuadCutter(),
-    };
 
     /**
      * Creates and displays a simple JFrame containing a jigsaw puzzle in a

@@ -15,6 +15,15 @@ public final class TimeLabel extends JLabel implements ActionListener {
     private static final long serialVersionUID = 1L;
 
     /**
+     * The text for the progress label, while running.
+     */
+    private static final String ELAPSED_LABEL = "Elapsed time: ";
+    /**
+     * The text for the progress label, while paused.
+     */
+    private static final String PAUSED_LABEL = "(Paused) time: ";
+
+    /**
      * The Timer to track how long it has taken to solve the puzzle.
      */
     private Timer timer;
@@ -29,9 +38,6 @@ public final class TimeLabel extends JLabel implements ActionListener {
      * started.
      */
     private long pausemillis;
-
-    private static final String ELAPSED_LABEL = "Elapsed time: ";
-    private static final String PAUSED_LABEL = "(Paused) time: ";
 
     /**
      * A String to hold the currently displayed type of label, which will
