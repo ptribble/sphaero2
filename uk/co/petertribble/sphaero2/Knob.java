@@ -118,8 +118,8 @@ public final class Knob {
 	}
 
 	// Transform to coincide with line segment (x1,y1)-(x2,y2)
-	AffineTransform affine =
-	    new AffineTransform(x2 - x1, y2 - y1, y1 - y2, x2 - x1, x1, y1);
+	AffineTransform affine
+	    = new AffineTransform(x2 - x1, y2 - y1, y1 - y2, x2 - x1, x1, y1);
 	cpath.transform(affine);
 	cpathReverse.transform(affine);
     }

@@ -602,6 +602,35 @@ public final class JigsawPuzzle extends JPanel {
 	repaint();
     }
 
+    // Copy pieces into zorder, and randomize their positions.
+    private void shuffle(final Piece[] pieces) {
+	// Arrays.asList() doesn't work, so be explicit
+	zorder = new ArrayList<>();
+	int height = getHeight();
+	int width = getWidth();
+
+	ThreadLocalRandom trandom = ThreadLocalRandom.current();
+	for (Piece piece : pieces) {
+	    piece.setPuzzlePosition(
+		trandom.nextInt(width - piece.getCurrentWidth()),
+		trandom.nextInt(height - piece.getCurrentHeight()));
+	    zorder.add(piece);
+	}
+	Collections.shuffle(zorder);
+
+	finished = false;
+	if (finishedImage != null) {
+	    finishedImage.flush();
+	    finishedImage = null;
+	}
+    }
+
+    private void shuffle(final Piece piece, final Rectangle rect) {
+	int dx = ThreadLocalRandom.current().nextInt(rect.width);
+	int dy = ThreadLocalRandom.current().nextInt(rect.height);
+	piece.moveTo(rect.x + dx, rect.y + dy);
+    }
+
     // (x1,y1) guaranteed to be SE of (x0,y0)
     /**
      * Shuffle piece randomly, but keeping it out of the rectangle defined
@@ -670,35 +699,6 @@ public final class JigsawPuzzle extends JPanel {
 	    return;
 	}
 	shuffle(piece, east);
-    }
-
-    private void shuffle(final Piece piece, final Rectangle rect) {
-	int dx = ThreadLocalRandom.current().nextInt(rect.width);
-	int dy = ThreadLocalRandom.current().nextInt(rect.height);
-	piece.moveTo(rect.x + dx, rect.y + dy);
-    }
-
-    // Copy pieces into zorder, and randomize their positions.
-    private void shuffle(final Piece[] pieces) {
-	// Arrays.asList() doesn't work, so be explicit
-	zorder = new ArrayList<>();
-	int height = getHeight();
-	int width = getWidth();
-
-	ThreadLocalRandom trandom = ThreadLocalRandom.current();
-	for (Piece piece : pieces) {
-	    piece.setPuzzlePosition(
-		trandom.nextInt(width - piece.getCurrentWidth()),
-		trandom.nextInt(height - piece.getCurrentHeight()));
-	    zorder.add(piece);
-	}
-	Collections.shuffle(zorder);
-
-	finished = false;
-	if (finishedImage != null) {
-	    finishedImage.flush();
-	    finishedImage = null;
-	}
     }
 
     // Keyboard event handling ----------------------------------------------
@@ -799,8 +799,8 @@ public final class JigsawPuzzle extends JPanel {
     }
 
     private boolean isBright(final Color c) {
-	float[] hsb =
-	    Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
+	float[] hsb
+	    = Color.RGBtoHSB(c.getRed(), c.getGreen(), c.getBlue(), null);
 	return hsb[2] > 0.5;
     }
 }

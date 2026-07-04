@@ -164,6 +164,29 @@ public final class JigsawFrame extends JFrame implements ActionListener {
     private transient JigsawCutter defaultCutter;
 
     /**
+     * Prompt for an image to solve, with the default number of pieces
+     * and piece style.
+     */
+    public JigsawFrame() {
+	this(JigsawCutter.DEFAULT_PIECES, CUTTERS[0]);
+    }
+
+    /**
+     * Prompt for an image to solve, with the given number of pieces
+     * and piece style.
+     *
+     * @param pieces the number of pieces to create
+     * @param cutter the JigsawCutter to be used to cut the image into pieces
+     */
+    public JigsawFrame(final int pieces, final JigsawCutter cutter) {
+	super("Jigsaw Puzzle");
+	defaultPieces = pieces;
+	defaultCutter = cutter;
+	initFrameWork();
+	initPrompt();
+    }
+
+    /**
      * Creates and displays a simple JFrame containing a jigsaw puzzle in a
      * JScrollPane. The frame may be resized freely. If an image is supplied
      * on the command line, it will be used; otherwise the user will be
@@ -206,29 +229,6 @@ public final class JigsawFrame extends JFrame implements ActionListener {
 	defaultCutter = cutter;
 	initFrameWork();
 	init(nimage, cutter);
-    }
-
-    /**
-     * Prompt for an image to solve, with the given number of pieces
-     * and piece style.
-     *
-     * @param pieces the number of pieces to create
-     * @param cutter the JigsawCutter to be used to cut the image into pieces
-     */
-    public JigsawFrame(final int pieces, final JigsawCutter cutter) {
-	super("Jigsaw Puzzle");
-	defaultPieces = pieces;
-	defaultCutter = cutter;
-	initFrameWork();
-	initPrompt();
-    }
-
-    /**
-     * Prompt for an image to solve, with the default number of pieces
-     * and piece style.
-     */
-    public JigsawFrame() {
-	this(JigsawCutter.DEFAULT_PIECES, CUTTERS[0]);
     }
 
     private void initFrameWork() {

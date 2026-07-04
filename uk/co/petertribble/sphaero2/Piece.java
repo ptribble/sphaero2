@@ -612,8 +612,8 @@ public class Piece {
 	    curData = new int[origData.length];
 	    for (int i = 0; i < curWidth; i++) {
 		for (int j = 0; j < curHeight; j++) {
-		    curData[j * curWidth + i] =
-			origData[(origHeight - i - 1) * origWidth + j];
+		    curData[j * curWidth + i]
+			= origData[(origHeight - i - 1) * origWidth + j];
 		}
 	    }
 	} else if (rotation == 180) {
@@ -632,8 +632,8 @@ public class Piece {
 	    curData = new int[origData.length];
 	    for (int i = 0; i < curWidth; i++) {
 		for (int j = 0; j < curHeight; j++) {
-		    curData[j * curWidth + i] =
-			origData[i * origWidth + origWidth - j - 1];
+		    curData[j * curWidth + i]
+			= origData[i * origWidth + origWidth - j - 1];
 		}
 	    }
 	}
