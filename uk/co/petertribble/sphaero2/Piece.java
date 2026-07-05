@@ -508,7 +508,7 @@ public class Piece {
 	    nw = false;
 	    int x = Math.max(0, i - height + 2);
 	    int y = Math.max(0, height - i - 2);
-	    c = (((data[y * width + x] >> 24) & 0xFF) > 0);
+	    c = ((data[y * width + x] >> 24) & 0xFF) > 0;
 	    while ((x < width) && (y < height)) {
 		if ((x + 1 < width) && (y + 1 < height)) {
 		    se = ((data[(y + 1) * width + x + 1] >> 24) & 0xFF) > 0;
